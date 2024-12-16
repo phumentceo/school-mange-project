@@ -51,8 +51,21 @@ Route::get('/class/edit',function(){
     return view('principal.classes.edit');
 });
 
+Route::get('/class/view',function(){
+    return view('principal.classes.view');
+});
+
 
 //Guardian Router
+Route::get('/guardian',function(){
+    return view('principal.guardian.list');
+});
+Route::get('/guardian/create',function(){
+    return view('principal.guardian.create');
+});
+Route::get('/guardian/edit',function(){
+    return view('principal.guardian.edit');
+});
 
 
 //Message contact routers
