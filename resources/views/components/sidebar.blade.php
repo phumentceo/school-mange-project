@@ -72,10 +72,25 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-people-fill"></i><span>អាណាព្យាបាលសិស្ស</span>
+        <a class="nav-link collapsed" data-bs-target="#guardian-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-people-fill"></i></i><span>អាណាព្យាបាលសិស្ស</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="guardian-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="components-alerts.html">
+              <i class="bi bi-circle"></i><span>តារាងអាណាព្យាបាលសិស្ស</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-accordion.html">
+              <i class="bi bi-circle"></i><span>បន្ថែមអាណាព្យាបាលសិស្ស</span>
+            </a>
+          </li>
+        </ul>
       </li>
+
+
+     
 
 
       <li class="nav-item">

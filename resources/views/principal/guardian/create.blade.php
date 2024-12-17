@@ -13,49 +13,49 @@
         </div>
 
         <div class="col-md-4 mb-2">
-          <label for="inputEmail5" class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
+          <label class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
           <input type="text" class="form-control shadow-none" name="english_name">
         </div>
 
         <div class="col-md-4 mb-2">
-            <label for="inputEmail5" class="form-label">មុខរបរ</label>
+            <label class="form-label">មុខរបរ</label>
             <input type="text" class="form-control shadow-none" name="english_name">
         </div>
 
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">ទីកន្លែងកំណើត</label>
+            <label class="form-label">ទីកន្លែងកំណើត</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">ទីលំនៅបច្ចុបន្បន្ន</label>
+            <label class="form-label">ទីលំនៅបច្ចុបន្បន្ន</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
         
         <div class="col-md-4 mb-2">
-          <label for="inputName5" class="form-label">ឈ្មោះម្តាយ</label>
+          <label class="form-label">ឈ្មោះម្តាយ</label>
           <input type="text" class="form-control shadow-none" name="khmer_name" placeholder="ផាន សុផាត់">
         </div>
 
         <div class="col-md-4 mb-2">
-          <label for="inputEmail" class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
+          <label class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
           <input type="text" class="form-control shadow-none" name="english_name">
         </div>
 
         <div class="col-md-4 mb-2">
-            <label for="inputEmail5" class="form-label">មុខរបរ</label>
+            <label class="form-label">មុខរបរ</label>
             <input type="text" class="form-control shadow-none" name="english_name">
         </div>
 
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">ទីកន្លែងកំណើត</label>
+            <label class="form-label">ទីកន្លែងកំណើត</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">ទីលំនៅបច្ចុបន្បន្ន</label>
+            <label class="form-label">ទីលំនៅបច្ចុបន្បន្ន</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
         <div class="col-md-4 mb-2">
@@ -64,40 +64,50 @@
         </div>
 
         <div class="col-md-4 mb-2">
-          <label for="inputEmail5" class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
-          <input type="text" class="form-control shadow-none" name="english_name" placeholder="PHAN SOPHAT">
+          <label class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
+          <input type="text" class="form-control shadow-none" name="english_name">
         </div>
 
         <div class="col-md-4 mb-2">
-            <label for="inputEmail5" class="form-label">មុខរបរ</label>
-            <input type="text" class="form-control shadow-none" name="english_name" placeholder="PHAN SOPHAT">
+            <label class="form-label">មុខរបរ</label>
+            <input type="text" class="form-control shadow-none" name="english_name">
         </div>
 
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">ទីកន្លែងកំណើត</label>
+            <label class="form-label">ទីកន្លែងកំណើត</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">ទីលំនៅបច្ចុបន្បន្ន</label>
+            <label class="form-label">ទីលំនៅបច្ចុបន្បន្ន</label>
             <input type="text" name="" id="" class=" form-control shadow-none" >
         </div>
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">លេខទូរស័ព្ទទំនាក់ទំនង</label>
+          <label class="form-label">មានកូនក្នុងបន្ទុក</label>
+          <input type="text" name="" id="" class=" form-control shadow-none" >
+        </div>
+
+        <div class="col-md-6 mb-2">
+          <label class="form-label">កូនស្រី</label>
+          <input type="text" name="" id="" class=" form-control shadow-none" >
+        </div>
+
+        <div class="col-md-6 mb-2">
+            <label class="form-label">លេខទូរស័ព្ទទំនាក់ទំនង</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
 
         <div class="col-md-6 mb-2">
-            <label for="inputEmail5" class="form-label">អាសយដ្ឋានអ៊ីម៉ែល</label>
+            <label class="form-label">អាសយដ្ឋានអ៊ីម៉ែល</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
 
 
 
         <div class="col-md-12 mb-2">
-            <label for="inputEmail5" class="form-label">ឈ្មោះសិស្ស</label>
+            <label class="form-label">ឈ្មោះសិស្ស</label>
             <input type="text" name="" id="" class=" form-control shadow-none">
         </div>
 

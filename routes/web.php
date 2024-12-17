@@ -71,6 +71,22 @@ Route::get('/guardian/view',function(){
 });
 
 
+//Teachers Routers
+Route::get('/student',function(){
+    return view('principal.students.list');
+});
+Route::get('/student/create',function(){
+    return view('principal.students.create');
+});
+Route::get('/student/edit',function(){
+    return view('principal.students.edit');
+});
+
+Route::get('/student/view',function(){
+    return view('principal.students.view');
+});
+
+
 //Message contact routers
 Route::get('/contact',function(){
     return view('principal.contacts.contact');
