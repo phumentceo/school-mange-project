@@ -66,6 +66,9 @@ Route::get('/guardian/create',function(){
 Route::get('/guardian/edit',function(){
     return view('principal.guardian.edit');
 });
+Route::get('/guardian/view',function(){
+    return view('principal.guardian.view');
+});
 
 
 //Message contact routers
