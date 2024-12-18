@@ -90,17 +90,30 @@
       </li>
 
 
-     
-
-
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-person-bounding-box"></i></i><span>សិស្ស</span>
+        <a class="nav-link collapsed" data-bs-target="#student-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person-bounding-box"></i><span>អាណាព្យាបាលសិស្ស</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="student-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="components-alerts.html">
+              <i class="bi bi-circle"></i><span>តារាងសិស្ស</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-accordion.html">
+              <i class="bi bi-circle"></i><span>បន្ថែមសិស្ស</span>
+            </a>
+          </li>
+        </ul>
       </li>
 
 
-      
+     
+
+
+    
+
 
       <li class="nav-heading">Pages</li>
 
