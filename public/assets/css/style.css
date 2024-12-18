@@ -97,6 +97,9 @@ h6 {
   opacity: 1;
 }
 
+.fdsf{
+  color: #fc9b9b;
+}
 /*--------------------------------------------------------------
 # Override some default Bootstrap stylings
 --------------------------------------------------------------*/
@@ -234,7 +237,8 @@ h6 {
   font-size: 18px;
   font-weight: 500;
   color: #012970;
-  font-family: "Poppins", sans-serif;
+  font-family: "Battambang", serif;
+  font-style: normal;
 }
 
 .card-title span {

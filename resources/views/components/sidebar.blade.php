@@ -92,7 +92,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#student-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-person-bounding-box"></i><span>អាណាព្យាបាលសិស្ស</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-person-bounding-box"></i><span>សិក្សានុសិស្ស</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="student-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
