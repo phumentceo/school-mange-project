@@ -86,9 +86,14 @@ Route::get('/student/view',function(){
     return view('principal.students.view');
 });
 
-
+// Profle
 Route::get('/profile',function(){
     return view('principal.profile.profile');
+});
+
+//Setting 
+Route::get('/setting',function(){
+    return view('principal.setting.setting');
 });
 
 //Message contact routers

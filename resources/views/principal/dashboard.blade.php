@@ -1,16 +1,5 @@
 @extends('components.master')
 @section('contents')
-
-<div class="pagetitle">
-    <h1>Dashboard</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
-      </ol>
-    </nav>
-</div><!-- End Page Title -->
-
 <section class="section dashboard">
     <div class="row">
 
@@ -117,6 +106,7 @@
           </div>
            <!-- End Class stady Card -->
 
+           {{-- Custormer start --}}
           <div class="col-xxl-4 col-md-6">
 
             <div class="card info-card customers-card">
@@ -147,25 +137,25 @@
             </div>
 
           </div>
+          {{-- Customer end --}}
          
 
-          <!-- Customers Reports -->
+          {{-- Electricity and water expenses start --}}
           <div class="col-12">
             <div class="card">
 
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
+                  
 
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                  <li><a class="dropdown-item" href="#">5 ខែចុងក្រោយ</a></li>
+                  <li><a class="dropdown-item" href="#">1 ឆ្នាំចុងក្រោយ</a></li>
+
                 </ul>
               </div>
 
+              
               <div class="card-body">
                 <h5 class="card-title">ការចំណាយថ្លៃទឹក-ភ្លើង <span>/ ខែនេះ</span></h5>
 
@@ -243,10 +233,11 @@
                 <!-- End Line Chart -->
 
               </div>
+               
 
             </div>
           </div>
-          <!-- End of Customers Reports -->
+          {{-- Electricity and water expenses start --}}
 
         </div>
       </div><!-- End Left side columns -->
@@ -259,14 +250,12 @@
           <div class="filter">
             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-              <li class="dropdown-header text-start">
-                <h6>Filter</h6>
-              </li>
-
-              <li><a class="dropdown-item" href="#">Today</a></li>
-              <li><a class="dropdown-item" href="#">This Month</a></li>
-              <li><a class="dropdown-item" href="#">This Year</a></li>
+              
+              <li><a class="dropdown-item" href="#">ឆ្នាំ 2022-2023</a></li>
+              <li><a class="dropdown-item" href="#">ឆ្នាំ 2023-2024</a></li>
+              <li><a class="dropdown-item" href="#">ឆ្នាំ 2024-2025</a></li>
             </ul>
+            
           </div>
 
           <div class="card-body pb-0">
@@ -334,9 +323,9 @@
                 <h6>Filter</h6>
               </li>
 
-              <li><a class="dropdown-item" href="#">Today</a></li>
-              <li><a class="dropdown-item" href="#">This Month</a></li>
-              <li><a class="dropdown-item" href="#">This Year</a></li>
+              <li><a class="dropdown-item" href="#">ឆ្នាំ 2022-2023</a></li>
+              <li><a class="dropdown-item" href="#">ឆ្នាំ 2023-2024</a></li>
+              <li><a class="dropdown-item" href="#">ឆ្នាំ 2024-2025</a></li>
             </ul>
           </div>
 
@@ -427,10 +416,7 @@
           <div class="filter">
             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-              <li class="dropdown-header text-start">
-                <h6>Filter</h6>
-              </li>
-
+              
               <li><a class="dropdown-item" href="#">Today</a></li>
               <li><a class="dropdown-item" href="#">This Month</a></li>
               <li><a class="dropdown-item" href="#">This Year</a></li>
