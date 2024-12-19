@@ -96,6 +96,11 @@ Route::get('/setting',function(){
     return view('principal.setting.setting');
 });
 
+
+Route::get('/login',function(){
+    return view('principal.login');
+});
+
 //Message contact routers
 Route::get('/contact',function(){
     return view('principal.contacts.contact');
