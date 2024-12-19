@@ -83,7 +83,7 @@
           <!-- End Student Card -->
 
           <!-- Class stady Card -->
-          <div class="col-xxl-4 col-xl-12">
+          <div class="col-xxl-4 col-md-6">
 
             <div class="card info-card customers-card">
 
@@ -117,7 +117,7 @@
           </div>
            <!-- End Class stady Card -->
 
-          <div class="col-xxl-4 col-xl-12">
+          <div class="col-xxl-4 col-md-6">
 
             <div class="card info-card customers-card">
 
@@ -175,55 +175,71 @@
                 <script>
                   document.addEventListener("DOMContentLoaded", () => {
                     new ApexCharts(document.querySelector("#reportsChart"), {
-                      series: [{
-                        name: 'Sales',
-                        data: [31, 40, 28, 51, 42, 82, 56],
-                      }, {
-                        name: 'Revenue',
-                        data: [11, 32, 45, 32, 34, 52, 41]
-                      }, {
-                        name: 'Customers',
-                        data: [15, 11, 32, 18, 9, 24, 11]
-                      }],
+                      series: [
+                        {
+                          name: 'ទឹកភ្លើង', // Khmer for "electricity"
+                          data: [30, 40, 28, 100], // Numeric values only
+                        },
+                      ],
                       chart: {
                         height: 350,
                         type: 'area',
                         toolbar: {
-                          show: false
+                          show: false,
                         },
                       },
                       markers: {
-                        size: 4
+                        size: 4,
                       },
-                      colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                      colors: ['green'],
                       fill: {
                         type: "gradient",
                         gradient: {
                           shadeIntensity: 1,
                           opacityFrom: 0.3,
                           opacityTo: 0.4,
-                          stops: [0, 90, 100]
-                        }
+                          stops: [0, 90, 100],
+                        },
                       },
                       dataLabels: {
-                        enabled: false
+                        enabled: false,
                       },
                       stroke: {
                         curve: 'smooth',
-                        width: 2
+                        width: 2,
                       },
                       xaxis: {
                         type: 'datetime',
-                        categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                        categories: [
+                          "2024-09-19T00:00:00.000Z",
+                          "2024-10-19T01:30:00.000Z",
+                          "2024-11-19T02:30:00.000Z",
+                          "2024-12-19T03:30:00.000Z",
+                        ],
+                      },
+                      yaxis: {
+                        labels: {
+                          formatter: function (value) {
+                            return value + "$";
+                          },
+                        },
                       },
                       tooltip: {
-                        x: {
-                          format: 'dd/MM/yy HH:mm'
+                        y: {
+                          formatter: function (value) {
+                            return value + "$";
+                          },
                         },
-                      }
+                        x: {
+                          format: 'dd/MM/yyyy HH:mm',
+                        },
+                      },
                     }).render();
                   });
                 </script>
+                
+                
+
                 <!-- End Line Chart -->
 
               </div>
@@ -269,7 +285,7 @@
                     left: 'center'
                   },
                   series: [{
-                    name: 'Access From',
+                    name: 'ចំនួនសិស្ស',
                     type: 'pie',
                     radius: ['40%', '70%'],
                     avoidLabelOverlap: false,
@@ -289,12 +305,14 @@
                     },
                     data: [{
                         value: 500,
-                        name: 'សិស្សប្រុស'
+                        name: 'សិស្សប្រុស',
+                        itemStyle: { color: 'red' } // Yellow
                       },
                       
                       {
                         value: 600,
-                        name: 'សិស្សស្រី'
+                        name: 'សិស្សស្រី',
+                        itemStyle: { color: 'green' }
                       }
                     ]
                   }]
@@ -307,7 +325,7 @@
         </div>
         <!-- End Recent Activity -->
 
-        <!-- Budget Report -->
+        <!-- Bac II Report -->
         <div class="card">
           <div class="filter">
             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -399,7 +417,8 @@
           </div>
 
           
-        </div><!-- End Budget Report -->
+        </div>
+        <!-- End Bac II Report -->
 
        
 
@@ -434,7 +453,7 @@
                     left: 'center'
                   },
                   series: [{
-                    name: 'Access From',
+                    name: 'ចំនួនគ្រូបង្រៀន',
                     type: 'pie',
                     radius: ['40%', '70%'],
                     avoidLabelOverlap: false,
@@ -454,12 +473,12 @@
                     },
                     data: [{
                         value: 20,
-                        name: 'លោកគ្រួ'
+                        name: 'លោកគ្រូ'
                       },
                       
                       {
                         value: 10,
-                        name: 'អ្នកគ្រួ'
+                        name: 'អ្នកគ្រូ'
                       }
                     ]
                   }]
