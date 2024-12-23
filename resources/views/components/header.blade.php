@@ -29,7 +29,10 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('assets/css/mycss.css') }}">
 
+
+    @yield('style')
 
     
 </head>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('components.header')
+@yield('script')
 <body>
 
   <!-- ======= Header ======= -->

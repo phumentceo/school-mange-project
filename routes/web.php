@@ -122,6 +122,10 @@ Route::get('/tearcher/parent/edit',function(){
     return view('principal.guardian.edit');
 });
 
+Route::get('/teacher/student/ranking',function(){
+    return view('teacher.classes.student_ranking');
+});
+
 //---------------Teacher Router end--------------------//
 
 
