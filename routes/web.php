@@ -57,17 +57,14 @@ Route::get('/class/view',function(){
 
 
 //Guardian Router
-Route::get('/guardian',function(){
-    return view('principal.guardian.list');
+Route::get('/parent',function(){
+    return view('teacher.student_parrent.list');
 });
-Route::get('/guardian/create',function(){
-    return view('principal.guardian.create');
+Route::get('/parent/create',function(){
+    return view('teacher.student_parrent.create');
 });
-Route::get('/guardian/edit',function(){
+Route::get('/parent/edit',function(){
     return view('principal.guardian.edit');
-});
-Route::get('/guardian/view',function(){
-    return view('principal.guardian.view');
 });
 
 
@@ -105,3 +102,5 @@ Route::get('/login',function(){
 Route::get('/contact',function(){
     return view('principal.contacts.contact');
 });
+
+
