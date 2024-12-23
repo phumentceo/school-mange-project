@@ -1,6 +1,5 @@
 @extends('components.master')
 @section('contents')
-
         <div class="card">
           <div class="card-body p-5">
 

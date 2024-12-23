@@ -110,6 +110,11 @@ Route::get('/tearcher/parent/edit',function(){
     return view('principal.guardian.edit');
 });
 
+
+Route::get('/teacher/view/class',function(){
+    return view('teacher.classes.view');
+});
+
 //---------------Teacher Router end--------------------//
 
 
