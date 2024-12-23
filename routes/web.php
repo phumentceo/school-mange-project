@@ -106,13 +106,20 @@ Route::get('/tearcher/parent',function(){
 Route::get('/tearcher/parent/create',function(){
     return view('teacher.student_parrent.create');
 });
-Route::get('/tearcher/parent/edit',function(){
-    return view('principal.guardian.edit');
-});
 
 
+
+//Teacher with class room
 Route::get('/teacher/view/class',function(){
     return view('teacher.classes.view');
+});
+
+Route::get('/teacher/attendance',function(){
+    return view('teacher.classes.attendance');
+});
+
+Route::get('/tearcher/parent/edit',function(){
+    return view('principal.guardian.edit');
 });
 
 //---------------Teacher Router end--------------------//
