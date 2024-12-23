@@ -73,7 +73,6 @@
 
           <!-- Class stady Card -->
           <div class="col-xxl-4 col-md-6">
-
             <div class="card info-card customers-card">
 
               <div class="filter">
@@ -106,138 +105,72 @@
           </div>
            <!-- End Class stady Card -->
 
-           {{-- Custormer start --}}
-          <div class="col-xxl-4 col-md-6">
 
+          <div class="col-xxl-12 col-12">
             <div class="card info-card customers-card">
-
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li><a class="dropdown-item" href="#">ឆ្នាំ 2022-2023</a></li>
-                  <li><a class="dropdown-item" href="#">ឆ្នាំ 2023-2024</a></li>
-                  <li><a class="dropdown-item" href="#">ឆ្នាំ 2024-2025</a></li>
+                  
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
                 </ul>
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">អ្នកប្រើប្រាស់ <span>| ឆ្នាំ 2024-2025</span></h5>
+                <h5 class="card-title">បន្ទប់រៀន <span>| ឆ្នាំ 2024-2025</span></h5>
 
-                <div class="d-flex align-items-center">
-                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-people-fill"></i>
+                <div class="row">
+
+                   <div class="col-3">
+                      <div class="card p-3">
+                          <h4>ថ្នាក់ទី 7A</h4>
+                          <div class="p-3">
+                            <p>សិស្សសរុប៖  35 នាក់</p>
+                            <p>ស្រី ៖ 24 នាក់</p>
+                          </div>
+                          
+                      </div>
+                   </div> 
+
+                  <div class="col-3">
+                    <div class="card p-3">
+                       <h4>ថ្នាក់ទី 7B</h4>
+                       <div class="p-3">
+                          <p>សិស្សសរុប៖  35 នាក់</p>
+                          <p>ស្រី ៖ 24 នាក់</p>
+                       </div>
+                    </div>
+                  </div> 
+
+                  <div class="col-3">
+                    <div class="card p-3">
+                        <h4>ថ្នាក់ទី 7A</h4>
+                        <div class="p-3">
+                          <p>សិស្សសរុប៖  35 នាក់</p>
+                          <p>ស្រី ៖ 24 នាក់</p>
+                        </div>
+                        
+                    </div>
+                 </div> 
+
+                <div class="col-3">
+                  <div class="card p-3">
+                     <h4>ថ្នាក់ទី 7B</h4>
+                     <div class="p-3">
+                        <p>សិស្សសរុប៖  35 នាក់</p>
+                        <p>ស្រី ៖ 24 នាក់</p>
+                     </div>
                   </div>
-                  <div class="ps-3">
-                    <h6>300</h6>
-                    <span class="text-danger small pt-1 fw-bold">15</span> <span class="text-muted small pt-2 ps-1">ជាគ្រូបង្រៀន</span>
-                  </div>
+                </div> 
+
                 </div>
 
               </div>
             </div>
 
           </div>
-          {{-- Customer end --}}
-         
-
-          {{-- Electricity and water expenses start --}}
-          <div class="col-12">
-            <div class="card">
-
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  
-
-                  <li><a class="dropdown-item" href="#">5 ខែចុងក្រោយ</a></li>
-                  <li><a class="dropdown-item" href="#">1 ឆ្នាំចុងក្រោយ</a></li>
-
-                </ul>
-              </div>
-
-              
-              <div class="card-body">
-                <h5 class="card-title">ការចំណាយថ្លៃទឹក-ភ្លើង <span>/ ខែនេះ</span></h5>
-
-                <!-- Line Chart -->
-                <div id="reportsChart"></div>
-
-                <script>
-                  document.addEventListener("DOMContentLoaded", () => {
-                    new ApexCharts(document.querySelector("#reportsChart"), {
-                      series: [
-                        {
-                          name: 'ទឹកភ្លើង', // Khmer for "electricity"
-                          data: [30, 40, 28, 100], // Numeric values only
-                        },
-                      ],
-                      chart: {
-                        height: 350,
-                        type: 'area',
-                        toolbar: {
-                          show: false,
-                        },
-                      },
-                      markers: {
-                        size: 4,
-                      },
-                      colors: ['green'],
-                      fill: {
-                        type: "gradient",
-                        gradient: {
-                          shadeIntensity: 1,
-                          opacityFrom: 0.3,
-                          opacityTo: 0.4,
-                          stops: [0, 90, 100],
-                        },
-                      },
-                      dataLabels: {
-                        enabled: false,
-                      },
-                      stroke: {
-                        curve: 'smooth',
-                        width: 2,
-                      },
-                      xaxis: {
-                        type: 'datetime',
-                        categories: [
-                          "2024-09-19T00:00:00.000Z",
-                          "2024-10-19T01:30:00.000Z",
-                          "2024-11-19T02:30:00.000Z",
-                          "2024-12-19T03:30:00.000Z",
-                        ],
-                      },
-                      yaxis: {
-                        labels: {
-                          formatter: function (value) {
-                            return value + "$";
-                          },
-                        },
-                      },
-                      tooltip: {
-                        y: {
-                          formatter: function (value) {
-                            return value + "$";
-                          },
-                        },
-                        x: {
-                          format: 'dd/MM/yyyy HH:mm',
-                        },
-                      },
-                    }).render();
-                  });
-                </script>
-                
-                
-
-                <!-- End Line Chart -->
-
-              </div>
-               
-
-            </div>
-          </div>
-          {{-- Electricity and water expenses start --}}
 
         </div>
       </div><!-- End Left side columns -->

@@ -14,7 +14,6 @@ return Application::configure(basePath: dirname(__DIR__))
             $router->middleware('web')->group(base_path('routes/principal.php'));
             $router->middleware('web')->group(base_path('routes/guardian.php'));  
         }
-
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
