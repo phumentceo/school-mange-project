@@ -1,4 +1,4 @@
-@extends('components.master')
+@extends('teacher.components.master')
 @section('contents')
 <div class="card">
     <div class="card-body p-5">
@@ -44,7 +44,7 @@
         <div class="col-md-12">
             <label for="inputZip" class="form-label">ទីលំនៅបច្ចុប្បន្ន</label>
             <input type="text" class="form-control shadow-none" id="inputZip">
-            <input type="checkbox">
+            <input type="checkbox" checked>
             <span style="font-size: 15px;">ទីតាំងដដែល</span>
         </div>
 

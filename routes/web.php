@@ -56,17 +56,6 @@ Route::get('/class/view',function(){
 });
 
 
-//Guardian Router
-Route::get('/parent',function(){
-    return view('teacher.student_parrent.list');
-});
-Route::get('/parent/create',function(){
-    return view('teacher.student_parrent.create');
-});
-Route::get('/parent/edit',function(){
-    return view('principal.guardian.edit');
-});
-
 
 //Teachers Routers
 Route::get('/student',function(){
@@ -102,5 +91,26 @@ Route::get('/login',function(){
 Route::get('/contact',function(){
     return view('principal.contacts.contact');
 });
+
+
+
+//---------------Teacher Router start--------------------//
+Route::get('/teacher/dashboard',function(){
+    return view('teacher.dashboard');
+});
+
+//Guardian Router
+Route::get('/tearcher/parent',function(){
+    return view('teacher.student_parrent.list');
+});
+Route::get('/tearcher/parent/create',function(){
+    return view('teacher.student_parrent.create');
+});
+Route::get('/tearcher/parent/edit',function(){
+    return view('principal.guardian.edit');
+});
+
+
+//---------------Teacher Router end--------------------//
 
 
