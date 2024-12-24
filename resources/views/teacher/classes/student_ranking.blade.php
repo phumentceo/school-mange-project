@@ -9,8 +9,13 @@
           <div class="card-body p-4">
             <!-- Document Header -->
             <div class="document-header">
-              <h6 class="main-title text-center" style="font-size: 24px;">ព្រះរាជាណាចក្រកម្ពុជា</h6>
-              <h6 class="sub-title text-center">ជាតិ សាសនា ព្រះមហាក្សត្រ</h6>
+              
+              <div class=" text-center">
+                <h6 class="main-title" style="font-size: 24px;">ព្រះរាជាណាចក្រកម្ពុជា</h6>
+                <h6 class="sub-title">ជាតិ សាសនា ព្រះមហាក្សត្រ</h6>
+                <img class="" style="width: 200px;" src="{{ asset('save1.jpg') }}" alt="">
+              </div>
+              
               <div class="div">
                 <p>ខេត្ត កំពង់ធំ</p>
                 <h6>មន្ទីអប់រំយុវជននិងកីឡា</h6>
