@@ -21,15 +21,15 @@
               </div>
 
               <div class="card-body">
-                <h5 class=" card-title">គ្រូបង្រៀន <span>| ឆ្នាំ 2024-2025</span></h5>
+                <h5 class=" card-title">ថ្នាក់បង្រៀន <span>| ឆ្នាំ 2024-2025</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="bi bi-person-workspace"></i>
+                    <i class="bi bi-houses-fill"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>40 នាក់</h6>
-                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    <h6>5 ថ្នាក់</h6>
+                    <span class="text-success small pt-1 fw-bold">7A</span> <span class="text-muted small pt-2 ps-1">បន្ទុកថ្នាក់</span>
 
                   </div>
                 </div>
@@ -53,15 +53,15 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">សិក្សានុសិស្ស<span> | ឆ្នាំ 2024-2025</span></h5>
+                <h5 class="card-title">សិស្សសរុប<span> | ឆ្នាំ 2024-2025</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="bi bi-person-bounding-box"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>3,264 នាក់</h6>
-                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    <h6>100 នាក់</h6>
+                    <span class="text-success small pt-1 fw-bold">60%</span> <span class="text-muted small pt-2 ps-1">ស្រី</span>
 
                   </div>
                 </div>
@@ -86,15 +86,15 @@
               </div>
 
               <div class="card-body">
-                <h5 class="card-title">បន្ទប់រៀន <span>| ឆ្នាំ 2024-2025</span></h5>
+                <h5 class="card-title">មុខវិជ្ជា <span>| ឆ្នាំ 2024-2025</span></h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                     <i class="bi bi-houses-fill"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>30 បន្ទប់</h6>
-                    <span class="text-danger small pt-1 fw-bold">20</span> <span class="text-muted small pt-2 ps-1">ត្រូវបានប្រើ</span>
+                    <h6>2 មុខ</h6>
+                    <span class="text-danger small pt-1 fw-bold">ភូមិ និង ប្រវត្តិវិទ្យា</span>
 
                   </div>
                 </div>

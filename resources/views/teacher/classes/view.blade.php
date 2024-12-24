@@ -74,12 +74,55 @@
 
 <div class="card">
   <div class="card-body p-3">
-    <h5 class="mb-4">ជម្រើស</h5>
-    <div class="d-flex justify-content-start gap-3">
-      <button class="btn btn-primary">ស្រង់វត្តមាន</button>
-      <button class="btn btn-success">បង្កើតតារាងចំណាត់ថ្នាក់</button>
-      <button class="btn btn-warning">បង្កើតតារាងកិត្តិយស</button>
+    <div class="row">
+        <div class="col-lg-6">
+          <div class="card p-5">
+            <h5 class="mb-4 text-center">ជម្រើស</h5>
+            <div class="d-flex justify-content-start gap-3">
+              <button class="btn btn-primary">ស្រង់វត្តមាន</button>
+              <button class="btn btn-success">បង្កើតតារាងចំណាត់ថ្នាក់</button>
+              <button class="btn btn-warning">បង្កើតតារាងកិត្តិយស</button>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card p-5">
+              <div class=" p-3">
+                <h5 class="mb-4 text-center mb-4">ស្ថានភាពថ្នាក់</h5>
+                <div class="row">
+                    <div class="col-lg-2">ថ្មី</div>
+                    <div class="col-lg-10">
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                        </div>
+        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">មធ្យម</div>
+                    <div class="col-lg-10">
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-2">ចាស់</div>
+                    <div class="col-lg-10">
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+        </div>
     </div>
-  </div>
+    
 </div>
 @endsection

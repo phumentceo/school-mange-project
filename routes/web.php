@@ -114,6 +114,7 @@ Route::get('/teacher/view/class',function(){
     return view('teacher.classes.view');
 });
 
+
 Route::get('/teacher/attendance',function(){
     return view('teacher.classes.attendance');
 });
