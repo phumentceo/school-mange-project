@@ -7,6 +7,20 @@ Route::get('/', function () {
 });
 
 
+//Admin Auth
+Route::get('/admin',function(){
+    return view('principal.auth.login');
+});
+Route::get('/admin/forgot',function(){
+    return view('principal.auth.send_email');
+});
+Route::get('/admin/forgot/verify',function(){
+    return view('principal.auth.code_verify');
+});
+Route::get('/admin/reset/password',function(){
+    return view('principal.auth.new_password');
+});
+
 //Subject Routers
 Route::get('/subject',function(){
     return view('principal.subjects.list');
@@ -125,6 +139,10 @@ Route::get('/tearcher/parent/edit',function(){
 
 Route::get('/teacher/student/ranking',function(){
     return view('teacher.classes.student_ranking');
+});
+
+Route::get('/teacher/student/score',function(){
+    return view('teacher.classes.student_score');
 });
 
 //---------------Teacher Router end--------------------//
