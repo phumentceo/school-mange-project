@@ -37,6 +37,16 @@ Route::get('/subject/view',function(){
 
 
 
+//Teacher Auth
+Route::get('/teacher/login',function(){
+    return view('teacher.auth.login');
+});
+
+Route::get('/teacehr/register',function(){
+    return view('teacher.auth.register');
+});
+
+
 //Teachers Routers
 Route::get('/teacher',function(){
     return view('principal.teachers.list');
