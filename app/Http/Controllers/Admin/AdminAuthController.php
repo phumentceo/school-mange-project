@@ -29,11 +29,11 @@ class AdminAuthController extends Controller
     }
 
     public function showCodeVerify(){
-
+        return view('principal.auth.code_verify');
     }
 
     public function showResetPassword(){
-
+        return view('principal.auth.new_password');
     }
 
 
