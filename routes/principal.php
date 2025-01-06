@@ -7,4 +7,5 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/',[AdminAuthController::class,'loginShow'])->name('login.show');
     Route::post('/login',[AdminAuthController::class,'loginProcess'])->name('login.process');
     Route::get('/send',[AdminAuthController::class,'sendEamil'])->name('send.email.show');
+    Route::post('/send/process',[AdminAuthController::class,'sendEmailProcess'])->name('send.email.process');
 });

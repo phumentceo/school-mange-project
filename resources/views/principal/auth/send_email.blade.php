@@ -21,7 +21,7 @@
               <div class="card mb-3">
 
                 <div class="card-body">
-                  <form id="forgot-password-form" action="" class="row g-3 needs-validation" method="POST">
+                  <form id="forgot-password-form" action="{{ route('admin.send.email.process') }}" class="row g-3 needs-validation" method="POST">
                     @csrf
                     <div class="col-12 p-3">
                       @if (Session::has('error'))

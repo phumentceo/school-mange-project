@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\sendForgotPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AdminAuthController extends Controller
 {
@@ -22,7 +24,7 @@ class AdminAuthController extends Controller
             'email.required' => 'សូមបញ្ចូលអ៊ីមែល។',
             'email.email' => 'អ៊ីមែលដែលបានបញ្ចូលមិនត្រឹមត្រូវទេ។',
             'password.required' => 'សូមបញ្ចូលពាក្យសម្ងាត់។'
-            
+
 
         ]);
 
@@ -42,5 +44,12 @@ class AdminAuthController extends Controller
 
     public function sendEamil(){
         return view('principal.auth.send_email');
+    }
+
+    public function sendEmailProcess(){
+
+        Mail::to('test@gmail.com')->send(new sendForgotPassword);
+        return "Send email success";
+
     }
 }
