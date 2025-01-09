@@ -68,7 +68,7 @@ class AdminAuthController extends Controller
             [
                      'token' => $token,
                      'code' => $code, 
-                     'expires_at' => now()->addMinutes(20)
+                     'expires_at' => now()->addMinutes(15)
                 ]
         );
 
@@ -94,7 +94,15 @@ class AdminAuthController extends Controller
 
     }
 
-    public function codeVerify(){
-        return view('teacher.auth.code_verify');
+    public function codeVerify(string $token){
+
+        $data = PasswordResetToken::where('token', $token)->first();
+
+        //check expires_at
+        if($data && $data->expires_at > now()){
+            return view('teacher.auth.code_verify', compact('data'));
+        }
+
+        return redirect()->route('admin.send.email.show')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
     }
 }

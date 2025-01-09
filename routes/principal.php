@@ -8,5 +8,5 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::post('/login',[AdminAuthController::class,'loginProcess'])->name('login.process');
     Route::get('/send',[AdminAuthController::class,'sendEamil'])->name('send.email.show');
     Route::post('/send/process',[AdminAuthController::class,'sendEmailProcess'])->name('send.email.process');
-    Route::get('/verify',[AdminAuthController::class,'codeVerify'])->name('code.veryfi.show');
+    Route::get('/verify/{token}',[AdminAuthController::class,'codeVerify'])->name('code.veryfi.show');
 });
