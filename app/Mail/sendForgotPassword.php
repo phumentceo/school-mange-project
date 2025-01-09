@@ -13,10 +13,11 @@ class sendForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $data;
     
-    public function __construct()
+    public function __construct($data)
     {
-        
+        $this->data = $data;
     }
 
    
@@ -29,7 +30,10 @@ class sendForgotPassword extends Mailable
 
    
     public function build(){
-        return $this->view('code-verify');
+        return $this->view('code-verify')
+                    ->with([
+                        'data' => $this->data
+                   ]);
     }
 
 
