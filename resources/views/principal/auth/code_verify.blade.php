@@ -24,11 +24,16 @@
                     @if (Session::has('success'))
                       <p class="text-center alert bg-success text-light p-2">{{ Session::get('success') }}</p>
                     @endif
-                    <input type="text" value="{{ $data->token }}" name="token" id="token">
+                    <input type="hidden" value="{{ $data->token }}" name="token" id="token">
                     <p class="text-center">សូមបញ្ចូលកូដទាំង 6 ខ្ទង់របស់អ្នក</p>
                     <div class="form-group mt-3">
                       <div class="row" id="code-inputs">
-                          <input name="code" type="text" class=" form-control">
+                          <input name="code" type="text" class=" form-control @error('code')
+                              is-invalid
+                          @enderror">
+                          @error('code')
+                             <p style="font-size: 12px;">{{ $message }}</p>
+                          @enderror
                       </div>
                       @error('email')
                         <span style="font-size:10px;" class="text-danger">{{ $message }}</span>
