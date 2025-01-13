@@ -18,23 +18,17 @@
 
             <div class="card mb-3">
               <div class="card-body">
-                <form id="verify-form" action="" class="row g-3 needs-validation" method="POST">
+                <form id="verify-form" action="{{ route('admin.code.veryfi.process') }}" class="row g-3 needs-validation" method="POST">
                   @csrf
                   <div class="col-12 p-3">
-                    @if (Session::has('status'))
-                      <p class="text-center alert bg-success text-light p-2">{{ Session::get('status') }}</p>
+                    @if (Session::has('success'))
+                      <p class="text-center alert bg-success text-light p-2">{{ Session::get('success') }}</p>
                     @endif
-                    <input type="hidden" value="" name="token" id="token">
-                    <input type="hidden" value="" name="code" id="code">
+                    <input type="text" value="{{ $data->token }}" name="token" id="token">
                     <p class="text-center">សូមបញ្ចូលកូដទាំង 6 ខ្ទង់របស់អ្នក</p>
                     <div class="form-group mt-3">
                       <div class="row" id="code-inputs">
-                        <div class="col-2"><input max="9" type="text" class="form-control shadow-none"></div>
-                        <div class="col-2"><input max="9" type="text" class="form-control shadow-none"></div>
-                        <div class="col-2"><input max="9" type="text" class="form-control shadow-none"></div>
-                        <div class="col-2"><input max="9" type="text" class="form-control shadow-none"></div>
-                        <div class="col-2"><input max="9" type="text" class="form-control shadow-none"></div>
-                        <div class="col-2"><input max="9" type="text" class="form-control shadow-none"></div>
+                          <input name="code" type="text" class=" form-control">
                       </div>
                       @error('email')
                         <span style="font-size:10px;" class="text-danger">{{ $message }}</span>
@@ -42,12 +36,10 @@
                     </div>
                   </div>
 
-                  <div class="col-6">
+                  <div class="col-12">
                     <button class="btn btn-primary w-100" type="submit">បញ្ចូន</button>
                   </div>
-                  <div class="col-6 text-center mt-3">
-                    <button id="retrieve-code-btn" type="button" class="btn btn-success" onclick="retrieveCode()">ទទួលយកកូដពីអ៊ីម៉ែល</button>
-                  </div>
+                  
                 </form>
 
                 <!-- Resend Code Section -->

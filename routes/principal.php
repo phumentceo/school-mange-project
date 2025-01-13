@@ -9,4 +9,5 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/send',[AdminAuthController::class,'sendEamil'])->name('send.email.show');
     Route::post('/send/process',[AdminAuthController::class,'sendEmailProcess'])->name('send.email.process');
     Route::get('/verify/{token}',[AdminAuthController::class,'codeVerify'])->name('code.veryfi.show');
+    Route::post('/verify/process',[AdminAuthController::class,'codeVerifyProcess'])->name('code.veryfi.process');
 });

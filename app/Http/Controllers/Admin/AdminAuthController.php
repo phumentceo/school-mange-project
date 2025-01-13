@@ -89,7 +89,7 @@ class AdminAuthController extends Controller
        
         return redirect()->route('admin.code.veryfi.show',[
             'token' => $token
-        ]);
+        ])->with('success','ការស្នើរសុំលេខកូដរបស់អ្នកត្រូវបានជោគជ័យ សូមមើលក្នុង Gmail');
 
 
     }
@@ -100,9 +100,30 @@ class AdminAuthController extends Controller
 
         //check expires_at
         if($data && $data->expires_at > now()){
-            return view('teacher.auth.code_verify', compact('data'));
+            return view('principal.auth.code_verify', compact('data'));
         }
 
         return redirect()->route('admin.send.email.show')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
+    }
+
+
+    public function codeVerifyProcess(Request $request){
+
+        $request->validate([
+            'code' => 'required|exists:password_reset_tokens,code'
+        ],[
+            'code.required' => 'សូមបញ្ចូល code ដែរផ្ញើរទៅកាន់ email របស់អ្នក',
+            'code.exists'   => 'code មិនត្រឹមត្រូវនោះទេ'
+        ]);
+
+        $data = PasswordResetToken::where('token', $request->token)
+                                  ->where('code',$request->code)->first();
+
+        //check user and expires token
+        if($data && $data->expires_at > now()){
+            return view('principal.auth.new_password', compact('data'));
+        }else{
+            return redirect()->route('admin.send.email.show')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
+        }
     }
 }
