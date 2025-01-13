@@ -68,7 +68,7 @@
                   </div>
 
                   <div class="col-12">
-                    <p class="small mb-0">អ្នកមិនចង់ចាំលេខកូដសម្ងាត់? <a href="">ត្រូវបានភ្លេច</a></p>
+                    <p class="small mb-0">អ្នកមិនចង់ចាំលេខកូដសម្ងាត់? <a href="{{ route('admin.send.email') }}">ត្រូវបានភ្លេច</a></p>
                   </div>
                 </form>
 

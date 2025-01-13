@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendForgotPassword;
+use App\Models\Admin;
+use App\Models\PasswordResetToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminAuthController extends Controller
 {
@@ -26,6 +30,50 @@ class AdminAuthController extends Controller
 
     public function showEmailSend(){
         return view('principal.auth.send_email');
+    }
+
+    public function sendEmailProccess(Request $request){
+
+        
+
+        $request->validate([
+            'email' => 'required|email|exists:admins,email'
+        ],[
+            'email.required' => 'សូមបញ្ចូល Email របស់អ្នក',
+            'email.email' => 'សូមបញ្ចូល Email អោយបានត្រឹមត្រូវ',
+            'email.exists' => 'Email ពុំមាននៅក្នុងប្រព័ន្ធ',
+        ]);
+
+        //generate code 
+        $code = mt_rand(000000,999999);
+
+        //generate token
+        $token = hash('sha256', random_bytes(30));
+
+        PasswordResetToken::updateOrCreate(
+            ['email' => $request->email],
+            [
+                     'token' => $token,
+                     'code' => $code, 
+                     'expires_at' => now()->addMinutes(15)
+                ]
+        );
+
+        $admin = Admin::where('email', $request->email)->first();
+
+
+        $data = [
+            'name' => $admin->last_name,
+            'code' => $code,
+            'token' => $token,
+            'email' => $request->email
+            
+        ];
+
+        Mail::to($request->email)->send(new SendForgotPassword($data));
+
+        
+        return "send email success";
     }
 
     public function showCodeVerify(){
