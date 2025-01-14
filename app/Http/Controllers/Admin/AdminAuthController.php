@@ -55,7 +55,7 @@ class AdminAuthController extends Controller
             [
                      'token' => $token,
                      'code' => $code, 
-                     'expires_at' => now()->addMinutes(15)
+                     'expires_at' => now()->addMinutes(50)
                 ]
         );
 
@@ -73,12 +73,51 @@ class AdminAuthController extends Controller
         Mail::to($request->email)->send(new SendForgotPassword($data));
 
         
-        return "send email success";
+        return redirect()->route('admin.verify.show',[
+            'token' => $token
+        ])->with('success','លេខកូដត្រូវបានផ្ញើរទៅកាន់ email របស់អ្នក');
     }
 
-    public function showCodeVerify(){
-        return view('principal.auth.code_verify');
+    public function showCodeVerify(string $token){
+
+        $data = PasswordResetToken::where('token', $token)->first();
+
+        //check expires_at
+        if($data && $data->expires_at > now()){
+            return view('principal.auth.code_verify',[
+                'data' => $data
+            ]);
+        }
+
+        return redirect()->route('admin.send.email')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
+
+    
     }
+
+
+     #the function we used for code verify process
+     public function codeVerifyProcess(Request $request){
+
+        $request->validate([
+            'code' => 'required|exists:password_reset_tokens,code'
+        ],[
+            'code.required' => 'សូមបញ្ចូល code ដែរផ្ញើរទៅកាន់ email របស់អ្នក',
+            'code.exists'   => 'code មិនត្រឹមត្រូវនោះទេ'
+        ]);
+
+        $data = PasswordResetToken::where('token', $request->token)
+                                   ->where('code',$request->code)->first();
+
+        //check user and expires token
+        if($data && $data->expires_at > now()){
+            return redirect()->route('admin.reset.show',[
+                'token' => $data->token
+            ]);
+        }else{
+             return redirect()->route('admin.send.email')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
+        }
+
+     }
 
     public function showResetPassword(){
         return view('principal.auth.new_password');
