@@ -186,4 +186,13 @@ class AdminAuthController extends Controller
 
 
 
+    #the function we used for logout system
+    public function logout(){
+        Auth::guard('admin')->logout();
+
+        return redirect()->route('admin.login.show')->with('success','អ្នកបានចាក់ចេញពីប្រព័ន្ធដោយជោគជ័យ');
+    }
+
+
+
 }
