@@ -37,7 +37,7 @@ class AdminAuthController extends Controller
         $remember = $request->has('remember_me') ? true : false;
 
         if(Auth::guard('admin')->attempt($credentials,$remember)){
-            return  "Login True";
+            return  redirect()->route('admin.dashboard.index')->with('success','ការផ្ទៀងផ្ទាត់បានត្រឹមត្រូវ');
         }else{
             return redirect()->back()->with('error','អ៊ីមែល ឬ ពាក្យសម្ងាត់របស់អ្នកមិនត្រឹមត្រូវនោះទេ។');
         }
