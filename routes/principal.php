@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -20,6 +21,16 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware('auth.admin')->group(function(){
         Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard.index');
         Route::get('/logout',[AdminAuthController::class,'logout'])->name('logout');
+
+
+
+        //Subject Routers
+        Route::get('/subject', [SubjectController::class,'index'])->name('subject.list');
+        Route::get('/subject/create', [SubjectController::class,'create'])->name('subject.create');
+        Route::get('/subject/edit/{id}', [SubjectController::class,'edit'])->name('subject.edit');
+        Route::post('/subject',[SubjectController::class,'store'])->name('subject.store');
+        Route::put('/subject/{id}',[SubjectController::class,'update'])->name('subject.update');
+        Route::get('/subject/{id}',[SubjectController::class,'destroy'])->name('subject.destroy');
     });
     
 });
