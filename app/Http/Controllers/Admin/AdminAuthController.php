@@ -7,6 +7,7 @@ use App\Mail\SendForgotPassword;
 use App\Models\Admin;
 use App\Models\PasswordResetToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class AdminAuthController extends Controller
@@ -98,6 +99,8 @@ class AdminAuthController extends Controller
      #the function we used for code verify process
      public function codeVerifyProcess(Request $request){
 
+        
+
         $request->validate([
             'code' => 'required|exists:password_reset_tokens,code'
         ],[
@@ -112,15 +115,59 @@ class AdminAuthController extends Controller
         if($data && $data->expires_at > now()){
             return redirect()->route('admin.reset.show',[
                 'token' => $data->token
-            ]);
+            ])->with('success','កូដត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ');
         }else{
              return redirect()->route('admin.send.email')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
         }
 
      }
 
-    public function showResetPassword(){
-        return view('principal.auth.new_password');
+    public function showResetPassword(string $token){
+
+        $data = PasswordResetToken::where('token', $token)->first();
+
+        //check expires_at
+        if($data && $data->expires_at > now()){
+            return view('principal.auth.new_password', compact('data'));
+        }
+
+        return redirect()->route('admin.send.email')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
+    }
+
+
+    public function resetPasswordProcess(Request $request){
+
+        $request->validate([
+            'password' => ['required','min:6'],
+            'confirm_password' => ['required','same:password'],
+        ], [
+            'password.required' => 'សូមបញ្ចូលពាក្យសម្ងាត់ថ្មី',
+            'password.min' => 'ពាក្យសម្ងាត់ថ្មីត្រូវមានយ៉ាងហោចណាស់ 8 តួ',
+            'confirm_password.required' => 'សូមបញ្ចូលពាក្យសម្ងាត់ថ្មីសម្រាប់បញ្ជាក់',
+            'confirm_password.same' => 'ពាក្យសម្ងាត់ដែលបានបញ្ជាក់មិនត្រូវគ្នា',
+        ]);
+
+        // Fetch the token data
+        $tokenData = PasswordResetToken::where('token', $request->token)->first();
+
+        if ($tokenData && $tokenData->expires_at > now()) {
+            // Update the user's password
+            $admin = Admin::where('email', $tokenData->email)->first();
+
+            if ($admin) {
+                $admin->password = Hash::make($request->password);
+                $admin->save();
+
+                // Delete the token after successful password reset
+                $tokenData->delete();
+
+                return redirect()->route('admin.login.show')->with('success', 'ពាក្យសម្ងាត់ត្រូវបានកែប្រែដោយជោគជ័យ');
+            }
+
+            return redirect()->back()->with('error', 'រកមិនឃើញអ៊ីមែល');
+        }
+
+        return redirect()->route('admin.send.email.show')->with('error', 'Code របស់អ្នកត្រូវបានផុតកំណត់');
     }
 
 

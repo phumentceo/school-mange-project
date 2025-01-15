@@ -24,12 +24,15 @@
                 <div class="card-body">
 
                   
-                    <form method="POST" action="" id="reset-form" class="row g-3 needs-validation p-3">
+                    <form method="POST" action="{{ route('admin.reset.password.process') }}" id="reset-form" class="row g-3 needs-validation p-3">
                         @csrf
-                        
+                        @if (Session::has('success'))
+                          <p class="text-center alert bg-success text-light p-2">{{ Session::get('success') }}</p>
+                        @elseif(Session::has('error'))
+                          <p class="text-center alert bg-success text-light p-2">{{ Session::get('error') }}</p>
+                        @endif
                         <div class="col-12">
-                            <input type="hidden" value="" name="token" id="token">
-                            <input type="hidden" value="" name="code" id="code">
+                            <input type="hidden" value="{{ $data->token }}" name="token" id="token">
                             <label class="form-label">លេខសម្ងាត់ថ្មី</label>
                             <input type="password" name="password" class="form-control shadow-none @error('password') is-invalid @enderror">
                             @error('password')
@@ -39,8 +42,8 @@
                         
                         <div class="col-12">
                             <label class="form-label">បញ្ជាក់លេខសម្ងាត់ថ្មី</label>
-                            <input type="password" name="password_confirmation" class="form-control shadow-none @error('password_confirmation') is-invalid @enderror">
-                            @error('password')
+                            <input type="password" name="confirm_password" class="form-control shadow-none @error('confirm_password') is-invalid @enderror">
+                            @error('confirm_password')
                                 <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
