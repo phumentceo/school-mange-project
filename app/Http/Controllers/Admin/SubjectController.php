@@ -12,7 +12,9 @@ class SubjectController extends Controller
 
     #the function we used for subject list
     public function index(){
-        return view('principal.subjects.list');
+
+        $subjects = Subject::all();
+        return view('principal.subjects.list',compact('subjects'));
     }
 
     #the function we used for show creating new subject
@@ -47,7 +49,7 @@ class SubjectController extends Controller
         // Create a new subject
         Subject::create($request->all());
 
-        return redirect()->route('subjects.index')
+        return redirect()->route('admin.subject.list')
             ->with('success', 'បង្កើតមុខវិជ្ជាបានជោគជ័យ');
     }
 
