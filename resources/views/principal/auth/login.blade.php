@@ -25,17 +25,13 @@
                   <p class="text-center small">បញ្ចូល អ៊ីម៉ែល និង លេខកូដសម្ងាតរបស់អ្នក</p>
                 </div>
 
-                <form id="form-login" action="" class="row g-3 needs-validation" method="POST">
+                <form id="form-login" action="{{ route('admin.login.process') }}" class="row g-3 needs-validation" method="POST">
                   @csrf
                   <!-- Display messages -->
                   @if (Session::has('error'))
                     <p class="text-center alert bg-danger text-light p-2">{{ Session::get('error') }}</p>
                   @elseif (Session::has('success'))
                     <p class="text-center alert bg-success text-light p-2">{{ Session::get('success') }}</p>
-                  @elseif (Session::has('cooldown'))
-                    <p id="cooldown-message" class="text-center alert bg-warning text-dark p-2">
-                      {{ Session::get('cooldown') }}
-                    </p>
                   @endif
 
                   <div class="col-12 mt-2">
@@ -68,7 +64,11 @@
                   </div>
 
                   <div class="col-12">
+<<<<<<< HEAD
                     <p class="small mb-0">អ្នកមិនចង់ចាំលេខកូដសម្ងាត់? <a href="{{ route('admin.send.email') }}">ត្រូវបានភ្លេច</a></p>
+=======
+                    <p class="small mb-0">អ្នកមិនចង់ចាំលេខកូដសម្ងាត់? <a href="{{ route('admin.send.email.show') }}">ត្រូវបានភ្លេច</a></p>
+>>>>>>> master
                   </div>
                 </form>
 

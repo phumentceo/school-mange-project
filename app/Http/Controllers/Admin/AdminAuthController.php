@@ -3,39 +3,54 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Mail\SendForgotPassword;
+use App\Mail\sendForgotPassword;
 use App\Models\Admin;
 use App\Models\PasswordResetToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class AdminAuthController extends Controller
 {
-    public function showLogin(){
+    public function loginShow(){
         return view('principal.auth.login');
     }
 
     public function loginProcess(Request $request){
 
+      
         $request->validate([
-            'email' => 'required|email',
-            'password' =>  'required'
+            'email' => ['required','email'],
+            'password'=> ['required']
         ],[
-            'email.required' => 'សូមបញ្ចូលអសដ្ឋានអ៊ីម៉ែលរបស់អ្នក',
-            'email.email' => 'សូមបញ្ចូលអសដ្ឋានអ៊ីម៉ែលដែរត្រឹមត្រូវ',
-            'password.required' => 'សូមបញ្ចូលលេខកូដសម្ងាត់របស់អ្នក'
+            'email.required' => 'សូមបញ្ចូលអ៊ីមែល។',
+            'email.email' => 'អ៊ីមែលដែលបានបញ្ចូលមិនត្រឹមត្រូវទេ។',
+            'password.required' => 'សូមបញ្ចូលពាក្យសម្ងាត់។'
+
+
         ]);
+
+
+        $credentials = $request->only('email', 'password');
+
+        $remember = $request->has('remember_me') ? true : false;
+
+        if(Auth::guard('admin')->attempt($credentials,$remember)){
+            return  redirect()->route('admin.dashboard.index')->with('success','ការផ្ទៀងផ្ទាត់បានត្រឹមត្រូវ');
+        }else{
+            return redirect()->back()->with('error','អ៊ីមែល ឬ ពាក្យសម្ងាត់របស់អ្នកមិនត្រឹមត្រូវនោះទេ។');
+        }
+
 
     }
 
-    public function showEmailSend(){
+    public function sendEamil(){
         return view('principal.auth.send_email');
     }
 
-    public function sendEmailProccess(Request $request){
+    public function sendEmailProcess(Request $request){
 
-        
 
         $request->validate([
             'email' => 'required|email|exists:admins,email'
@@ -45,10 +60,8 @@ class AdminAuthController extends Controller
             'email.exists' => 'Email ពុំមាននៅក្នុងប្រព័ន្ធ',
         ]);
 
-        //generate code 
         $code = mt_rand(000000,999999);
 
-        //generate token
         $token = hash('sha256', random_bytes(30));
 
         PasswordResetToken::updateOrCreate(
@@ -56,7 +69,7 @@ class AdminAuthController extends Controller
             [
                      'token' => $token,
                      'code' => $code, 
-                     'expires_at' => now()->addMinutes(50)
+                     'expires_at' => now()->addMinutes(40)
                 ]
         );
 
@@ -71,35 +84,34 @@ class AdminAuthController extends Controller
             
         ];
 
-        Mail::to($request->email)->send(new SendForgotPassword($data));
-
+        Mail::to($request->email)->send(new sendForgotPassword($data));
         
-        return redirect()->route('admin.verify.show',[
+
+       
+        return redirect()->route('admin.code.veryfi.show',[
             'token' => $token
-        ])->with('success','លេខកូដត្រូវបានផ្ញើរទៅកាន់ email របស់អ្នក');
+        ])->with('success','ការស្នើរសុំលេខកូដរបស់អ្នកត្រូវបានជោគជ័យ សូមមើលក្នុង Gmail');
+
+
     }
 
-    public function showCodeVerify(string $token){
+
+    #the function we used for code verify show
+    public function codeVerify(string $token){
 
         $data = PasswordResetToken::where('token', $token)->first();
 
         //check expires_at
         if($data && $data->expires_at > now()){
-            return view('principal.auth.code_verify',[
-                'data' => $data
-            ]);
+            return view('principal.auth.code_verify', compact('data'));
         }
 
-        return redirect()->route('admin.send.email')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
-
-    
+        return redirect()->route('admin.send.email.show')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
     }
 
 
-     #the function we used for code verify process
-     public function codeVerifyProcess(Request $request){
-
-        
+    #the function we used for code verify process
+    public function codeVerifyProcess(Request $request){
 
         $request->validate([
             'code' => 'required|exists:password_reset_tokens,code'
@@ -109,20 +121,21 @@ class AdminAuthController extends Controller
         ]);
 
         $data = PasswordResetToken::where('token', $request->token)
-                                   ->where('code',$request->code)->first();
+                                  ->where('code',$request->code)->first();
 
         //check user and expires token
         if($data && $data->expires_at > now()){
-            return redirect()->route('admin.reset.show',[
+            return redirect()->route('admin.reset.password.show',[
                 'token' => $data->token
-            ])->with('success','កូដត្រូវបានផ្ទៀងផ្ទាត់ដោយជោគជ័យ');
+            ]);
         }else{
-             return redirect()->route('admin.send.email')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
+            return redirect()->route('admin.send.email.show')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
         }
+    }
 
-     }
 
-    public function showResetPassword(string $token){
+    #the function we used for new password show
+    public function resetPasswordShow(string $token){
 
         $data = PasswordResetToken::where('token', $token)->first();
 
@@ -131,19 +144,19 @@ class AdminAuthController extends Controller
             return view('principal.auth.new_password', compact('data'));
         }
 
-        return redirect()->route('admin.send.email')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
+        return redirect()->route('admin.send.email.show')->with('error','Code របស់អ្នកត្រូវបានផុតកំណត់');
     }
 
 
+    #the function we used for new password process
     public function resetPasswordProcess(Request $request){
-
+        
         $request->validate([
             'password' => ['required','min:6'],
             'confirm_password' => ['required','same:password'],
         ], [
             'password.required' => 'សូមបញ្ចូលពាក្យសម្ងាត់ថ្មី',
             'password.min' => 'ពាក្យសម្ងាត់ថ្មីត្រូវមានយ៉ាងហោចណាស់ 8 តួ',
-            'confirm_password.required' => 'សូមបញ្ចូលពាក្យសម្ងាត់ថ្មីសម្រាប់បញ្ជាក់',
             'confirm_password.same' => 'ពាក្យសម្ងាត់ដែលបានបញ្ជាក់មិនត្រូវគ្នា',
         ]);
 
@@ -168,7 +181,18 @@ class AdminAuthController extends Controller
         }
 
         return redirect()->route('admin.send.email.show')->with('error', 'Code របស់អ្នកត្រូវបានផុតកំណត់');
+        
     }
+
+
+
+    #the function we used for logout system
+    public function logout(){
+        Auth::guard('admin')->logout();
+
+        return redirect()->route('admin.login.show')->with('success','អ្នកបានចាក់ចេញពីប្រព័ន្ធដោយជោគជ័យ');
+    }
+
 
 
 }
