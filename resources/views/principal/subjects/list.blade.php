@@ -5,7 +5,7 @@
             <!-- Alert message -->
             @if(session('success'))
                 <div id="alertMessage" class="alert alert-success pb-0" role="alert">
-                    <p style="font-size:20px;">{{ session('success') }}</p>
+                    <p style="font-size:15px; color: black;">{{ session('success') }}</p>
                 </div>
             @endif
 
@@ -56,6 +56,6 @@
         if (alertMessage) {
             alertMessage.style.display = 'none';
         }
-    },3000);
+    },2000);
 </script>
 @endsection
