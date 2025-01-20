@@ -57,11 +57,57 @@ class SubjectController extends Controller
 
     #the function we used for show editting subject
     public function edit($id){
+
+        $subject = Subject::find($id);
+
+        //check if subject not found with id
+        if(!$subject){
+            return redirect()->back()->with('error','មុខវិជ្ជារកមិនឃើញជាមួយនឹងសម្រាប់ ID '.$id);
+        }
+
+        return view('principal.subjects.edit',[
+            "subject" => $subject
+        ]);
+
+        
         
     }
 
     #the function we used for updating subject
     public function update(Request $request, $id){
+        $subject = Subject::find($id);
+
+        //check if subject not found with id
+        if(!$subject){
+            return redirect()->back()->with('error','មុខវិជ្ជារកមិនឃើញជាមួយនឹងសម្រាប់ ID '.$id);
+        }
+
+        //validator
+        $validator = Validator::make($request->all(), [
+            'subject_name' => 'required|string|max:255',
+            'subject_type' => 'required|in:1,2,3',
+            'credit'       => 'required|min:0',
+            'grade'        => 'required|string|max:255',
+            'book_number'  => 'nullable|min:0',
+            'note'         => 'nullable|string',
+        ], [
+            'subject_name.required' => 'ឈ្មោះមុខវិជ្ជា គឺត្រូវតែបញ្ជាក់។',
+            'subject_type.required' => 'ប្រភេទមុខវិជ្ជា គឺត្រូវតែបញ្ជាក់។',
+            'subject_type.in'       => 'ប្រភេទមុខវិជ្ជា គឺត្រូវតែជាប្រភេទ 1, 2, ឬ 3 ប៉ុណ្ណោះ។',
+            'credit.required'       => 'ពិន្ទុសរុបសម្រាប់មុខវិជ្ជា គឺត្រូវតែបញ្ជាក់។',
+            'grade.required'        => 'កំរិតថ្នាក់ គឺត្រូវតែបញ្ជាក់។',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Update the subject
+        $subject->update($request->all());
+
+        return redirect()->route('admin.subject.list')->with('success','មុខវិជ្ជាត្រូវបានកែសម្រួលដោយជោគជ័យ');
         
     }
 
@@ -71,12 +117,12 @@ class SubjectController extends Controller
         $subject = Subject::find($id);
 
         if(!$subject){
-            return redirect()->back()->with('error','Product not found with id '.$id);
+            return redirect()->back()->with('error','មុខវិជ្ជារកមិនឃើញជាមួយនឹង ID :'.$id);
         }
 
         $subject->delete();
 
-        return redirect()->back()->with('success','Product deleted successful');
+        return redirect()->back()->with('success','មុខវិជ្ជាត្រូវបានលុបដោយជោគជ័យ');
 
     }
 

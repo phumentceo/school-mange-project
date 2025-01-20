@@ -38,7 +38,7 @@
                             <td>{{ $subject->grade }}</td>
                             <td>{{ $subject->book_number }}</td>
                             <td>
-                                <a href=""><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.subject.edit',$subject->id) }}"><i class="bi bi-eye"></i></a>
                                 <a onclick="return confirm('Do you want to delete this?')" href="{{ route('admin.subject.destroy',$subject->id) }}" class=" text-danger"><i class="bi bi-trash2-fill"></i></a>
                                 <a href="{{ route('admin.subject.edit',$subject->id) }}"><i class="bi bi-pen"></i></a>
                             </td>
