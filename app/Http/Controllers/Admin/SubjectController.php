@@ -12,7 +12,6 @@ class SubjectController extends Controller
 
     #the function we used for subject list
     public function index(){
-
         $subjects = Subject::all();
         return view('principal.subjects.list',compact('subjects'));
     }
@@ -28,9 +27,9 @@ class SubjectController extends Controller
         $validator = Validator::make($request->all(), [
             'subject_name' => 'required|string|max:255',
             'subject_type' => 'required|in:1,2,3',
-            'credit'       => 'required|integer|min:0',
+            'credit'       => 'required|min:0',
             'grade'        => 'required|string|max:255',
-            'book_number'  => 'nullable|integer|min:0',
+            'book_number'  => 'nullable|min:0',
             'note'         => 'nullable|string',
         ], [
             'subject_name.required' => 'ឈ្មោះមុខវិជ្ជា គឺត្រូវតែបញ្ជាក់។',
@@ -49,6 +48,9 @@ class SubjectController extends Controller
         // Create a new subject
         Subject::create($request->all());
 
+
+         
+
         return redirect()->route('admin.subject.list')
             ->with('success', 'បង្កើតមុខវិជ្ជាបានជោគជ័យ');
     }
@@ -65,7 +67,17 @@ class SubjectController extends Controller
 
     #the function we used for deleting subject
     public function destroy($id){
-        
+
+        $subject = Subject::find($id);
+
+        if(!$subject){
+            return redirect()->back()->with('error','Product not found with id '.$id);
+        }
+
+        $subject->delete();
+
+        return redirect()->back()->with('success','Product deleted successful');
+
     }
 
     
