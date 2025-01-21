@@ -35,13 +35,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 
         //Teacher Router
-        Route::prefix('teachers')->group(function () {
-            Route::get('/', [TeacherController::class, 'index'])->name('teachers.index'); // List all teachers
-            Route::get('/create', [TeacherController::class, 'create'])->name('teachers.create'); // Show form to create a new teacher
-            Route::post('/', [TeacherController::class, 'store'])->name('teachers.store'); // Store new teacher
-            Route::get('/{id}', [TeacherController::class, 'edit'])->name('teachers.edit'); // Show form to edit a teacher
-            Route::put('/{id}', [TeacherController::class, 'update'])->name('teachers.update'); // Update a teacher
-            Route::get('/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy'); // Delete a teacher
+        Route::prefix('teacher')->group(function () {
+            Route::get('/', [TeacherController::class, 'index'])->name('teacher.index'); // List all teachers
+            Route::get('/create', [TeacherController::class, 'create'])->name('teacher.create'); // Show form to create a new teacher
+            Route::post('/', [TeacherController::class, 'store'])->name('teacher.store'); // Store new teacher
+            Route::get('/{id}', [TeacherController::class, 'edit'])->name('teacher.edit'); // Show form to edit a teacher
+            Route::put('/{id}', [TeacherController::class, 'update'])->name('teacher.update'); // Update a teacher
+            Route::get('/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy'); // Delete a teacher
         });
     });
     
