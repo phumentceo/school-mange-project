@@ -1,78 +1,72 @@
 @extends('components.master')
 @section('contents')
+    <div class="card">
+        <div class="card-body p-5">
+            <!-- Alert message -->
+            @if(session('success'))
+                <div id="alertMessage" class="alert alert-success pb-0" role="alert">
+                    <p style="font-size:15px; color: black;">{{ session('success') }}</p>
+                </div>
+            @endif
 
-
-  <section class="section">
-    <div class="row">
-      <div class="col-lg-12">
-
-        <div class="card">
-          <div class="card-body p-5">
-            <h6 class="mb-4">គ្រូបង្រៀនសរុបនៅក្នុងប្រព័ន្ធ</h6>
-            <!-- Table with stripped rows -->
-            <table class="table datatable">
-              <thead>
-                <tr>
-                  <th>
-                    <b>N</b>
-                  </th>
-                  <th>Ext.</th>
-                  <th>City</th>
-                  <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                  <th>Completion</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Unity Pugh</td>
-                  <td>9958</td>
-                  <td>Curicó</td>
-                  <td>2005/02/11</td>
-                  <td>37%</td>
-                </tr>
-                <tr>
-                  <td>Theodore Duran</td>
-                  <td>8971</td>
-                  <td>Dhanbad</td>
-                  <td>1999/04/07</td>
-                  <td>97%</td>
-                </tr>
-                <tr>
-                    <td>Unity Pugh</td>
-                    <td>9958</td>
-                    <td>Curicó</td>
-                    <td>2005/02/11</td>
-                    <td>37%</td>
-                  </tr>
-                  <tr>
-                    <td>Theodore Duran</td>
-                    <td>8971</td>
-                    <td>Dhanbad</td>
-                    <td>1999/04/07</td>
-                    <td>97%</td>
-                  </tr>
-                  <tr>
-                    <td>Unity Pugh</td>
-                    <td>9958</td>
-                    <td>Curicó</td>
-                    <td>2005/02/11</td>
-                    <td>37%</td>
-                  </tr>
-                  <tr>
-                    <td>Theodore Duran</td>
-                    <td>8971</td>
-                    <td>Dhanbad</td>
-                    <td>1999/04/07</td>
-                    <td>97%</td>
-                  </tr>
-              </tbody>
+            <h5 class="mb-4">បញ្ជីគ្រូបង្រៀនទាំងអស់</h5>
+            <table class="table table-hover datatable">
+                <thead>
+                    <tr style="background-color: black;">
+                        <th><b>ឈ្មោះ</b></th>
+                        <th>ភេទ</th>
+                        <th>ស្ថានភាពគ្រួសារ</th>
+                        <th>អ៊ីមែល</th>
+                        <th>លេខទូរស័ព្ទ</th>
+                        <th>ថ្ងៃចូលធ្វើការ</th>
+                        <th>សកម្មភាព</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($teachers as $teacher)
+                        <tr>
+                            <td>{{ $teacher->first_name }} {{ $teacher->last_name }}</td>
+                            <td>
+                                @if($teacher->gender == 1)
+                                    ប្រុស
+                                @elseif($teacher->gender == 2)
+                                    ស្រី
+                                @else
+                                    មិនកំណត់
+                                @endif
+                            </td>
+                            <td>
+                                @if($teacher->marital_status == 1)
+                                    រៀបការហើយ
+                                @elseif($teacher->marital_status == 2)
+                                    នៅលីវ
+                                @else
+                                    មិនកំណត់
+                                @endif
+                            </td>
+                            <td>{{ $teacher->email }}</td>
+                            <td>{{ $teacher->phone }}</td>
+                            <td>{{ $teacher->hire_date }}</td>
+                            <td>
+                                <a href="{{ route('teachers.show', $teacher->id) }}"><i class="bi bi-eye"></i></a>
+                                <a onclick="return confirm('តើអ្នកចង់លុបមែនឬ?')" href="{{ route('teachers.destroy', $teacher->id) }}" class="text-danger"><i class="bi bi-trash2-fill"></i></a>
+                                <a href="{{ route('teachers.edit', $teacher->id) }}"><i class="bi bi-pen"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
-            <!-- End Table with stripped rows -->
-
-          </div>
         </div>
-
-      </div>
     </div>
-  </section>
+@endsection
+
+@section('scripts')
+<script>
+    setTimeout(function() {
+        var alertMessage = document.getElementById('alertMessage');
+        if (alertMessage) {
+            alertMessage.style.display = 'none';
+        }
+    }, 2000);
+</script>
 @endsection

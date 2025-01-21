@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -31,6 +32,17 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('/subject',[SubjectController::class,'store'])->name('subject.store');
         Route::put('/subject/{id}',[SubjectController::class,'update'])->name('subject.update');
         Route::get('/subject/{id}',[SubjectController::class,'destroy'])->name('subject.destroy');
+
+
+        //Teacher Router
+        Route::prefix('teachers')->group(function () {
+            Route::get('/', [TeacherController::class, 'index'])->name('teachers.index'); // List all teachers
+            Route::get('/create', [TeacherController::class, 'create'])->name('teachers.create'); // Show form to create a new teacher
+            Route::post('/', [TeacherController::class, 'store'])->name('teachers.store'); // Store new teacher
+            Route::get('/{id}', [TeacherController::class, 'edit'])->name('teachers.edit'); // Show form to edit a teacher
+            Route::put('/{id}', [TeacherController::class, 'update'])->name('teachers.update'); // Update a teacher
+            Route::get('/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy'); // Delete a teacher
+        });
     });
     
 });
