@@ -8,8 +8,7 @@ class Teacher extends Model
 {
     protected $table = 'teachers';
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'full_name',
         'latin_name',
         'gender',
         'marital_status',
@@ -20,7 +19,7 @@ class Teacher extends Model
         'degree',
         'university',
         'email',
-        'phone_number',
+        'phone',
         'password',
         'hire_date',
         'created_by',

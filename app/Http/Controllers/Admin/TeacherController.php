@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -12,7 +13,9 @@ class TeacherController extends Controller
     #the function we used for show teachers list
     public function index(){
 
-        return view('principal.teachers.list');
+        $teachers = Teacher::all();
+
+        return view('principal.teachers.list',compact('teachers'));
 
     }
 

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string(column: 'first_name');
-            $table->string(column: 'last_name');
+            $table->string(column: 'full_name');
             $table->string(column: 'latin_name');
             $table->enum(column: 'gender', allowed: [1, 2])->default(value: 1)->comment(comment: '1.Male | 2.Female');
             $table->enum(column: 'marital_status', allowed: [1, 2])->default(value: 1)->comment(comment: '1.Married | 2.Single');
