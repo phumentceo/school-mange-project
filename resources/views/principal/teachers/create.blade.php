@@ -140,16 +140,28 @@
 
         <div class="col-md-3">
           <label class="form-label">ភូមិ​​​</label>
-          <input type="text" class="form-control shadow-none">
+          <input type="text" name="village" class="form-control shadow-none  @error('village') is-invalid @enderror">
+          @error('village')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
+
         <div class="col-md-3">
-            <label class="form-label">ឃុំ​/សង្កាត់</label>
-           <input type="text" class="form-control shadow-none">
+           <label class="form-label">ឃុំ​/សង្កាត់</label>
+           <input type="text" name="commune" class="form-control shadow-none @error('commune') is-invalid @enderror" value="{{ old('commune') }}">
+
+           @error('commune')
+              <div class="invalid-feedback">{{ $message }}</div>
+           @enderror
+
         </div>
 
         <div class="col-md-3">
           <label class="form-label">ស្រុក​/ក្រុង​/ខណ្ឌ</label>
-          <input type="text" class="form-control shadow-none">
+          <input type="text" name="district" class="form-control shadow-none @error('district') is-invalid @enderror" value="{{ old('district') }}">
+          @error('district')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
 
         <div class="col-md-3">

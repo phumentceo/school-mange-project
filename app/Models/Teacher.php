@@ -29,4 +29,10 @@ class Teacher extends Model
         'email_verified_at',
     ];
 
+
+    public function addresses()
+    {
+        return $this->morphMany(Address::class, 'addressable');  
+    }
+
 }
