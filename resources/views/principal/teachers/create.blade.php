@@ -5,7 +5,7 @@
       <h5 class="mb-4">បញ្ចូលគ្រូបង្រៀនទៅក្នុងប្រព័ន្ធ</h5>
 
       <!-- Multi Columns Form -->
-      <form id="teacherForm" class="row g-3" method="POST" action="">
+      <form id="teacherForm" class="row g-3" method="POST" action="{{ route('admin.teacher.store') }}">
         @csrf
         <div class="col-md-6">
           <label class="form-label">ឈ្មោះជាភាសាខ្មែរ</label>
@@ -140,21 +140,36 @@
 
         <div class="col-md-3">
           <label class="form-label">ភូមិ​​​</label>
-          <input type="text" class="form-control shadow-none">
+          <input type="text" name="village" class="form-control shadow-none  @error('village') is-invalid @enderror">
+          @error('village')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
+
         <div class="col-md-3">
-            <label class="form-label">ឃុំ​/សង្កាត់</label>
-           <input type="text" class="form-control shadow-none">
+           <label class="form-label">ឃុំ​/សង្កាត់</label>
+           <input type="text" name="commune" class="form-control shadow-none @error('commune') is-invalid @enderror" value="{{ old('commune') }}">
+
+           @error('commune')
+              <div class="invalid-feedback">{{ $message }}</div>
+           @enderror
+
         </div>
 
         <div class="col-md-3">
           <label class="form-label">ស្រុក​/ក្រុង​/ខណ្ឌ</label>
-          <input type="text" class="form-control shadow-none">
+          <input type="text" name="district" class="form-control shadow-none @error('district') is-invalid @enderror" value="{{ old('district') }}">
+          @error('district')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
 
         <div class="col-md-3">
             <label class="form-label">រាជធានី​/ខេត្ត</label>
-            <input type="text" class="form-control shadow-none">
+            <input type="text" name="province" class="form-control shadow-none @error('province') is-invalid @enderror" value="{{ old('province') }}">
+            @error('province')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="col-12">
@@ -180,6 +195,16 @@
 @endsection
 @section('scripts')
 <script>
+
+  $(document).ready(function() {     
+      $('#mySelectDestrict').select2({  
+        placeholder: 'Select options',  
+        allowClear: true,  
+        tags: true, 
+      }); 
+          
+  });  
+
   document.getElementById('teacherForm').addEventListener('submit', function(event) {
       document.getElementById('spinner').style.display = 'inline-block';
       document.getElementById('submitBtn').disabled = true;

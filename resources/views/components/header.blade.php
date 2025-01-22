@@ -30,5 +30,9 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets/css/mycss.css') }}">
+
+
+    {{-- select 2 link --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     
 </head>
