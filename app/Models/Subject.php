@@ -15,4 +15,9 @@ class Subject extends Model
         'book_number',
         'note',
     ];
+
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class);
+    }
 }

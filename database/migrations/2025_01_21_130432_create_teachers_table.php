@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum(column: 'marital_status', allowed: [1, 2])->default(value: 1)->comment(comment: '1.Married | 2.Single');
             $table->string(column: 'dob')->nullable(); // ថ្ងៃខែឆ្នាំកំណើត
             $table->string(column: 'national_id')->nullable();
-            $table->foreignId(column: 'subject_id')->constrained()->onDelete(action: 'cascade'); // មុខវិជ្ជាដែលបង្រៀន
             $table->string(column: 'specialization'); // ឯកទេស
             $table->string(column: 'degree'); // កំរិតវប្បធម៌
             $table->string(column: 'university')->nullable(); // សាកលវិទ្យាល័យ

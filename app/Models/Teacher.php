@@ -14,7 +14,6 @@ class Teacher extends Model
         'marital_status',
         'dob',
         'national_id',
-        'subject_id',
         'specialization',
         'degree',
         'university',
@@ -30,5 +29,10 @@ class Teacher extends Model
     public function addresses()
     {
         return $this->morphMany(Address::class, 'addressable');  
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class);
     }
 }
