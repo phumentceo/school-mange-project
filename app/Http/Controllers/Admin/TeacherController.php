@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,9 @@ class TeacherController extends Controller
     #the function we used for show creating new teacher
     public function create(){
 
-        return view('principal.teachers.create');
+        $subjects = Subject::all();
+
+        return view('principal.teachers.create',compact('subjects'));
     }
 
     #the function we used for store teacher to db

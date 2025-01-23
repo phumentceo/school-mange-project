@@ -69,10 +69,12 @@
 
         <div class="col-6">
           <label class="form-label">មុខវិជ្ជាបង្រៀន</label>
-          <select name="subject_id" 
-                  class="form-control shadow-none @error('subject_id') is-invalid @enderror">
+          <select name="subject_id" class="form-control shadow-none @error('subject_id') is-invalid @enderror">
             <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
-            <option value="1" {{ old('subject_id') == '1' ? 'selected' : '' }}>គណិត</option>
+            @foreach ($subjects as  $subject)
+              <option value="{{ $subject->id }}">{{ $subject->subject_name }} (ថ្នាក់ទី {{ $subject->grade }})</option>
+            @endforeach
+            
           </select>
           @error('subject_id')
             <div class="invalid-feedback">{{ $message }}</div>
