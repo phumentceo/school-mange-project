@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('components.header')
-@yield('script')
 <body>
 
   <!-- ======= Header ======= -->
@@ -30,28 +29,23 @@
   <!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
-  <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/quill/quill.js') }}"></script>
-  <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
-  <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{{ asset('assets/js/main.js') }}"></script>
-
-  
-  {{-- select 2 script --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  @yield('scripts')
 </body>
+    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/quill/quill.js') }}"></script>
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
+     <!-- Template Main JS File -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    {{-- My Script --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    @yield('scripts')
+    
 </html>

@@ -67,19 +67,35 @@
             @enderror
         </div>
 
-        <div class="col-6">
+        {{-- <div class="col-6">
           <label class="form-label">មុខវិជ្ជាបង្រៀន</label>
-          <select name="subject_id" class="form-control shadow-none @error('subject_id') is-invalid @enderror">
-            <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
-            @foreach ($subjects as  $subject)
-              <option value="{{ $subject->id }}">{{ $subject->subject_name }} (ថ្នាក់ទី {{ $subject->grade }})</option>
-            @endforeach
-            
+          <select name="subject_id[]" id="mySelectSubject" class="form-select shadow-none" multiple="multiple">
+              <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
+              @foreach ($subjects as $subject)
+                  <option value="{{ $subject->id }}">{{ $subject->subject_name }} (ថ្នាក់ទី {{ $subject->grade }})</option>
+              @endforeach
           </select>
           @error('subject_id')
-            <div class="invalid-feedback">{{ $message }}</div>
+              <div class="invalid-feedback">{{ $message }}</div>
           @enderror
-        </div>
+        </div> --}}
+
+        <div class="col-6">
+
+        <label class="text-light">ស្រុក</label>
+        <select name="destrict[]" id="mySelectDestrict" class="form-select shadow-none" multiple="multiple"
+            style="width: 100%;">
+            {{-- @foreach ($districts as $district ) --}}
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            {{-- @endforeach  --}}
+        </select>
+
+      </div>
+      
 
         <div class="col-6">
             <label class="form-label">មុខវិជ្ជាជំនាញ</label>
@@ -193,19 +209,21 @@
       </div>
       </form>
     </div>
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
 </div>
+
 @endsection
 @section('scripts')
 <script>
+    $(document).ready(function () {
+        $('#mySelectDestrict').select2({
+            placeholder: 'ជ្រើសរើសមុខវិជ្ជា',
+            allowClear: true,
+            tags: false,
+            width: '100%'
+        });
+    });
 
-  $(document).ready(function() {     
-      $('#mySelectDestrict').select2({  
-        placeholder: 'Select options',  
-        allowClear: true,  
-        tags: true, 
-      }); 
-          
-  });  
 
   document.getElementById('teacherForm').addEventListener('submit', function(event) {
       document.getElementById('spinner').style.display = 'inline-block';
