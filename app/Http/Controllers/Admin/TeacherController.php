@@ -27,6 +27,9 @@ class TeacherController extends Controller
 
         $subjects = Subject::all();
 
+
+        // return $subjects;
+
         return view('principal.teachers.create',compact('subjects'));
     }
 

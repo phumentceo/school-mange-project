@@ -83,15 +83,11 @@
         <div class="col-6">
 
         <label class="text-light">ស្រុក</label>
-        <select name="destrict[]" id="mySelectDestrict" class="form-select shadow-none" multiple="multiple"
+        <select name="subject[]" id="subjects" class="form-select shadow-none" multiple="multiple"
             style="width: 100%;">
-            {{-- @foreach ($districts as $district ) --}}
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            {{-- @endforeach  --}}
+            @foreach ($subjects as $subject )
+              <option value="{{ $subject->id }}">{{ $subject->subject_name }} ({{ $subject->grade }})</option>
+            @endforeach 
         </select>
 
       </div>
@@ -216,7 +212,7 @@
 @section('scripts')
 <script>
     $(document).ready(function () {
-        $('#mySelectDestrict').select2({
+        $('#subjects').select2({
             placeholder: 'ជ្រើសរើសមុខវិជ្ជា',
             allowClear: true,
             tags: false,
