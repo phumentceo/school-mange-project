@@ -38,7 +38,7 @@ class TeacherController extends Controller
     public function store(Request $request){
         
         $request->validate([
-            'full_name' => ['required','string','max:255','regex:/^[\p{Khmer}\s]+$/u'],
+            'full_name' => 'required|string|max:255|regex:/^[\p{Khmer}\s]+$/u',
             'latin_name' => 'required|string|max:255|regex:/^[A-Z\s]+$/',
             'gender' => 'required|in:1,2',
             'marital_status' => 'required|in:1,2',
