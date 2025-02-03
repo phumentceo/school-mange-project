@@ -2,7 +2,7 @@
 @section('contents')
     <div class="card">
         <div class="card-body p-5">
-            <!-- Alert message -->
+            
             @if(session('success'))
                 <div id="alertMessage" class="alert alert-success pb-0" role="alert">
                     <p style="font-size:15px; color: black;">{{ session('success') }}</p>
@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach($teachers as $teacher)
                         <tr>
-                            <td>{{ $teacher->first_name }} {{ $teacher->last_name }}</td>
+                            <td>{{ $teacher->full_name}}</td>
                             <td>
                                 @if($teacher->gender == 1)
                                     ប្រុស
@@ -48,9 +48,9 @@
                             <td>{{ $teacher->phone }}</td>
                             <td>{{ $teacher->hire_date }}</td>
                             <td>
-                                <a href="{{ route('teachers.show', $teacher->id) }}"><i class="bi bi-eye"></i></a>
-                                <a onclick="return confirm('តើអ្នកចង់លុបមែនឬ?')" href="{{ route('teachers.destroy', $teacher->id) }}" class="text-danger"><i class="bi bi-trash2-fill"></i></a>
-                                <a href="{{ route('teachers.edit', $teacher->id) }}"><i class="bi bi-pen"></i></a>
+                                <a><i class="bi bi-eye"></i></a>
+                                <a><i class="bi bi-trash2-fill"></i></a>
+                                <a><i class="bi bi-pen"></i></a>
                             </td>
                         </tr>
                     @endforeach

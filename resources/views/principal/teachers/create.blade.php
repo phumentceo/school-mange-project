@@ -5,10 +5,11 @@
       <h5 class="mb-4">បញ្ចូលគ្រូបង្រៀនទៅក្នុងប្រព័ន្ធ</h5>
 
       <!-- Multi Columns Form -->
-      <form id="teacherForm" class="row g-3" method="POST" action="">
+      <form id="teacherForm" class="row g-3" method="POST" action="{{ route('admin.teacher.store') }}">
         @csrf
         <div class="col-md-6">
           <label class="form-label">ឈ្មោះជាភាសាខ្មែរ</label>
+          <input type="hidden" name="created_by" value="{{ Auth::guard('admin')->user()->id }}">
           <input type="text" 
                  class="form-control shadow-none @error('full_name') is-invalid @enderror" 
                  name="full_name" 
@@ -31,7 +32,7 @@
           @enderror
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-6">
           <label class="form-label"><strong>ភេទ</strong></label>
           <select name="gender" 
                   class="form-control shadow-none @error('gender') is-invalid @enderror">
@@ -40,6 +41,17 @@
             <option value="2" {{ old('gender') == '2' ? 'selected' : '' }}>ភេទស្រី</option>
           </select>
           @error('gender')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">លេខអត្តសញ្ញាណប័ណ្ណ</label>
+          <input type="text" 
+                 class="form-control shadow-none @error('national_id') is-invalid @enderror" 
+                 name="national_id" 
+                 value="{{ old('national_id') }}">
+          @error('national_id')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
         </div>
@@ -67,17 +79,19 @@
             @enderror
         </div>
 
-        <div class="col-6">
-          <label class="form-label">មុខវិជ្ជាបង្រៀន</label>
-          <select name="subject_id" 
-                  class="form-control shadow-none @error('subject_id') is-invalid @enderror">
-            <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
-            <option value="1" {{ old('subject_id') == '1' ? 'selected' : '' }}>គណិត</option>
-          </select>
-          @error('subject_id')
-            <div class="invalid-feedback">{{ $message }}</div>
-          @enderror
-        </div>
+        
+
+      <div class="col-6">
+        <label>មុខវិជ្ជាបង្រៀន</label>
+        <select name="subject_id[]" id="subjects" class="form-select shadow-none" multiple="multiple"
+            style="width: 100%;">
+            @foreach ($subjects as $subject )
+              <option value="{{ $subject->id }}">{{ $subject->subject_name }} ({{ $subject->grade }})</option>
+            @endforeach 
+        </select>
+
+      </div>
+      
 
         <div class="col-6">
             <label class="form-label">មុខវិជ្ជាជំនាញ</label>
@@ -166,7 +180,22 @@
 
         <div class="col-md-3">
             <label class="form-label">រាជធានី​/ខេត្ត</label>
-            <input type="text" class="form-control shadow-none">
+            <input type="text" name="province" class="form-control shadow-none @error('province') is-invalid @enderror" value="{{ old('province') }}">
+            @error('province')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="col-md-12">
+          <label class="form-label">ថ្ងៃចាប់ផ្តើមការងារ</label>
+          <input type="text" 
+                 class="form-control shadow-none @error('hire_date') is-invalid @enderror" 
+                 name="hire_date" 
+                 value="{{ old('hire_date') }}" 
+                 placeholder="ថ្ងៃទី 12 ខែ មិនា ឆ្នាំ 2024">
+          @error('hire_date')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
 
         <div class="col-12">
@@ -189,9 +218,20 @@
       </form>
     </div>
 </div>
+
 @endsection
 @section('scripts')
 <script>
+    $(document).ready(function () {
+        $('#subjects').select2({
+            placeholder: 'ជ្រើសរើសមុខវិជ្ជា',
+            allowClear: true,
+            tags: false,
+            width: '100%'
+        });
+    });
+
+
   document.getElementById('teacherForm').addEventListener('submit', function(event) {
       document.getElementById('spinner').style.display = 'inline-block';
       document.getElementById('submitBtn').disabled = true;
