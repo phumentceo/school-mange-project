@@ -48,9 +48,9 @@
                             <td>{{ $teacher->phone }}</td>
                             <td>{{ $teacher->hire_date }}</td>
                             <td>
-                                <a href="{{ route('teachers.show', $teacher->id) }}"><i class="bi bi-eye"></i></a>
-                                <a onclick="return confirm('តើអ្នកចង់លុបមែនឬ?')" href="{{ route('teachers.destroy', $teacher->id) }}" class="text-danger"><i class="bi bi-trash2-fill"></i></a>
-                                <a href="{{ route('teachers.edit', $teacher->id) }}"><i class="bi bi-pen"></i></a>
+                                <a><i class="bi bi-eye"></i></a>
+                                <a><i class="bi bi-trash2-fill"></i></a>
+                                <a><i class="bi bi-pen"></i></a>
                             </td>
                         </tr>
                     @endforeach
