@@ -48,9 +48,9 @@
                             <td>{{ $teacher->phone }}</td>
                             <td>{{ $teacher->hire_date }}</td>
                             <td>
-                                <a><i class="bi bi-eye"></i></a>
-                                <a><i class="bi bi-trash2-fill"></i></a>
-                                <a><i class="bi bi-pen"></i></a>
+                                <a class=" btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                <a class=" btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
+                                <a class=" btn btn-info btn-sm"><i class="bi bi-pen"></i></a>
                             </td>
                         </tr>
                     @endforeach
