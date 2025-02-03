@@ -37,7 +37,7 @@ class TeacherController extends Controller
     #the function we used for store teacher to db
     public function store(Request $request){
         
-        $teacherValidated = $request->validate([
+        $request->validate([
             'full_name' => ['required','string','max:255','regex:/^[\p{Khmer}\s]+$/u'],
             'latin_name' => 'required|string|max:255|regex:/^[A-Z\s]+$/',
             'gender' => 'required|in:1,2',
@@ -48,17 +48,17 @@ class TeacherController extends Controller
             'subject_id.*' => 'exists:subjects,id',
             'specialization' => 'required|string|max:255',
             'degree' => 'required|string|max:255',
-            'university' => 'nullable|string|max:255',
+            'university' => 'required|string|max:255',
             'email' => 'required|email|unique:teachers,email',
             'phone' => 'required|string|max:20',
             'password' => 'nullable|string|min:6',
             'hire_date' => 'required',
             'created_by' => 'nullable|integer',
             'note' => 'nullable|string',
-            'village' => 'nullable|string|max:255',
-            'commune' => 'nullable|string|max:255',
-            'district' => 'nullable|string|max:255',
-            'province' => 'nullable|string|max:255',
+            'village' => 'required|string|max:255',
+            'commune' => 'required|string|max:255',
+            'district' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
             'current_address' => 'nullable|string|max:255',
         ], [
             'full_name.required' => 'សូមបញ្ចូលឈ្មោះជាភាសាខ្មែរ',
@@ -75,6 +75,7 @@ class TeacherController extends Controller
             'subject_id.exists' => 'មុខវិជ្ជាដែលបានជ្រើសរើសមិនមាន',
             'specialization.required' => 'សូមបញ្ចូលឯកទេស',
             'degree.required' => 'សូមបញ្ចូលកំរិតវប្បធម៌',
+            'university.required'  => 'សូមបញ្ចូលសាលាដែរបានបញ្ចប់ការសិក្សា',
             'university.max' => 'សាកលវិទ្យាល័យមិនអាចលើសពី 255 តួអក្សរ',
             'email.required' => 'សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែល',
             'email.unique' => 'អាសយដ្ឋានអ៊ីមែលនេះមានរួចហើយ',
@@ -82,15 +83,16 @@ class TeacherController extends Controller
             'password.min' => 'ពាក្យសម្ងាត់ត្រូវមានយ៉ាងតិច 6 តួអក្សរ',
             'hire_date.required' => 'សូមបញ្ចូលថ្ងៃចូលធ្វើការ',
             'note.string' => 'កំណត់ចំណាំត្រូវតែជាអក្សរ',
+            'village.required' => 'សូមបញ្ចូលភូមិកំណើត',
             'village.string' => 'ភូមិត្រូវតែជាអក្សរ',
+            'commune.required' => 'សូមបញ្ចូលឃុំ',
             'commune.string' => 'ឃុំត្រូវតែជាអក្សរ',
+            'district.required' => 'សូមបញ្ចូលស្រុក',
             'district.string' => 'ស្រុកត្រូវតែជាអក្សរ',
+            'province.required' => 'សូមបញ្ចូលខេត្ត',
             'province.string' => 'ខេត្តត្រូវតែជាអក្សរ',
             'current_address.string' => 'អាសយដ្ឋានបច្ចុប្បន្នត្រូវតែជាអក្សរ',
         ]);
-
-       
-
 
 
         // Create the teacher

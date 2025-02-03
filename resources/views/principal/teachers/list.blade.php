@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach($teachers as $teacher)
                         <tr>
-                            <td>{{ $teacher->first_name }} {{ $teacher->last_name }}</td>
+                            <td>{{ $teacher->full_name}}</td>
                             <td>
                                 @if($teacher->gender == 1)
                                     ប្រុស
