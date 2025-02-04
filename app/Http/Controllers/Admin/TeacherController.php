@@ -141,9 +141,17 @@ class TeacherController extends Controller
 
     #the function we used for show updating teacher
     public function edit($id){
+        $teacher = Teacher::findOrFail($id); // Ensure teacher exists
 
-        return view('principal.teachers.edit');
+        $subjects = Subject::all(); // Fetch all subjects
+
+        $address = $teacher->addresses()->first(); // Get the teacher's address if exists
+        
+        $subjectIds = $teacher->subjects->pluck('id')->toArray(); // Get assigned subjects
+
+        return view("principal.teachers.edit", compact('teacher', 'subjects', 'address', 'subjectIds'));
     }
+
 
     #the function wd used  for updating teacher
     public  function update(Request $request,$id){
@@ -154,6 +162,17 @@ class TeacherController extends Controller
     #the function we used for teacher deleting
     public function destroy($id){
 
+        // Find the teacher
+        $teacher = Teacher::find($id);
+
+        //delete teacher from address
+        $teacher->addresses()->delete();
+
+        // Delete the teacher
+        $teacher->delete();
+
+        // Redirect to the teacher index page
+        return redirect()->route('admin.teacher.index')->with('success','គ្រូបង្រៀនត្រូវបានដកចេញពីប្រព័ន្ធដោយជោគជ័យ');
     }
 
     

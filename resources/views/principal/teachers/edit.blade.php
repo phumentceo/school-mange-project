@@ -1,118 +1,155 @@
 @extends('components.master')
 @section('contents')
-<div class="card">
-    <div class="card-body">
-      <h3 class="mb-4">បញ្ចូលគ្រូបង្រៀនទៅក្នុងប្រព័ន្ធ</h3>
+    <div class="card">
+        <div class="card-body p-5">
+            <h5 class="mb-4">កែសម្រួលគ្រូបង្រៀនទៅក្នុងប្រព័ន្ធ</h5>
 
-      <!-- Multi Columns Form -->
-      <form class="row g-3">
-        <div class="col-md-6">
-          <label for="inputName5" class="form-label">ឈ្មោះជាភាសាខ្មែរ</label>
-          <input type="text" class="form-control shadow-none" name="khmer_name" placeholder="ផាន សុផាត់">
+            <!-- Multi Columns Form -->
+            <form id="teacherForm" class="row g-3" method="POST" action="{{ route('admin.teacher.update', $teacher->id) }}">
+                @csrf
+                @method('PUT')
+
+                <div class="col-md-6">
+                    <label class="form-label">ឈ្មោះជាភាសាខ្មែរ</label>
+                    <input type="text" class="form-control shadow-none @error('full_name') is-invalid @enderror"
+                        name="full_name" value="{{ old('full_name', $teacher->full_name) }}" placeholder="ផាន សុផាត់">
+                    @error('full_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">ឈ្មោះជាភាសាឡាតាំង</label>
+                    <input type="text" class="form-control shadow-none @error('latin_name') is-invalid @enderror"
+                        name="latin_name" value="{{ old('latin_name', $teacher->latin_name) }}" placeholder="PHAN SOPHAT">
+                    @error('latin_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label"><strong>ភេទ</strong></label>
+                    <select name="gender" class="form-control shadow-none @error('gender') is-invalid @enderror">
+                        <option value="">ជ្រើសរើសភេទ</option>
+                        <option value="1" {{ old('gender', $teacher->gender) == '1' ? 'selected' : '' }}>ភេទប្រុស</option>
+                        <option value="2" {{ old('gender', $teacher->gender) == '2' ? 'selected' : '' }}>ភេទស្រី</option>
+                    </select>
+                    @error('gender')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
+                    <input type="text" name="dob" class="form-control shadow-none @error('dob') is-invalid @enderror"
+                        value="{{ old('dob', $teacher->dob) }}">
+                    @error('dob')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">ស្ថានភាពជិវិត</label>
+                    <select name="marital_status" class="form-control shadow-none @error('marital_status') is-invalid @enderror">
+                        <option value="1" {{ old('marital_status', $teacher->marital_status) == '1' ? 'selected' : '' }}>មានគ្រួសារ</option>
+                        <option value="2" {{ old('marital_status', $teacher->marital_status) == '2' ? 'selected' : '' }}>នៅលីវ</option>
+                    </select>
+                    @error('marital_status')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">មុខវិជ្ជាបង្រៀន</label>
+                    <select name="subject_id[]" id="subjects" class="form-control shadow-none @error('subject_id') is-invalid @enderror" multiple="multiple">
+                        <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
+                        @foreach ($subjects as $subject)
+                            <option value="{{ $subject->id }}" {{ in_array($subject->id, $subjectIds) ? 'selected' : '' }}>
+                                {{ $subject->subject_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('subject_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">មុខវិជ្ជាជំនាញ</label>
+                    <input type="text" class="form-control shadow-none @error('specialization') is-invalid @enderror"
+                        name="specialization" value="{{ old('specialization', $teacher->specialization) }}" placeholder="ឯកទេស">
+                    @error('specialization')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">លេខទូរស័ព្ទ</label>
+                    <input type="text" class="form-control shadow-none @error('phone') is-invalid @enderror"
+                        name="phone" value="{{ old('phone', $teacher->phone) }}" placeholder="លេខទូរស័ព្ទ">
+                    @error('phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-6">
+                    <label class="form-label">អាសយដ្ឋាន Email</label>
+                    <input type="email" class="form-control shadow-none @error('email') is-invalid @enderror"
+                        name="email" value="{{ old('email', $teacher->email) }}" placeholder="example@email.com">
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">ភូមិ</label>
+                    <input type="text" class="form-control shadow-none" name="village"
+                        value="{{ old('village', $address->village ?? '') }}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">ឃុំ​/សង្កាត់</label>
+                    <input type="text" class="form-control shadow-none" name="commune"
+                        value="{{ old('commune', $address->commune ?? '') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">ស្រុក​/ក្រុង​/ខណ្ឌ</label>
+                    <input type="text" class="form-control shadow-none" name="district"
+                        value="{{ old('district', $address->district ?? '') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">រាជធានី​/ខេត្ត</label>
+                    <input type="text" class="form-control shadow-none" name="province"
+                        value="{{ old('province', $address->province ?? '') }}">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success" id="submitBtn">
+                        <span id="spinner" class="spinner-border spinner-border-sm text-light" role="status"
+                            aria-hidden="true" style="display: none;"></span>
+                        កែសម្រួល
+                    </button>
+                    <button type="reset" class="btn btn-danger">ត្រឡប់ក្រោយ</button>
+                </div>
+            </form>
         </div>
-        <div class="col-md-6">
-          <label for="inputEmail5" class="form-label">ឈ្មោះជាភាសាឡាតាំង</label>
-          <input type="text" class="form-control shadow-none" name="english_name" placeholder="PHAN SOPHAT">
-        </div>
-
-        <div class="col-md-12">
-          <label for="inputPassword5" class="form-label">ភេទ</label>
-          <select name="" class=" form-control shadow-none" name="english_name">
-            <option value="">ជ្រើសរើសភេទ</option>
-            <option value="">ភេទស្រី</option>
-            <option value="">ភេទប្រុស</option>
-          </select>
-        </div>
-
-        <div class="col-md-6">
-            <label for="inputPassword5" class="form-label">ថ្ងៃ ខែ ឆ្នាំ កំណើត</label>
-            <input type="date" name=""  class=" form-control">
-        </div>
-
-
-        <div class="col-md-6">
-            <label for="inputPassword5" class="form-label">ស្ថានភានជិវិត</label>
-            <select name="" class=" form-control shadow-none" name="english_name">
-              <option value="">មានគ្រួសារ</option>
-              <option value="">នៅលីវ</option>
-            </select>
-        </div>
-
-          
-
-
-        <div class="col-6">
-          <label for="inputAddress5" class="form-label">មុខវិជ្ជាបង្រៀន</label>
-          <select name="" class=" form-control shadow-none" id="">
-            <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
-            <option value="">គណិត</option>
-          </select>
-        </div>
-
-        <div class="col-6">
-            <label for="inputAddress5" class="form-label">មុខវិជ្ជាជំនាញ</label>
-            <select name="" class=" form-control shadow-none" id="">
-              <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
-              <option value="">គណិត</option>
-            </select>
-        </div>
-
-        <div class="col-6">
-            <label class="form-label">កំរិតសញ្ញាប័ត្រ</label>
-            <select name="" class=" form-control shadow-none" id="">
-                <option value="">បរិញ្ញាប័ត្រ</option>
-                <option value="">អនុបណ្ខិត</option>
-                <option value="">បណ្ខិត</option>
-            </select>
-        </div>
-
-        <div class="col-6">
-            <label class="form-label">បញ្ចប់ការសិក្សារមកពីសាលា</label>
-            <input type="text" class="form-control shadow-none">  
-        </div>
-
-        <div class="col-6">
-          <label class="form-label">លេខទូរស័ព្ទទំនាក់ទំនង់</label>
-          <input type="text" class="form-control shadow-none" >
-        </div>
-
-        <div class="col-6">
-            <label class="form-label">អាសយដ្ឋាន Email</label>
-            <input type="text" class="form-control shadow-none" >
-        </div>
-
-        <div class="col-md-3">
-          <label class="form-label">ភូមិ​​​</label>
-          <input type="text" class="form-control shadow-none">
-        </div>
-        <div class="col-md-3">
-            <label class="form-label">ឃុំ​/សង្កាត់</label>
-           <input type="text" class="form-control shadow-none">
-        </div>
-
-        <div class="col-md-3">
-          <label for="inputZip" class="form-label">ស្រុក​/ក្រុង​/ខណ្ឌ</label>
-          <input type="text" class="form-control shadow-none" id="inputZip">
-        </div>
-
-        <div class="col-md-3">
-            <label for="inputZip" class="form-label">រាជធានី​/ខេត្ត</label>
-            <input type="text" class="form-control shadow-none" id="inputZip">
-        </div>
-
-        <div class="col-12">
-            <label class="form-label">ផ្សេងៗ</label>
-            <textarea name="" class="form-control shadow-none" rows="5"></textarea>
-        </div>
-
-       
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-secondary">Reset</button>
-        </div>
-
-      </form><!-- End Multi Columns Form -->
-
     </div>
-</div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#subjects').select2({
+                placeholder: 'ជ្រើសរើសមុខវិជ្ជា',
+                allowClear: true,
+                width: '100%'
+            });
+        });
+
+        document.getElementById('teacherForm').addEventListener('submit', function() {
+            document.getElementById('spinner').style.display = 'inline-block';
+            document.getElementById('submitBtn').disabled = true;
+        });
+    </script>
 @endsection

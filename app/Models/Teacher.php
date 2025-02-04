@@ -35,4 +35,9 @@ class Teacher extends Model
         return $this->morphMany(Address::class, 'addressable');  
     }
 
+
+    public function subjects(){
+        return $this->belongsToMany(Subject::class,'teacher_subjects');
+    }
+
 }

@@ -37,12 +37,12 @@
         </a>
         <ul id="teacher-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="{{ route('admin.teacher.index') }}">
               <i class="bi bi-circle"></i><span>តារាងគ្រូបង្រៀន</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="{{ route('admin.teacher.create') }}">
               <i class="bi bi-circle"></i><span>បន្ថែមគ្រូបង្រៀន</span>
             </a>
           </li>
