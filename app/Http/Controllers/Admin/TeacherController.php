@@ -155,6 +155,16 @@ class TeacherController extends Controller
     #the function we used for teacher deleting
     public function destroy($id){
 
+        $teacher = Teacher::find($id);
+
+        //delete from addressable 
+        $teacher->addresses()->delete();
+
+        $teacher->delete();
+
+        return redirect()->back()->with('success','គ្រូបង្រៀនត្រូវបានដកចេញពីប្រព័ន្ធដោយជោគជ័យ');
+
+        
     }
 
     

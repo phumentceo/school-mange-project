@@ -49,7 +49,7 @@
                             <td>{{ $teacher->hire_date }}</td>
                             <td>
                                 <a class=" btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
-                                <a class=" btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
+                                <a href="{{ route('admin.teacher.destroy',$teacher->id) }}" onclick="return confirm('Do u want to delete this?')" class=" btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
                                 <a class=" btn btn-info btn-sm"><i class="bi bi-pen"></i></a>
                             </td>
                         </tr>

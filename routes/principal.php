@@ -41,7 +41,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::post('/', [TeacherController::class, 'store'])->name('teacher.store'); // Store new teacher
             Route::get('/{id}', [TeacherController::class, 'edit'])->name('teacher.edit'); // Show form to edit a teacher
             Route::put('/{id}', [TeacherController::class, 'update'])->name('teacher.update'); // Update a teacher
-            Route::get('/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy'); // Delete a teacher
+            Route::get('delete/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy'); // Delete a teacher
         });
 
         
