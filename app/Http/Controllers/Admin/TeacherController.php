@@ -143,7 +143,19 @@ class TeacherController extends Controller
     #the function we used for show updating teacher
     public function edit($id){
 
-        return view('principal.teachers.edit');
+        $teacher = Teacher::find($id);
+
+        $subjects = Subject::all();
+
+        
+
+        $address = $teacher->addresses()->first();
+
+        // return $address;
+
+
+
+        return view("principal.teachers.edit", compact('teacher', 'subjects', 'address'));
     }
 
     #the function wd used  for updating teacher
