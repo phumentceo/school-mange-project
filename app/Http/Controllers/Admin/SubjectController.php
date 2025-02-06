@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentLevel;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,13 +13,19 @@ class SubjectController extends Controller
 
     #the function we used for subject list
     public function index(){
-        $subjects = Subject::all();
+        $subjects = Subject::with('level')->get();
+        
         return view('principal.subjects.list',compact('subjects'));
     }
 
     #the function we used for show creating new subject
     public function create(){
-        return view('principal.subjects.create');
+
+        $student_levels = StudentLevel::all();
+
+        $data['levels'] = $student_levels;
+
+        return view('principal.subjects.create',$data);
     }
 
     #the function we used for saving new subject
@@ -60,13 +67,17 @@ class SubjectController extends Controller
 
         $subject = Subject::find($id);
 
+        $student_levels = StudentLevel::all();
+
         //check if subject not found with id
         if(!$subject){
             return redirect()->back()->with('error','មុខវិជ្ជារកមិនឃើញជាមួយនឹងសម្រាប់ ID '.$id);
         }
 
+
         return view('principal.subjects.edit',[
-            "subject" => $subject
+             "subject" => $subject,
+             "levels"  => $student_levels
         ]);
 
         

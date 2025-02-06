@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('subject_name'); //ឈ្មោះ មុខវិជ្ជា
             $table->enum('subject_type',[1,2,3])->default(3)->comment("1:Social | 2:Science | 3:General "); // ប្រភេទមុខវិជ្ជា
             $table->string('credit')->default(0); //ពិន្ទុសរុបសម្រាបមុខវិជ្ជា
-            $table->string('grade')->default(0); //កំរិតថ្នាក់
+            $table->foreignId("grade")->references('id')->on("student_levels")->cascadeOnDelete();
             $table->string('book_number')->nullable();  //ចំនួនសៀវភៅសម្រាប់មុខវិជ្ជា
             $table->text('note')->nullable();
             $table->timestamps();

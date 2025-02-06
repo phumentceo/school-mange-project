@@ -18,8 +18,12 @@
         </div>
     
         <div class="col-md-6">
-            <label for="grade" class="form-label">កំរិតមុខវិជ្ជា</label>
-            <input type="text" placeholder="ទី 10" class="form-control shadow-none" id="grade" name="grade" value="{{ $subject->grade }}">
+            <label for="grade" class="form-label">កំរិតមុខថ្នាក់</label>
+            <select name="grade" class=" form-control shadow-none" id="">
+                @foreach ($levels as $level )
+                  <option value="{{ $level->id }}" {{ $level->id === $subject->grade ? 'selected' : '' }}  >{{ $level->name }}</option>
+                @endforeach
+            </select>
             @error('grade')
             <div class="text-danger">{{ $message }}</div>
             @enderror
