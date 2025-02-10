@@ -17,7 +17,7 @@
         </div>
     
         <div class="col-md-6">
-            <label for="grade" class="form-label">កំរិតមុខថ្នាក់</label>
+            <label for="grade" class="form-label">កំរិតថ្នាក់</label>
             <select name="grade" class=" form-control shadow-none" id="">
                 @foreach ($levels as $level )
                   <option value="{{ $level->id }}">{{ $level->name }}</option>

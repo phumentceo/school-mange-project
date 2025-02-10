@@ -13,6 +13,7 @@ class SubjectController extends Controller
 
     #the function we used for subject list
     public function index(){
+        
         $subjects = Subject::with('level')->get();
         
         return view('principal.subjects.list',compact('subjects'));

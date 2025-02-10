@@ -26,7 +26,9 @@ class TeacherController extends Controller
     #the function we used for show creating new teacher
     public function create(){
 
-        $subjects = Subject::all();
+        $subjects = Subject::with('level')->get();
+
+        
 
 
         // return $subjects;

@@ -35,7 +35,7 @@
                                 @endif
                             </td>
                             <td>{{ $subject->credit }}</td>
-                            <td>{{ $subject->level->name }}</td>
+                            <td>ទី ៖ {{ $subject->level->name }}</td>
                             <td>{{ $subject->book_number }}</td>
                             <td>
                                 <a href="{{ route('admin.subject.edit',$subject->id) }}"><i class="bi bi-eye"></i></a>
