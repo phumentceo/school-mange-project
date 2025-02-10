@@ -2,7 +2,11 @@
 @section('contents')
     <div class="card">
         <div class="card-body p-5">
+<<<<<<< HEAD
             
+=======
+            <!-- Alert message -->
+>>>>>>> master
             @if(session('success'))
                 <div id="alertMessage" class="alert alert-success pb-0" role="alert">
                     <p style="font-size:15px; color: black;">{{ session('success') }}</p>
@@ -49,7 +53,11 @@
                             <td>{{ $teacher->hire_date }}</td>
                             <td>
                                 <a class=" btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+<<<<<<< HEAD
                                 <a onclick="return confirm('Do you want to delete this?')" href="{{ route('admin.teacher.destroy',$teacher->id) }}" class=" btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
+=======
+                                <a href="{{ route('admin.teacher.destroy',$teacher->id) }}" onclick="return confirm('Do u want to delete this?')" class=" btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
+>>>>>>> master
                                 <a href="{{ route('admin.teacher.edit',$teacher->id) }}" class=" btn btn-info btn-sm"><i class="bi bi-pen"></i></a>
                             </td>
                         </tr>

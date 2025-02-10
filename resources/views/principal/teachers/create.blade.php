@@ -86,7 +86,11 @@
         <select name="subject_id[]" id="subjects" class="form-select shadow-none" multiple="multiple"
             style="width: 100%;">
             @foreach ($subjects as $subject )
+<<<<<<< HEAD
               <option value="{{ $subject->id }}">{{ $subject->subject_name }} ({{ $subject->grade }})</option>
+=======
+              <option value="{{ $subject->id }}">{{ $subject->subject_name }} (ទី ៖ {{ $subject->level->name }})</option>
+>>>>>>> master
             @endforeach 
         </select>
 
@@ -217,6 +221,7 @@
       </div>
       </form>
     </div>
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
 </div>
 
 @endsection

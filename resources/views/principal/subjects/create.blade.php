@@ -17,8 +17,12 @@
         </div>
     
         <div class="col-md-6">
-            <label for="grade" class="form-label">កំរិតមុខវិជ្ជា</label>
-            <input type="text" placeholder="ទី 10" class="form-control shadow-none" id="grade" name="grade" value="{{ old('grade') }}">
+            <label for="grade" class="form-label">កំរិតថ្នាក់</label>
+            <select name="grade" class=" form-control shadow-none" id="">
+                @foreach ($levels as $level )
+                  <option value="{{ $level->id }}">{{ $level->name }}</option>
+                @endforeach
+            </select>
             @error('grade')
             <div class="text-danger">{{ $message }}</div>
             @enderror
@@ -26,7 +30,7 @@
     
         <div class="col-md-6">
             <label for="credit" class="form-label">ពិន្ទុពេញសម្រាប់មុខវិជា្ជ</label>
-            <input type="text" placeholder="ទី 10" class="form-control shadow-none" id="credit" name="credit" value="{{ old('credit') }}">
+            <input type="text" placeholder="100" class="form-control shadow-none" id="credit" name="credit" value="{{ old('credit') }}">
             @error('credit')
             <div class="text-danger">{{ $message }}</div>
             @enderror

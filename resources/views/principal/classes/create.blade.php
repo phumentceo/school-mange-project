@@ -9,20 +9,7 @@
           <label for="inputName5" class="form-label">ឈ្មោះបន្ទប់រៀន</label>
           <input type="text" class="form-control shadow-none" id="inputName5">
         </div>
-        <div class="col-md-6">
-          <label for="inputEmail5" class="form-label">មុខវិជ្ជា</label>
-          <select name="" class=" form-control shadow-none" id="">
-            <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
-            <option value="">គណិត</option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label for="inputPassword5" class="form-label">គ្រូបង្រៀន</label>
-          <select name="" class=" form-control shadow-none" id="">
-            <option value="">ជ្រើសរើសគ្រូបង្រៀន</option>
-            <option value="">បញ្ញា</option>
-          </select>
-        </div>
+        
         <div class="col-12">
           <label for="inputAddress5" class="form-label">គ្រូបន្ទុកថ្នាក់</label>
           <select name="" class=" form-control shadow-none" id="">
@@ -30,6 +17,9 @@
             <option value="">បញ្ញា</option>
           </select>
         </div>
+
+        
+        
         <div class="col-12">
           <label class="form-label">ចំនួនកៅអី</label>
           <input type="text" class="form-control shadow-none" >

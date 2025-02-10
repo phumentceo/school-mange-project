@@ -6,17 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-
     protected $table = 'teachers';
     protected $fillable = [
         'full_name',
-        'last_name',
         'latin_name',
         'gender',
         'marital_status',
         'dob',
         'national_id',
-        'subject_id',
         'specialization',
         'degree',
         'university',
@@ -29,15 +26,13 @@ class Teacher extends Model
         'email_verified_at',
     ];
 
-
     public function addresses()
     {
         return $this->morphMany(Address::class, 'addressable');  
     }
 
-
-    public function subjects(){
+    public function subjects()
+    {
         return $this->belongsToMany(Subject::class,'teacher_subjects');
     }
-
 }

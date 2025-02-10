@@ -159,6 +159,21 @@
                         value="{{ old('province', $address->province ?? '') }}">
                 </div>
 
+<<<<<<< HEAD
+=======
+                <div class="col-md-12">
+                    <label class="form-label">ថ្ងៃចាប់ផ្តើមការងារ</label>
+                    <input type="text" 
+                           class="form-control shadow-none @error('hire_date') is-invalid @enderror" 
+                           name="hire_date" 
+                           value="{{ old('hire_date',$teacher->hire_date) }}" 
+                           placeholder="12 មិនា 2024">
+                    @error('hire_date')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+>>>>>>> master
 
                 <div class="col-12">
                   <label class="form-label">ផ្សេងៗ</label>
@@ -197,4 +212,8 @@
             document.getElementById('submitBtn').disabled = true;
         });
     </script>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> master
