@@ -86,11 +86,7 @@
         <select name="subject_id[]" id="subjects" class="form-select shadow-none" multiple="multiple"
             style="width: 100%;">
             @foreach ($subjects as $subject )
-<<<<<<< HEAD
-              <option value="{{ $subject->id }}">{{ $subject->subject_name }} ({{ $subject->grade }})</option>
-=======
               <option value="{{ $subject->id }}">{{ $subject->subject_name }} (ទី ៖ {{ $subject->level->name }})</option>
->>>>>>> master
             @endforeach 
         </select>
 

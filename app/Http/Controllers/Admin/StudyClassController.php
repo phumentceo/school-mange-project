@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentLevel;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class StudyClassController extends Controller
@@ -20,7 +22,11 @@ class StudyClassController extends Controller
      */
     public function create()
     {
-        return view('principal.classes.create');
+
+        $levels = StudentLevel::all();
+        $teachers = Teacher::all();
+        
+        return view('principal.classes.create',compact('teachers','levels'));
     }
 
     /**

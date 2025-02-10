@@ -71,7 +71,7 @@
             </button>
             <button type="reset" class="btn btn-danger">ត្រឡប់ក្រោយ</button>
         </div>
-    </form>
+      </form>
     </div>
 </div>
 @endsection
