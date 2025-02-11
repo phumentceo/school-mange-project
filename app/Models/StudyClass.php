@@ -29,7 +29,7 @@ class StudyClass extends Model
 
     public function teachers()
     {
-        return $this->belongsToMany(Teacher::class, 'teacher_classes');
+        return $this->belongsToMany(Teacher::class, 'teacher_classes','study_class_id','teacher_id');
     }
 
 }

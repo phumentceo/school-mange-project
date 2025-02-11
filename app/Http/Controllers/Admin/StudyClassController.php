@@ -17,7 +17,10 @@ class StudyClassController extends Controller
      */
     public function index()
     {
-        return view('principal.classes.list');
+        $classes = StudyClass::with('teachers')->get();
+
+        return view('principal.classes.list', compact('classes'));
+    
     }
 
     /**
