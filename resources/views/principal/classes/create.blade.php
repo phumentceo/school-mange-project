@@ -16,7 +16,7 @@
 
         <div class="col-6">
           <label class="form-label">កំរិតថ្នាក់</label>
-          <select name="homeroom_teacher" class="form-control shadow-none">
+          <select name="level_id" class="form-control shadow-none">
             <option value="">ជ្រើសរើសកំរិតថ្នាក់</option>
             @foreach($levels as $level)
                 <option value="{{ $level->id }}" {{ old('level_id') == $level->id ? 'selected' : '' }}>

@@ -70,16 +70,19 @@ class StudyClassController extends Controller
         }
 
         // Create new class
-        StudyClass::create([
+        $studyClass = StudyClass::create([
             'name' => $request->name,
             'homeroom_teacher' => $request->homeroom_teacher,
-            'level_id' => $request->level_id,
+            'class_level_id' => $request->level_id,
             'desk' => $request->desk,
             'fan' => $request->fan,
             'whiteboard' => $request->whiteboard,
             'light' => $request->light,
             'note' => $request->note,
         ]);     
+
+        //store to pivot teacher_classes table
+        $studyClass->teachers()->sync($request->homeroom_teacher);
 
         return redirect()->route('admin.class.index')->with('success', 'បន្ទប់រៀនត្រូវបានបង្កើតដោយជោគជ័យ!');
     }
