@@ -6,7 +6,7 @@
       
     
       <!-- Multi Columns Form -->
-      <form class="row g-3" method="POST" action="{{ route('admin.class.store') }}">
+      <form class="row g-3" method="POST" id="studyClassForm" action="{{ route('admin.class.store') }}">
         @csrf
         <div class="col-md-12">
           <label class="form-label">ឈ្មោះបន្ទប់រៀន</label>
@@ -76,11 +76,24 @@
         </div>
 
         <div class="text-center">
-          <button type="submit" class="btn btn-success">បង្កើត</button>
+          <button type="submit" class="btn btn-success" id="submitBtn">
+            <span id="spinner" class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true" style="display: none;"></span>
+            បង្កើត
+          </button>
           <button type="reset" class="btn btn-danger">ត្រឡប់ក្រោយ</button>
         </div>
       </form><!-- End Multi Columns Form -->
 
     </div>
 </div>
+@endsection
+@section('scripts')
+ <script>
+    //Loading submit
+    document.getElementById('studyClassForm').addEventListener('submit', function(event) {
+        // Show the spinner and disable the submit button
+        document.getElementById('spinner').style.display = 'inline-block';
+        document.getElementById('submitBtn').disabled = true;
+    });
+ </script>
 @endsection
