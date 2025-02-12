@@ -32,12 +32,10 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('admin.class.edit', $class->id) }}" class="btn btn-warning btn-sm">កែប្រែ</a>
-                                <form action="{{ route('admin.class.destroy', $class->id) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('តើអ្នកប្រាកដថាចង់លុប?')">លុប</button>
-                                </form>
+                                <a class=" btn btn-info btn-sm" href="{{ route('admin.class.edit',$class->id) }}"><i class="bi bi-eye"></i></a>
+                                <a class=" btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this?')" href="{{ route('admin.class.destroy',$class->id) }}" class=" text-danger"><i class="bi bi-trash2-fill"></i></a>
+                                <a class=" btn btn-primary btn-sm" href="{{ route('admin.class.edit',$class->id) }}"><i class="bi bi-pen"></i></a>
+                                
                             </td>
                         </tr>
                     @endforeach

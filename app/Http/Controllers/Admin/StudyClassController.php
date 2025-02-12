@@ -14,7 +14,7 @@ class StudyClassController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+    */
     public function index()
     {
         $classes = StudyClass::with('teachers')->get();
@@ -104,7 +104,11 @@ class StudyClassController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $teachers = Teacher::all();
+        $levels = StudentLevel::all();
+        $classes = StudyClass::findOrFail($id);
+
+        return view('principal.classes.edit', compact('teachers', 'levels', 'classes'));
     }
 
     /**
@@ -112,7 +116,27 @@ class StudyClassController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'level_id' => 'required|exists:levels,id',
+            'homeroom_teacher' => 'required|exists:teachers,id',
+            'desk' => 'required|integer|min:1',
+            'fan' => 'nullable|string|max:255',
+            'whiteboard' => 'required|integer|min:1',
+            'light' => 'nullable|string|max:255',
+            'note' => 'nullable|string',
+        ], [
+            'name.required' => 'សូមបញ្ចូលឈ្មោះបន្ទប់រៀន',
+            'level_id.required' => 'សូមជ្រើសរើសកំរិតថ្នាក់',
+            'homeroom_teacher.required' => 'សូមជ្រើសរើសគ្រូបន្ទុកថ្នាក់',
+            'desk.required' => 'សូមបញ្ចូលចំនួនកៅអី',
+            'whiteboard.required' => 'សូមជ្រើសរើសចំនួនក្តារខៀន',
+        ]);
+    
+        $class = StudyClass::findOrFail($id);
+        $class->update($request->all());
+    
+        return redirect()->route('admin.class.index')->with('success', 'បន្ទប់រៀនត្រូវបានកែប្រែដោយជោគជ័យ!');
     }
 
     /**
