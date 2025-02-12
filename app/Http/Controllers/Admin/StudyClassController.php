@@ -17,7 +17,7 @@ class StudyClassController extends Controller
     */
     public function index()
     {
-        $classes = StudyClass::with('teachers')->get();
+        $classes = StudyClass::with('teacher')->get();
 
         return view('principal.classes.list', compact('classes'));
     
@@ -73,7 +73,7 @@ class StudyClassController extends Controller
         }
 
         // Create new class
-        $studyClass = StudyClass::create([
+        StudyClass::create([
             'name' => $request->name,
             'homeroom_teacher' => $request->homeroom_teacher,
             'class_level_id' => $request->level_id,
@@ -85,7 +85,7 @@ class StudyClassController extends Controller
         ]);     
 
         //store to pivot teacher_classes table
-        $studyClass->teachers()->sync($request->homeroom_teacher);
+        // $studyClass->teachers()->sync($request->homeroom_teacher);
 
         return redirect()->route('admin.class.index')->with('success', 'បន្ទប់រៀនត្រូវបានបង្កើតដោយជោគជ័យ!');
     }
@@ -114,30 +114,63 @@ class StudyClassController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
+    public function update(Request $request, string $id){
+
+        
+
+        $class = StudyClass::find($id);
+
+        
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'level_id' => 'required|exists:levels,id',
             'homeroom_teacher' => 'required|exists:teachers,id',
+            'level_id' => 'required|exists:student_levels,id',
             'desk' => 'required|integer|min:1',
             'fan' => 'nullable|string|max:255',
             'whiteboard' => 'required|integer|min:1',
             'light' => 'nullable|string|max:255',
-            'note' => 'nullable|string',
+            'note' => 'nullable|string|max:1000',
         ], [
-            'name.required' => 'សូមបញ្ចូលឈ្មោះបន្ទប់រៀន',
-            'level_id.required' => 'សូមជ្រើសរើសកំរិតថ្នាក់',
-            'homeroom_teacher.required' => 'សូមជ្រើសរើសគ្រូបន្ទុកថ្នាក់',
-            'desk.required' => 'សូមបញ្ចូលចំនួនកៅអី',
-            'whiteboard.required' => 'សូមជ្រើសរើសចំនួនក្តារខៀន',
+            'name.required' => 'សូមបំពេញឈ្មោះបន្ទប់រៀន។',
+            'name.max' => 'ឈ្មោះបន្ទប់រៀនមិនអាចលើស 255 តួអក្សរ។',
+            'homeroom_teacher.required' => 'សូមជ្រើសរើសគ្រូបន្ទុកថ្នាក់។',
+            'homeroom_teacher.exists' => 'គ្រូបន្ទុកថ្នាក់មិនមានក្នុងប្រព័ន្ធ។',
+            'level_id.required' => 'សូមជ្រើសរើសកំរិតថ្នាក់។',
+            'level_id.exists' => 'កំរិតថ្នាក់ដែលបានជ្រើសរើសមិនត្រឹមត្រូវ។',
+            'desk.required' => 'សូមបំពេញចំនួនកៅអី។',
+            'desk.integer' => 'ចំនួនកៅអីត្រូវតែជាលេខ។',
+            'desk.min' => 'ចំនួនកៅអីត្រូវតែមានយ៉ាងហោចណាស់ ១។',
+            'whiteboard.required' => 'សូមជ្រើសរើសចំនួនក្តារខៀន។',
+            'whiteboard.integer' => 'ចំនួនក្តារខៀនត្រូវតែជាលេខ។',
+            'whiteboard.min' => 'ចំនួនក្តារខៀនយ៉ាងហោចណាស់ត្រូវតែមាន ១។',
+            'fan.max' => 'ព័ត៌មានអំពីកង្ហារមិនអាចលើស 255 តួអក្សរ។',
+            'light.max' => 'ព័ត៌មានអំពីអំពូលភ្លើងមិនអាចលើស 255 តួអក្សរ។',
+            'note.max' => 'ផ្សេងៗមិនអាចលើស 1000 តួអក្សរ។',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        
+
+    
+        $class->update([
+            'name' => $request->name,
+            'homeroom_teacher' => $request->homeroom_teacher,
+            'class_level_id' => $request->level_id,
+            'desk' => $request->desk,
+            'fan' => $request->fan,
+            'whiteboard' => $request->whiteboard,
+            'light' => $request->light,
+            'note' => $request->note,
         ]);
     
-        $class = StudyClass::findOrFail($id);
-        $class->update($request->all());
-    
-        return redirect()->route('admin.class.index')->with('success', 'បន្ទប់រៀនត្រូវបានកែប្រែដោយជោគជ័យ!');
-    }
+      return redirect()->route('admin.class.index')->with('success', 'បន្ទប់រៀនត្រូវបានកែប្រែដោយជោគជ័យ!');
+}
+
 
     /**
      * Remove the specified resource from storage.

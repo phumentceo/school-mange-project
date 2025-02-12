@@ -32,4 +32,8 @@ class StudyClass extends Model
         return $this->belongsToMany(Teacher::class, 'teacher_classes','study_class_id','teacher_id');
     }
 
+    public function teacher(){
+        return $this->belongsTo(Teacher::class,'homeroom_teacher');
+    }
+
 }

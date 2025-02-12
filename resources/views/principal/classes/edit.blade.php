@@ -86,3 +86,14 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+ <script>
+    //Loading submit
+    document.getElementById('editStudyClassForm').addEventListener('submit', function(event) {
+        // Show the spinner and disable the submit button
+        document.getElementById('spinner').style.display = 'inline-block';
+        document.getElementById('submitBtn').disabled = true;
+    });
+ </script>
+@endsection

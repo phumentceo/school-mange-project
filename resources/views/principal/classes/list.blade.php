@@ -25,8 +25,8 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $class->name }}</td>
                             <td>
-                                @if($class->teachers->isNotEmpty())
-                                    {{ $class->teachers->pluck('full_name')->implode(', ') }}
+                                @if($class->teacher != '')
+                                    {{ $class->teacher->full_name }}
                                 @else
                                     <span class="text-danger">មិនមានគ្រូបន្ទុក</span>
                                 @endif
