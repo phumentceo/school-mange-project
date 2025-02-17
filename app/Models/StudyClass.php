@@ -25,5 +25,13 @@ class StudyClass extends Model
         return $this->belongsToMany(Teacher::class, 'teacher_classes');
     }
 
+    public function teacher(){
+        return $this->belongsTo(Teacher::class,'homeroom_teacher');
+    }
+
+    public function level(){
+        return $this->belongsTo(StudentLevel::class,'class_level_id');
+    }
+
 
 }

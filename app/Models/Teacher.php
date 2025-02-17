@@ -35,4 +35,10 @@ class Teacher extends Model
     {
         return $this->belongsToMany(Subject::class,'teacher_subjects');
     }
+
+    public function level()
+    {
+        return $this->belongsToMany(StudentLevel::class, 'teacher_subjects', 'teacher_id', 'student_level_id');
+    }
+    
 }

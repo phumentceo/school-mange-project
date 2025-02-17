@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\StudentLevel;
+use App\Models\StudyClass;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class StudyClassController extends Controller
      */
     public function index()
     {
-        return view('principal.classes.list');
+        $classes = StudyClass::with('teacher')->get();
+        return view('principal.classes.list',compact('classes'));
     }
 
     /**

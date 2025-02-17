@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\StudyClassController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\TeacherScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -56,6 +57,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::put('/{id}', [StudyClassController::class, 'update'])->name('class.update');
             Route::delete('/{id}', [StudyClassController::class, 'destroy'])->name('class.destroy');
         });
+
+
+        //Schedule Routes
+        Route::get('/setting',[TeacherScheduleController::class,'index']);
+        Route::get('/schedule/list',[TeacherScheduleController::class,'list']);
+        Route::get('/schedule/store',[TeacherScheduleController::class,'schedule']);
 
         
 

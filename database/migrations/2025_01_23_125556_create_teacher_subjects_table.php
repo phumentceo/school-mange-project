@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('teacher_subjects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreignId('student_level_id')->references('id')->on('student_levels')->cascadeOnDelete();
             $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->timestamps();
         });

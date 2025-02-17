@@ -12,6 +12,7 @@ class Subject extends Model
         'subject_name',
         'subject_type',
         'credit',
+        'hours_per_week',
         'grade',
         'book_number',
         'note',
