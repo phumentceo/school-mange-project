@@ -3,6 +3,7 @@
 
 
     @include('principal.classes.modals.schedule-create')
+    @include('principal.classes.modals.schedule-update')
 
 
     <div class="card">
@@ -49,7 +50,7 @@
                                     <ul class="dropdown-menu">
                                       <li><a class="dropdown-item" href="#">ពិនិត្យមើលកាវិភាគ</a></li>
                                       <li data-bs-toggle="modal" data-bs-target="#exampleModal" ><a class="dropdown-item">បន្ថែមការវិភាគ</a></li>
-                                      <li><a class="dropdown-item" href="#">កែសម្រួលកាលវិភាគ</a></li>
+                                      <li data-bs-toggle="modal" data-bs-target="#schedule-update"><a class="dropdown-item" href="javascript:void()">កែសម្រួលកាលវិភាគ</a></li>
                                     </ul>
                                 </div>
 
