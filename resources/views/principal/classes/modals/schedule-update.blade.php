@@ -25,42 +25,42 @@
                     <tr >
                         <td>7:00AM - 8:00AM</td>
                         <td >
-                            <select  name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select  name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
@@ -71,42 +71,42 @@
                     <tr>
                         <td>8:00AM - 9:00AM</td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
@@ -117,42 +117,42 @@
                     <tr>
                         <td>9:00AM - 10:00AM</td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
@@ -163,42 +163,42 @@
                     <tr>
                         <td>10:00AM - 11:00AM</td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
@@ -214,42 +214,42 @@
                     <tr>
                         <td>14:00AM - 15:00PM</td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
@@ -260,42 +260,42 @@
                     <tr>
                         <td>15:00AM - 16:00PM</td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center" style="font-size: 15px;">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                             </select>
                         </td>
                         <td>
-                            <select name="" class=" form-control shadow-none text-center">
+                            <select name="" class=" form-control shadow-none text-center border-0" style="font-size: 15px;">
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
                                 <option value="">គណិតវិទ្យា(ពុធ ភូមិន)</option>
@@ -309,7 +309,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">បិទ</button>
-          <button type="button" class="btn btn-success">រក្សាទុក</button>
+          <button type="button" class="btn btn-success">កែសម្រួល</button>
         </div>
       </div>
     </div>

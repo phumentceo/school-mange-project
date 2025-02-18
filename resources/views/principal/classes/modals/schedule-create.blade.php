@@ -17,7 +17,7 @@
 
                 <div class="col-6 mb-3">
                     <label for="">ថ្ងៃបង្រៀន</label>
-                    <select name="" class=" form-control">
+                    <select name="" class=" form-control shadow-none">
                         <option value="ច័ន្ទ">ច័ន្ទ</option>
                         <option value="អង្គារ">ច័អង្គារ</option>
                         <option value="ពុធ">ពុធ</option>
@@ -29,7 +29,7 @@
 
                 <div class="col-6 mb-3">
                     <label for="">ពេលវេលា</label>
-                    <select name="" class=" form-control">
+                    <select name="" class=" form-control shadow-none">
                         <option value="7:00 - 8:00">7:00AM - 8:00AM</option>
                         <option value="8:00 - 9:00">7:00AM - 8:00AM</option>
                         <option value="9:00 - 11:00">7:00AM - 8:00AM</option>
@@ -44,7 +44,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">បន្ថែម</button>
         </div>
       </div>
     </div>
