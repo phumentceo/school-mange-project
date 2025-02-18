@@ -7,12 +7,39 @@
         </div>
         <div class="modal-body">
           <form action="">
-              <div class="form-group">
-                  <label for="">គ្រូបង្រៀន</label>
-                  <select name="" class=" form-control">
+            <div class="row p-0">
+                <div class="col-12 mb-3">
+                    <label for="">គ្រូបង្រៀន</label>
+                    <select name="" class=" form-control">
+  
+                    </select>
+                </div>
 
-                  </select>
-              </div>
+                <div class="col-6 mb-3">
+                    <label for="">ថ្ងៃបង្រៀន</label>
+                    <select name="" class=" form-control">
+                        <option value="ច័ន្ទ">ច័ន្ទ</option>
+                        <option value="អង្គារ">ច័អង្គារ</option>
+                        <option value="ពុធ">ពុធ</option>
+                        <option value="ព្រ.ហ">ព្រ.ហ</option>
+                        <option value="សុក្រ">សុក្រ</option>
+                        <option value="សៅរ៍ិ">សៅរ៍ិ</option>
+                    </select>
+                </div>
+
+                <div class="col-6 mb-3">
+                    <label for="">ពេលវេលា</label>
+                    <select name="" class=" form-control">
+                        <option value="7:00 - 8:00">7:00AM - 8:00AM</option>
+                        <option value="8:00 - 9:00">7:00AM - 8:00AM</option>
+                        <option value="9:00 - 11:00">7:00AM - 8:00AM</option>
+                        <option value="10:00 - 11:00">7:00AM - 8:00AM</option>
+                    </select>
+                </div>
+
+
+            </div>
+             
           </form>
         </div>
         <div class="modal-footer">
