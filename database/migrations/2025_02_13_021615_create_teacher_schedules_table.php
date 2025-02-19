@@ -17,9 +17,8 @@ return new class extends Migration
             $table->foreignId('subject_id')->references('id')->on('subjects')->cascadeOnDelete();
             $table->foreignId('study_class_id')->references('id')->on('study_classes')->cascadeOnDelete();
             $table->foreignId('student_level_id')->references("id")->on("student_levels")->cascadeOnDelete();
+            $table->foreignId('study_time_id')->references('id')->on('study_times')->cascadeOnDelete();
             $table->string('day');
-            $table->string('start_time');
-            $table->string('end_time');
             $table->timestamps();
         });
     }

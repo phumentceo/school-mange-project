@@ -30,10 +30,14 @@
                 <div class="col-6 mb-3">
                     <label for="">ពេលវេលា</label>
                     <select name="" class=" form-control shadow-none">
-                        <option value="7:00 - 8:00">7:00AM - 8:00AM</option>
-                        <option value="8:00 - 9:00">7:00AM - 8:00AM</option>
-                        <option value="9:00 - 11:00">7:00AM - 8:00AM</option>
-                        <option value="10:00 - 11:00">7:00AM - 8:00AM</option>
+                        <option value="7:15AM-7:55AM">7:00AM  - 8:00AM</option>
+                        <option value="8:05AM-8:55AM">8:00AM  - 9:00AM</option>
+                        <option value="9:05AM-9:55AM">9:00AM  - 10:00AM</option>
+                        <option value="10:05AM-11:00AM">10:00AM - 11:00AM</option>
+                        <option value="13:00PM-13:55PM">14:00AM - 15:00AM</option>
+                        <option value="14:05PM-14:55PM">14:00AM - 15:00AM</option>
+                        <option value="15:05PM-15:55PM">15:00AM - 16:00AM</option>
+                        <option value="16:05PM-17:00PM">16:00AM - 17:00AM</option>
                     </select>
                 </div>
 
