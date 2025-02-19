@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\StudentLevel;
 use App\Models\StudyClass;
+use App\Models\StudyTime;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,9 @@ class StudyClassController extends Controller
     public function index()
     {
         $classes = StudyClass::with('teacher')->get();
-        return view('principal.classes.list',compact('classes'));
+        $studyTimes = StudyTime::all();
+
+        return view('principal.classes.list',compact('classes','studyTimes'));
     }
 
     /**
