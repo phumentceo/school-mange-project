@@ -21,5 +21,11 @@ class TeacherSubject extends Model
     public function teacher(){
         return $this->belongsTo(Teacher::class,'teacher_id');
     }
+
+    public function levels(){
+        return $this->belongsTo(StudentLevel::class,'student_level_id');
+    }
+
+
     
 }
