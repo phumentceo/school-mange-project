@@ -159,8 +159,6 @@
                         value="{{ old('province', $address->province ?? '') }}">
                 </div>
 
-<<<<<<< HEAD
-=======
                 <div class="col-md-12">
                     <label class="form-label">ថ្ងៃចាប់ផ្តើមការងារ</label>
                     <input type="text" 
@@ -173,7 +171,6 @@
                     @enderror
                 </div>
 
->>>>>>> master
 
                 <div class="col-12">
                   <label class="form-label">ផ្សេងៗ</label>
@@ -212,8 +209,4 @@
             document.getElementById('submitBtn').disabled = true;
         });
     </script>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> master

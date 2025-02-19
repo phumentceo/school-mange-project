@@ -145,13 +145,24 @@ class TeacherController extends Controller
     #the function we used for show updating teacher
     public function edit($id){
 
+       
+
         $teacher = Teacher::findOrFail($id); 
+
+
+        
 
         $subjects = Subject::all(); 
 
+       
+
         $address = $teacher->addresses()->first();
+
+       
         
         $subjectIds = $teacher->subjects->pluck('id')->toArray(); 
+
+        
 
         return view("principal.teachers.edit", compact('teacher', 'subjects', 'address', 'subjectIds'));
 
