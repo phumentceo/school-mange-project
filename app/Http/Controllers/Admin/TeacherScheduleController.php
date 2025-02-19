@@ -24,20 +24,24 @@ class TeacherScheduleController extends Controller
 
 
         // Select teachers who teach subjects for the same level(s) as the class
-        $teachers = TeacherSubject::whereHas('levels', function($query) use ($studyClass) {
-            $query->whereIn('id', $studyClass->level->pluck('id'));
+        $teacherLevels = TeacherSubject::whereHas('levels', function($query) use ($studyClass) {
+            $query->where('id', $studyClass->level->id);
         })->get();
 
-        //Select all teacher name 
-        
 
+        // Extract teacher IDs
+        $teacherIds = $teacherLevels->pluck('teacher_id')->toArray();
+
+        // Select all teachers with those teacher IDs
+        $teachers = Teacher::whereIn('id', $teacherIds)->with('levels')->get();
         
 
         return response([
             'status' => 200,
             'message' => 'Create Teacher schedule success',
             'classroom' => $studyClass,
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            
         ]);
 
     }
