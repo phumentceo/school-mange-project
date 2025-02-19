@@ -8,6 +8,6 @@ class StudentLevel extends Model
 {
     protected $table = 'student_levels';
     protected $fillable = [
-        'name',
+        'name', 
     ];
 }

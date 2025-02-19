@@ -107,7 +107,7 @@
                         let htmlModal = '';
                         htmlModal += `
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">បន្ថែមការវិភាគសម្រាប់ថ្នាក់ ${response.classroom.name}</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">បន្ថែមការវិភាគសម្រាប់ថ្នាក់ </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -118,8 +118,11 @@
                                             <select name="" class=" form-control">`;
 
                                                 $.each(teachers, function (index, value) { 
+                                                    let levelsText = value.levels.map(item => item.name).join(", ");
                                                      htmlModal += `
-                                                       <option value="${value.id}">${value.full_name}</option>
+                                                       <option value="${value.id}">
+                                                          ${value.full_name} (បង្រៀនថ្នាក់ : ${levelsText})
+                                                        </option>
                                                      `;
                                                 });
 

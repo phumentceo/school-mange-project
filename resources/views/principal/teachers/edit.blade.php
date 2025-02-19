@@ -77,7 +77,7 @@
                         <option value="">ជ្រើសរើសមុខវិជ្ជា</option>
                         @foreach ($subjects as $subject)
                             <option value="{{ $subject->id }}" {{ in_array($subject->id, $subjectIds) ? 'selected' : '' }}>
-                                {{ $subject->subject_name }}
+                                {{ $subject->subject_name }} (សម្រាប់ថ្នាក់ទី៖ {{ $subject->level->name }})
                             </option>
                         @endforeach
                     </select>
@@ -138,25 +138,35 @@
 
                 <div class="col-md-3">
                     <label class="form-label">ភូមិ</label>
-                    <input type="text" class="form-control shadow-none" name="village"
-                        value="{{ old('village', $address->village ?? '') }}">
+                    <input type="text" name="village" class="form-control shadow-none @error('village') is-invalid @enderror"  value="{{ old('village', $address->village ?? '') }}">
+                    @error('village')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">ឃុំ​/សង្កាត់</label>
-                    <input type="text" class="form-control shadow-none" name="commune"
-                        value="{{ old('commune', $address->commune ?? '') }}">
+                    <input type="text" name="commune" class="form-control shadow-none @error('commune') is-invalid @enderror" value="{{ old('commune', $address->commune ?? '') }}">
+                    @error('commune')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">ស្រុក​/ក្រុង​/ខណ្ឌ</label>
-                    <input type="text" class="form-control shadow-none" name="district"
-                        value="{{ old('district', $address->district ?? '') }}">
+                    <input type="text" name="district" class="form-control shadow-none @error('district') is-invalid @enderror" value="{{ old('district', $address->district ?? '') }}">
+                    @error('district')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">រាជធានី​/ខេត្ត</label>
                     <input type="text" class="form-control shadow-none" name="province"
                         value="{{ old('province', $address->province ?? '') }}">
+
+                    @error('province')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="col-md-12">
