@@ -64,6 +64,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/schedule/list',[TeacherScheduleController::class,'list']);
         Route::get('/schedule/store',[TeacherScheduleController::class,'schedule']);
 
+        Route::get('/schedule/create',[TeacherScheduleController::class,'create'])->name('schedule.create');
         
 
     });

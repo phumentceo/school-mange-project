@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Log;
 class TeacherScheduleController extends Controller
 {
 
+    public function create(){
+
+        return response([
+            'status' => 200,
+            'message' => 'Create Teacher schedule success',
+        ]);
+
+    }
+
+
+
     public function index(){
 
 

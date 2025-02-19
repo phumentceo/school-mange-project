@@ -49,7 +49,7 @@
                                     
                                     <ul class="dropdown-menu">
                                       <li><a class="dropdown-item" href="#">ពិនិត្យមើលកាវិភាគ</a></li>
-                                      <li data-bs-toggle="modal" data-bs-target="#exampleModal" ><a class="dropdown-item"   href="javascript:void()">បន្ថែមការវិភាគ</a></li>
+                                      <li data-bs-toggle="modal" data-bs-target="#exampleModal" ><a class="dropdown-item" onclick="openModal({{ $class->id }})"   href="javascript:void()">បន្ថែមការវិភាគ</a></li>
                                       <li data-bs-toggle="modal" data-bs-target="#schedule-update"><a class="dropdown-item" href="javascript:void()">កែសម្រួលកាលវិភាគ</a></li>
                                     </ul>
                                 </div>
@@ -82,5 +82,20 @@
             alertMessage.style.display = 'none';
         }
     }, 2000);
+
+
+    const openModal = (id) => {
+        $.ajax({
+            type: "GET",
+            url: "{{ route('admin.schedule.create') }}",
+            data: {
+               'id' : id
+            },
+            dataType: "json",
+            success: function (response) {
+                
+            }
+        });
+    }
 </script>
 @endsection
