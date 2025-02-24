@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentLevel;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TeacherSubject;
@@ -17,13 +18,19 @@ class TeacherController extends Controller
 
     #the function we used for show teachers list
     public function index(){
+        // Get all teachers with their subjects
+        $teachers = Teacher::with('subjects')->get();
 
-        $teachers = Teacher::all();
+        // Collect all grade IDs from subjects
+        $levelIds = $teachers->pluck('subjects.*.grade')->flatten()->unique();
 
-        return view('principal.teachers.list',compact('teachers'));
+        
+        // Retrieve the corresponding student levels
+        $levels = StudentLevel::whereIn('id', $levelIds)->get();
 
-    }
-
+        
+        return view('principal.teachers.list', compact('teachers', 'levels'));
+   }
 
     #the function we used for show creating new teacher
     public function create(){
@@ -147,8 +154,6 @@ class TeacherController extends Controller
     
         return redirect()->route('admin.teacher.index')->with('success','គ្រូបង្រៀនត្រូវបានបង្កើតដោយជោគជ័យ');
     }
-    
-
 
     #the function we used for show updating teacher
     public function edit($id){
