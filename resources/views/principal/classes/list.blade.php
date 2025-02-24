@@ -93,6 +93,38 @@
 
 
         const openModal = (id) => {
+            // Show Bootstrap placeholder loading before AJAX call
+            let loadingHtml = `
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 mb-3 placeholder-glow">
+                                    <label class="placeholder col-4"></label>
+                                    <select class="form-control placeholder col-12" disabled></select>
+                                </div>
+                                <div class="col-6 mb-3 placeholder-glow">
+                                    <label class="placeholder col-4"></label>
+                                    <select class="form-control placeholder col-12" disabled></select>
+                                </div>
+                                <div class="col-6 mb-3 placeholder-glow">
+                                    <label class="placeholder col-4"></label>
+                                    <select class="form-control placeholder col-12" disabled></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            $(".display-modal").html(loadingHtml);
+
             $.ajax({
                 type: "GET",
                 url: "{{ route('admin.schedule.create') }}",
@@ -102,12 +134,12 @@
                 dataType: "json",
                 success: function (response) {
                     if (response.status === 200) {
-
                         let teachers = response.teachers;
-                        let htmlModal = '';
-                        htmlModal += `
+                        let htmlModal = `
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">បន្ថែមការវិភាគសម្រាប់ថ្នាក់ ${response.classroom.name} </h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                    បន្ថែមការវិភាគសម្រាប់ថ្នាក់ ${response.classroom.name}
+                                </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -115,57 +147,54 @@
                                     <div class="row p-0">
                                         <div class="col-12 mb-3">
                                             <label for="">គ្រូបង្រៀន</label>
-                                            <input type="text" name="study_class_id" value="${response.classroom.id}" >
-                                            <select name="teacher" class=" form-control">`;
-
-                                                $.each(teachers, function (index, value) { 
-                                                    let levelsText = value.levels.map(item => item.name).join(", ");
-                                                     htmlModal += `
-                                                       <option value="${value.id}">
-                                                          ${value.full_name} <span style='font-size:8px;'>(បង្រៀនថ្នាក់ ៖ ${levelsText}  ~‍ ឯកទេស ៖ ${value.specialization} )</span>
-                                                        </option>
-                                                     `;
-                                                });
-
-                                                
-                                            htmlModal += ` 
-                                            </select>
-                                        </div>
-
-                                        <div class="col-6 mb-3">
-                                            <label for="">ថ្ងៃបង្រៀន</label>
-                                            <select name="day" class=" form-control shadow-none">
-                                                <option value="ច័ន្ទ">ច័ន្ទ</option>
-                                                <option value="អង្គារ">ច័អង្គារ</option>
-                                                <option value="ពុធ">ពុធ</option>
-                                                <option value="ព្រ.ហ">ព្រ.ហ</option>
-                                                <option value="សុក្រ">សុក្រ</option>
-                                                <option value="សៅរ៍ិ">សៅរ៍ិ</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-6 mb-3">
-                                            <label for="">ពេលវេលា</label>
-                                            <select name="study_time" class=" form-control shadow-none">
-                                                @foreach ($studyTimes as $time )
-                                                    <option value="{{ $time->id }}">{{ $time->start_time }}  - {{ $time->end_time }}</option>
-                                                @endforeach
-                                                
-                                            </select>
-                                        </div>
-
-
-                                    </div>
-
-                                </form>
-                            </div>
+                                            <input type="hidden" name="study_class_id" value="${response.classroom.id}" >
+                                            <select name="teacher" class="form-control">
                         `;
+
+                        $.each(teachers, function (index, value) { 
+                            let levelsText = value.levels.map(item => item.name).join(", ");
+                            htmlModal += `
+                                <option value="${value.id}">
+                                    ${value.full_name} (បង្រៀនថ្នាក់ ៖ ${levelsText} ~‍ ឯកទេស ៖ ${value.specialization})
+                                </option>
+                            `;
+                        });
+
+                        htmlModal += `</select></div>`;
+
+                        htmlModal += `
+                            <div class="col-6 mb-3">
+                                <label for="">ថ្ងៃបង្រៀន</label>
+                                <select name="day" class="form-control shadow-none">
+                                    <option value="ច័ន្ទ">ច័ន្ទ</option>
+                                    <option value="អង្គារ">អង្គារ</option>
+                                    <option value="ពុធ">ពុធ</option>
+                                    <option value="ព្រ.ហ">ព្រ.ហ</option>
+                                    <option value="សុក្រ">សុក្រ</option>
+                                    <option value="សៅរ៍">សៅរ៍</option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="">ពេលវេលា</label>
+                                <select name="study_time" class="form-control shadow-none">
+                                    @foreach ($studyTimes as $time)
+                                        <option value="{{ $time->id }}">
+                                            {{ $time->start_time }} - {{ $time->end_time }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                `;
 
                         $(".display-modal").html(htmlModal);
                     }
                 }
             });
-        }
+        };
+
 
 
 
