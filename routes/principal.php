@@ -62,7 +62,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         //Schedule Routes
         Route::get('/setting',[TeacherScheduleController::class,'index']);
         Route::get('/schedule/list',[TeacherScheduleController::class,'list']);
-        Route::get('/schedule/store',[TeacherScheduleController::class,'schedule']);
+        Route::post('/schedule/store',[TeacherScheduleController::class,'store'])->name('schedule.store');
 
         Route::get('/schedule/create',[TeacherScheduleController::class,'create'])->name('schedule.create');
         

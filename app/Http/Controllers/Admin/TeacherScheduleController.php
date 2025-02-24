@@ -15,39 +15,6 @@ use Illuminate\Support\Facades\Log;
 class TeacherScheduleController extends Controller
 {
 
-    public function create(Request $request){
-
-        
-       // Select class with level relationship
-        $studyClass = StudyClass::where('id', $request->id)->with('level')->first();
-
-
-
-        // Select teachers who teach subjects for the same level(s) as the class
-        $teacherLevels = TeacherSubject::whereHas('levels', function($query) use ($studyClass) {
-            $query->where('id', $studyClass->level->id);
-        })->get();
-
-
-        // Extract teacher IDs
-        $teacherIds = $teacherLevels->pluck('teacher_id')->toArray();
-
-        // Select all teachers with those teacher IDs
-        $teachers = Teacher::whereIn('id', $teacherIds)->with('levels')->get();
-        
-
-        return response([
-            'status' => 200,
-            'message' => 'Create Teacher schedule success',
-            'classroom' => $studyClass,
-            'teachers' => $teachers,
-            
-        ]);
-
-    }
-
-
-
     public function index(){
 
 
@@ -56,6 +23,7 @@ class TeacherScheduleController extends Controller
 
 
     }
+
 
 
     public function list(){
@@ -75,6 +43,52 @@ class TeacherScheduleController extends Controller
 
         return view('principal.setting.schedule.list',compact('schedule7A'));
     }
+
+
+    
+    public function create(Request $request){
+
+        
+        // Select class with level relationship
+         $studyClass = StudyClass::where('id', $request->id)->with('level')->first();
+ 
+ 
+ 
+         // Select teachers who teach subjects for the same level(s) as the class
+         $teacherLevels = TeacherSubject::whereHas('levels', function($query) use ($studyClass) {
+             $query->where('id', $studyClass->level->id);
+         })->get();
+ 
+ 
+         // Extract teacher IDs
+         $teacherIds = $teacherLevels->pluck('teacher_id')->toArray();
+ 
+         // Select all teachers with those teacher IDs
+         $teachers = Teacher::whereIn('id', $teacherIds)->with('levels')->get();
+         
+ 
+         return response([
+             'status' => 200,
+             'message' => 'Create Teacher schedule success',
+             'classroom' => $studyClass,
+             'teachers' => $teachers,
+             
+         ]);
+ 
+    }
+
+
+    public function store(){
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Create success'
+        ]);
+    }
+
+
+    
+
 
 
     

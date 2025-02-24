@@ -111,11 +111,12 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form id="formCreateSchedule">
                                     <div class="row p-0">
                                         <div class="col-12 mb-3">
                                             <label for="">គ្រូបង្រៀន</label>
-                                            <select name="" class=" form-control">`;
+                                            <input type="text" name="study_class_id" value="${response.classroom.id}" >
+                                            <select name="teacher" class=" form-control">`;
 
                                                 $.each(teachers, function (index, value) { 
                                                     let levelsText = value.levels.map(item => item.name).join(", ");
@@ -133,7 +134,7 @@
 
                                         <div class="col-6 mb-3">
                                             <label for="">ថ្ងៃបង្រៀន</label>
-                                            <select name="" class=" form-control shadow-none">
+                                            <select name="day" class=" form-control shadow-none">
                                                 <option value="ច័ន្ទ">ច័ន្ទ</option>
                                                 <option value="អង្គារ">ច័អង្គារ</option>
                                                 <option value="ពុធ">ពុធ</option>
@@ -145,7 +146,7 @@
 
                                         <div class="col-6 mb-3">
                                             <label for="">ពេលវេលា</label>
-                                            <select name="" class=" form-control shadow-none">
+                                            <select name="study_time" class=" form-control shadow-none">
                                                 @foreach ($studyTimes as $time )
                                                     <option value="{{ $time->id }}">{{ $time->start_time }}  - {{ $time->end_time }}</option>
                                                 @endforeach
@@ -164,6 +165,28 @@
                     }
                 }
             });
+        }
+
+
+
+        const scheduleSave = () => {
+            try{
+                let formData = new FormData($("#formCreateSchedule")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('admin.schedule.store') }}",
+                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        
+                    }
+                });
+
+            }catch(e){
+                console.log(e);
+            }
         }
 
         

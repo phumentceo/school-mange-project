@@ -18,6 +18,7 @@ class TeacherController extends Controller
 
     #the function we used for show teachers list
     public function index(){
+        
         // Get all teachers with their subjects
         $teachers = Teacher::with('subjects')->get();
 
