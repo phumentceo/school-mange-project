@@ -206,12 +206,12 @@
             let teacherId = $(option).val();
             if (teacherId) {
                 $.ajax({
-                    url: 'get-subjects/' + teacherId, // API route to fetch subjects
+                    url: 'get-subjects/' + teacherId,
                     type: 'GET',
                     dataType: 'json',
                     success: function (response) {
                         let subjectDropdown = $('#subject_id');
-                        subjectDropdown.empty(); // Clear old options
+                        subjectDropdown.empty(); 
 
                         if (response.subjects.length > 0) {
                             $.each(response.subjects, function (index, subject) {
