@@ -92,6 +92,31 @@ class TeacherScheduleController extends Controller
     }
 
 
+
+    public function getSubjects($teacherId)
+    {
+        $teacher = Teacher::with('subjects')->find($teacherId);
+
+        if (!$teacher) {
+            return response()->json(['message' => 'Teacher not found'], 404);
+        }
+
+
+        return response()->json([
+           'subjects' => $teacher->subjects,
+        ]);
+
+        // return response()->json([
+        //     'subjects' => $teacher->subjects->map(function ($subject) {
+        //         return [
+        //             'id' => $subject->id,
+        //             'name' => $subject->name,
+        //         ];
+        //     })
+        // ]);
+    }
+
+
     
 
 

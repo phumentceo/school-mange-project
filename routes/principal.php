@@ -65,7 +65,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('/schedule/store',[TeacherScheduleController::class,'store'])->name('schedule.store');
 
         Route::get('/schedule/create',[TeacherScheduleController::class,'create'])->name('schedule.create');
-        
+        Route::get('/get-subjects/{teacherId}', [TeacherScheduleController::class, 'getSubjects']);
 
     });
     

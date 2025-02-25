@@ -28,7 +28,7 @@ class Teacher extends Model
 
     public function addresses()
     {
-        return $this->morphMany(Address::class, 'addressable');  
+        return $this->morphMany(Address::class, 'addressable');
     }
 
     public function subjects()

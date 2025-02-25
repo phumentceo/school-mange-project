@@ -148,7 +148,7 @@
                                         <div class="col-12 mb-3">
                                             <label for="">គ្រូបង្រៀន</label>
                                             <input type="hidden" name="study_class_id" value="${response.classroom.id}" >
-                                            <select name="teacher" class="form-control">`;
+                                            <select onchange="handleSelect(this)" name="teacher" id="all_teachers" class="form-control">`;
                                                 $.each(teachers, function (index, value) { 
                                                     let levelsText = value.levels.map(item => item.name).join(", ");
                                                     htmlModal += `
@@ -162,6 +162,14 @@
                                             </select>
                                         </div>`;
                                         htmlModal += `
+
+                                       <div class="col-12 mb-3">
+                                            <label for="">មុខវិជ្ជាបង្រៀន</label>
+                                            <select name="subject_id" id="subject_id" class="form-control shadow-none"></select>
+
+                                        
+                                            </select>
+                                        </div>
                                         <div class="col-6 mb-3">
                                             <label for="">ថ្ងៃបង្រៀន</label>
                                             <select name="day" class="form-control shadow-none">
@@ -192,6 +200,74 @@
                 }
             });
         };
+
+
+        const handleSelect = (option) => {
+            let teacherId = $(option).val();
+            if (teacherId) {
+                $.ajax({
+                    url: 'get-subjects/' + teacherId, // API route to fetch subjects
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        let subjectDropdown = $('#subject_id');
+                        subjectDropdown.empty(); // Clear old options
+
+                        if (response.subjects.length > 0) {
+                            $.each(response.subjects, function (index, subject) {
+                                subjectDropdown.append(`<option value="${subject.id}">${subject.subject_name}</option>`);
+                            });
+                        } else {
+                            subjectDropdown.append(`<option value="">No subjects available</option>`);
+                        }
+                    },
+                    error: function () {
+                        alert('Error fetching subjects. Please try again.');
+                    }
+                });
+            } else {
+                $('#subject_id').empty().append(`<option value="">Select a subject</option>`);
+            }
+            
+        }
+
+
+      
+
+
+        // Listen for change event on teacher select dropdown
+        $('#all_teachers').on('change', function () {
+
+           let teacherId = $(this).val(); 
+
+           alert("hello")
+           
+
+            if (teacherId) {
+                $.ajax({
+                    url: 'admin/get-subjects/' + teacherId, // API route to fetch subjects
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        let subjectDropdown = $('#subject_id');
+                        subjectDropdown.empty(); // Clear old options
+
+                        if (response.subjects.length > 0) {
+                            $.each(response.subjects, function (index, subject) {
+                                subjectDropdown.append(`<option value="${subject.id}">${subject.name}</option>`);
+                            });
+                        } else {
+                            subjectDropdown.append(`<option value="">No subjects available</option>`);
+                        }
+                    },
+                    error: function () {
+                        alert('Error fetching subjects. Please try again.');
+                    }
+                });
+            } else {
+                $('#subject_id').empty().append(`<option value="">Select a subject</option>`);
+            }
+        });
 
 
 
