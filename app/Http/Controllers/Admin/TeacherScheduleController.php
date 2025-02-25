@@ -64,7 +64,7 @@ class TeacherScheduleController extends Controller
          $teacherIds = $teacherLevels->pluck('teacher_id')->toArray();
  
          // Select all teachers with those teacher IDs
-         $teachers = Teacher::whereIn('id', $teacherIds)->with('levels')->get();
+         $teachers = Teacher::whereIn('id', $teacherIds)->with(['levels','subjects'])->get();
          
  
          return response([
@@ -76,6 +76,11 @@ class TeacherScheduleController extends Controller
          ]);
  
     }
+
+
+
+ 
+
 
 
     public function store(){
