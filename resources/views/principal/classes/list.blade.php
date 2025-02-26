@@ -148,7 +148,8 @@
                                         <div class="col-12 mb-3">
                                             <label for="">គ្រូបង្រៀន</label>
                                             <input type="hidden" name="study_class_id" value="${response.classroom.id}" >
-                                            <select onchange="handleSelect(this)" name="teacher" id="all_teachers" class="form-control">`;
+                                            <input type="hidden"  name="student_level_id" value="${response.classroom.class_level_id}" >
+                                            <select onchange="handleSelect(this)" name="teacher_id" id="all_teachers" class="form-control">`;
                                                 $.each(teachers, function (index, value) { 
                                                     let levelsText = value.levels.map(item => item.name).join(", ");
                                                     htmlModal += `
@@ -183,7 +184,7 @@
                                         </div>
                                         <div class="col-6 mb-3">
                                             <label for="">ពេលវេលា</label>
-                                            <select name="study_time" class="form-control shadow-none">
+                                            <select name="study_time_id" class="form-control shadow-none">
                                                 @foreach ($studyTimes as $time)
                                                     <option value="{{ $time->id }}">
                                                         {{ $time->start_time }} - {{ $time->end_time }}

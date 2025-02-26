@@ -8,14 +8,12 @@ class TeacherSchedule extends Model
 {
     protected $table = "teacher_schedules";
     protected $fillable = [
-        "id",
         "teacher_id",
         "subject_id",
         "study_class_id",
         "student_level_id",
-        "day",
-        "start_time",
-        "end_time",
+        'study_time_id',
+        "day"
     ];
 
 

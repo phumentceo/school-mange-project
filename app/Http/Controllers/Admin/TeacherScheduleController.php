@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\StudentLevel;
 use App\Models\StudyClass;
 use App\Models\Subject;
+use App\Models\TeacheHours;
 use App\Models\Teacher;
 use App\Models\TeacherSchedule;
 use App\Models\TeacherSubject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class TeacherScheduleController extends Controller
 {
@@ -83,12 +85,55 @@ class TeacherScheduleController extends Controller
 
 
 
-    public function store(){
+    public function store(Request $request){
+
+
+        $validator = Validator::make($request->all(),[
+            'day' =>'required',
+            'study_class_id' =>'required',
+            'student_level_id' => 'required',
+            'teacher_id' =>'required',
+            'subject_id' =>'required',
+            'study_time_id' => 'required'
+        ]);
+
+    
+        if($validator->fails()){
+            return response()->json([
+               'status' => 400,
+                'errors' => $validator->errors()
+            ], 400);
+        }
+        
+        TeacherSchedule::create([
+            'day' => $request->day,
+            'study_class_id' => $request->study_class_id,
+            'teacher_id' => $request->teacher_id,
+            'subject_id' => $request->subject_id,
+            'student_level_id' => $request->student_level_id,
+            'study_time_id' => $request->study_time_id,
+        ]);
+        
+        // Check if the teacher already exists in the TeacheHours table
+        $teacherHours = TeacheHours::where('teacher_id', $request->teacher_id)->first();
+        
+        if ($teacherHours) {
+            // If exists, increment spent_hours by 1
+            $teacherHours->increment('spent_hours', 1);
+        } else {
+            // If not exists, create a new record with spent_hours set to 1
+            TeacheHours::create([
+                'teacher_id' => $request->teacher_id,
+                'spent_hours' => 1,
+            ]);
+        }
+
 
         return response()->json([
             'status' => 200,
             'message' => 'Create success'
         ]);
+
     }
 
 
@@ -116,24 +161,5 @@ class TeacherScheduleController extends Controller
         // ]);
     }
 
-
-    
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    
-    
-    
-    
 
 }
