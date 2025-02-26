@@ -34,15 +34,6 @@ class TeacherScheduleController extends Controller
         $schedule7A = TeacherSchedule::where('study_class_id',73)
                     ->where('day','Monday')
                     ->with(['teacher','subject','classroom'])->get();
-
-
-        
-
-        return $schedule7A;
-
-       
-
-
         return view('principal.setting.schedule.list',compact('schedule7A'));
     }
 
