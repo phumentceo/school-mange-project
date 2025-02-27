@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teache_hours', function (Blueprint $table) {
+        Schema::create('teacher_hours', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teacher_id')->references('id')->on('teachers')->cascadeOnDelete();
             $table->integer('spent_hours')->default(1);

@@ -10,9 +10,19 @@ use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+
+
+    /*
+       Seeder detail
+       1.Admin 
+       2.Student Level (class level)
+       3.Subject
+       4.Teacher
+       5.Study Class (Class room)
+       6.Study Times
+    */
+    
+
     public function run(): void
     {
         //1.Admin
@@ -44,13 +54,14 @@ class DatabaseSeeder extends Seeder
               "created_at" => now(),
               "updated_at" => now(),
             ]
-          ];
-  
+        ];
+
+        
   
         DB::table('admins')->insert($admins);
 
 
-        //Student Level
+        #--------------------------Create Student level(class level)----------------------------
         $faker = Faker::create();
 
         $levels = [
@@ -86,42 +97,13 @@ class DatabaseSeeder extends Seeder
             ]
         ];
 
-
         DB::table('student_levels')->insert($levels);
 
-
-
-        //2.Student Level (class level)
-        $faker = Faker::create();
-
-        $levels = DB::table('student_levels')->get();
-        $teachers = DB::table('teachers')->pluck('id')->toArray();
-        $sections = ['A', 'B', 'C', 'D'];
-
-        $classes = [];
-
-        foreach ($levels as $level) {
-            foreach ($sections as $section) {
-                $classes[] = [
-                    'name' => $level->name . $section,
-                    'class_level_id' => $level->id,
-                    'homeroom_teacher' => $faker->randomElement($teachers),
-                    'desk' => 10,
-                    'fan' => $faker->randomElement([1, 2, 3]),
-                    'whiteboard' => 1,
-                    'status' => 1,
-                    'note' => null,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-            }
-        }
-
-        DB::table('study_classes')->insert($classes);
+        #--------------------------Create Student level(class level)----------------------------
 
 
 
-        //3.Subject
+        #---------------------------Create subject start------------------
         $subjects = [
             'គណិតវិទ្យា', 'ភាសាខ្មែរ', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា',
             'ផែនដីវិទ្យា', 'ភូមិវិទ្យា', 'ប្រវត្តិវិទ្យា', 'ភាសាបរទេស', 'សីលធម៌-ពលរដ្ជវិទ្យា', 'កីឡា'
@@ -166,8 +148,11 @@ class DatabaseSeeder extends Seeder
         DB::table('subjects')->insert($data);
 
 
-       /*----------------------4.Teacher-----------------------*/
+        #-------------------Create subject start------------------
 
+
+
+        #-------------------create teacher start -----------------
         $faker = Faker::create();
 
         // Fetch all necessary IDs
@@ -227,11 +212,11 @@ class DatabaseSeeder extends Seeder
         // Bulk insert teacher_subjects
         DB::table('teacher_subjects')->insert($teacherSubjects);
 
-       /*---------------------------------------------------------------------*/
+
+        //------------create teacher end-------------------------
 
 
-
-        //5.Class Room (study class)
+        #--------------------------Create Study Class (class room)----------------------------
         $faker = Faker::create();
 
         $levels = DB::table('student_levels')->get();
@@ -258,6 +243,12 @@ class DatabaseSeeder extends Seeder
         }
 
         DB::table('study_classes')->insert($classes);
+
+        #--------------------------Create Study Class (class room)----------------------------
+
+
+       
+    
 
         //6.Times
         $times = [
