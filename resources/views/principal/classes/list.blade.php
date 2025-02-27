@@ -275,13 +275,14 @@
             }
         });
 
-
-
-
-
         const scheduleSave = () => {
-            try{
+            try {
                 let formData = new FormData($("#formCreateSchedule")[0]);
+                let submitButton = $("#scheduleSubmitBtn"); // Target the button
+        
+                // Change button state to loading
+                submitButton.prop("disabled", true).html('<span class="spinner-border spinner-border-sm"></span> កំពុងផ្ទុក...');
+
                 $.ajax({
                     type: "POST",
                     url: "{{ route('admin.schedule.store') }}",
@@ -290,18 +291,26 @@
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        if(response.status == 200){
-
-                        }else{
-                            message(response.message,false);
+                        if (response.status == 200) {
+                            // Reset button state on success
+                            submitButton.prop("disabled", false).html("បន្ថែម");
+                        } else {
+                            message(response.message, false);
+                            submitButton.prop("disabled", false).html("បន្ថែម");
                         }
+                    },
+                    error: function () {
+                        // Reset button state on error
+                        submitButton.prop("disabled", false).html("បន្ថែម");
                     }
                 });
 
-            }catch(e){
+            } catch (e) {
                 console.log(e);
+                $("#scheduleSubmitBtn").prop("disabled", false).html("បន្ថែម");
             }
-        }
+        };
+
 
         
     </script>
