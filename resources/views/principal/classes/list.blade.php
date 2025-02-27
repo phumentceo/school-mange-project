@@ -292,8 +292,14 @@
                     processData: false,
                     success: function (response) {
                         if (response.status == 200) {
-                            // Reset button state on success
                             submitButton.prop("disabled", false).html("បន្ថែម");
+
+                            // Display success message
+                            message(response.message, true);
+
+                            //close modal
+                            $("#exampleModal").modal("hide");
+                            
                         } else {
                             message(response.message, false);
                             submitButton.prop("disabled", false).html("បន្ថែម");

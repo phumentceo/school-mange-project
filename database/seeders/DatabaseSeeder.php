@@ -47,7 +47,47 @@ class DatabaseSeeder extends Seeder
           ];
   
   
-          DB::table('admins')->insert($admins);
+        DB::table('admins')->insert($admins);
+
+
+        //Student Level
+        $faker = Faker::create();
+
+        $levels = [
+            [
+                "name" => "7",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+            [
+                "name" => "8",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+            [
+                "name" => "9",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+            [
+                "name" => "10",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+            [
+                "name" => "11",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ],
+            [
+                "name" => "12",
+                "created_at" => now(),
+                "updated_at" => now(),
+            ]
+        ];
+
+
+        DB::table('student_levels')->insert($levels);
 
 
 
