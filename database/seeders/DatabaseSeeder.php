@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Teacher;
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -128,16 +126,21 @@ class DatabaseSeeder extends Seeder
         DB::table('subjects')->insert($data);
 
 
-        //4.Teachers
+       /*----------------------4.Teacher-----------------------*/
+
         $faker = Faker::create();
+
         // Fetch all necessary IDs
         $adminIds = DB::table('admins')->pluck('id')->toArray();
         $subjectIds = DB::table('subjects')->pluck('id')->toArray();
         $studentLevels = DB::table('student_levels')->pluck('id')->toArray();
 
+        $teachers = [];
+        $teacherSubjects = [];
+
         for ($i = 0; $i < 50; $i++) {
-            // Create teacher with random admin ID
-            $teacher = Teacher::create([
+            // Prepare teacher data
+            $teachers[] = [
                 'full_name' => $faker->name,
                 'latin_name' => $faker->firstName,
                 'gender' => $faker->randomElement([1, 2]),
@@ -157,20 +160,34 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => $faker->md5,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]);
+            ];
+        }
 
-            // Attach subjects **with student level**
-            $subjectsToAttach = $faker->randomElements($subjectIds, rand(1, 3)); // Attach 1-3 subjects
+        // Bulk insert teachers
+        DB::table('teachers')->insert($teachers);
+
+        // Fetch newly inserted teacher IDs
+        $teacherIds = DB::table('teachers')->pluck('id')->toArray();
+
+        // Prepare teacher_subjects data
+        foreach ($teacherIds as $teacherId) {
+            $subjectsToAttach = $faker->randomElements($subjectIds, rand(1, 3));
+
             foreach ($subjectsToAttach as $subjectId) {
-                DB::table('teacher_subjects')->insert([
-                    'teacher_id' => $teacher->id,
+                $teacherSubjects[] = [
+                    'teacher_id' => $teacherId,
                     'subject_id' => $subjectId,
-                    'student_level_id' => $faker->randomElement($studentLevels), // Assign a random student level
+                    'student_level_id' => $faker->randomElement($studentLevels),
                     'created_at' => now(),
                     'updated_at' => now(),
-                ]);
+                ];
             }
         }
+
+        // Bulk insert teacher_subjects
+        DB::table('teacher_subjects')->insert($teacherSubjects);
+
+       /*---------------------------------------------------------------------*/
 
 
 

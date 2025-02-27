@@ -109,6 +109,12 @@
                                     <label class="placeholder col-4"></label>
                                     <select class="form-control placeholder col-12" disabled></select>
                                 </div>
+
+                                <div class="col-12 mb-3 placeholder-glow">
+                                    <label class="placeholder col-4"></label>
+                                    <select class="form-control placeholder col-12" disabled></select>
+                                </div>
+                                
                                 <div class="col-6 mb-3 placeholder-glow">
                                     <label class="placeholder col-4"></label>
                                     <select class="form-control placeholder col-12" disabled></select>
@@ -167,8 +173,7 @@
                                        <div class="col-12 mb-3">
                                             <label for="">មុខវិជ្ជាបង្រៀន</label>
                                             <select name="subject_id" id="subject_id" class="form-control shadow-none"></select>
-
-                                        
+                                                                                
                                             </select>
                                         </div>
                                         <div class="col-6 mb-3">
@@ -285,7 +290,11 @@
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        
+                        if(response.status == 200){
+
+                        }else{
+                            console.log(response.message);
+                        }
                     }
                 });
 

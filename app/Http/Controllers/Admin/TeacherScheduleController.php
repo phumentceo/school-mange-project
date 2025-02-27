@@ -18,18 +18,12 @@ class TeacherScheduleController extends Controller
 {
 
     public function index(){
-
-
-
-        return view('principal.setting.setting');
-
-
+      return view('principal.setting.setting');
     }
 
 
 
     public function list(){
-
 
         $schedule7A = TeacherSchedule::where('study_class_id',73)
                     ->where('day','Monday')
@@ -43,21 +37,22 @@ class TeacherScheduleController extends Controller
 
         
         // Select class with level relationship
-         $studyClass = StudyClass::where('id', $request->id)->with('level')->first();
+        $studyClass = StudyClass::where('id', $request->id)->with('level')->first();
  
  
  
-         // Select teachers who teach subjects for the same level(s) as the class
-         $teacherLevels = TeacherSubject::whereHas('levels', function($query) use ($studyClass) {
-             $query->where('id', $studyClass->level->id);
-         })->get();
+        // Select teachers who teach subjects for the same level(s) as the class
+        $teacherLevels = TeacherSubject::whereHas('levels', function($query) use ($studyClass) {
+            $query->where('id', $studyClass->level->id);
+        })->get();
  
  
-         // Extract teacher IDs
-         $teacherIds = $teacherLevels->pluck('teacher_id')->toArray();
+        // Extract teacher IDs
+        $teacherIds = $teacherLevels->pluck('teacher_id')->toArray();
  
-         // Select all teachers with those teacher IDs
-         $teachers = Teacher::whereIn('id', $teacherIds)->with(['levels','subjects'])->get();
+        
+        // Select all teachers with those teacher IDs
+        $teachers = Teacher::whereIn('id', $teacherIds)->with(['levels','subjects'])->get();
          
  
          return response([
@@ -69,10 +64,6 @@ class TeacherScheduleController extends Controller
          ]);
  
     }
-
-
-
- 
 
 
 
@@ -91,9 +82,23 @@ class TeacherScheduleController extends Controller
     
         if($validator->fails()){
             return response()->json([
-               'status' => 400,
+               'status' => 422,
                 'errors' => $validator->errors()
-            ], 400);
+            ]);
+        }
+
+
+        //✅ពិនិត្យថាតើមានគ្រូបង្រៀននៅថ្ងៃនិងម៉ោងនោះរួចហើយឬអត់
+        $existingSchedule = TeacherSchedule::where('day', $request->day)
+        ->where('study_time_id', $request->study_time_id)
+        ->where('study_class_id', $request->study_class_id)
+        ->exists();
+
+        if ($existingSchedule) {
+            return response()->json([
+                'status' => 400,
+                'message' => "ថ្ងៃ " . $request->day . "សម្រាប់ម៉ោងនេះមានមុខវិជ្ជារួចជាស្រេចហើយ"
+            ]);
         }
         
         TeacherSchedule::create([
@@ -105,14 +110,19 @@ class TeacherScheduleController extends Controller
             'study_time_id' => $request->study_time_id,
         ]);
         
-        // Check if the teacher already exists in the TeacheHours table
+       
         $teacherHours = TeacheHours::where('teacher_id', $request->teacher_id)->first();
-        
+
+        //✅ពិនិត្យបញ្ជី TeacheHours (ប្រសិនបើ spent_hours >= 20 មិនអាចបន្ថែមបាន)
         if ($teacherHours) {
-            // If exists, increment spent_hours by 1
+            if ($teacherHours->spent_hours >= 20) {
+                return response()->json([
+                    'status' => 400,
+                    'message' => 'គាត់បានបង្រៀនលើសពី 20h ក្នុងមួយសប្តាហ៍'
+                ]);
+            }
             $teacherHours->increment('spent_hours', 1);
         } else {
-            // If not exists, create a new record with spent_hours set to 1
             TeacheHours::create([
                 'teacher_id' => $request->teacher_id,
                 'spent_hours' => 1,
@@ -122,7 +132,7 @@ class TeacherScheduleController extends Controller
 
         return response()->json([
             'status' => 200,
-            'message' => 'Create success'
+            'message' => 'បានបញ្ចូលមុខវិជ្ជា និង គ្រូបង្រៀនទៅកាន់កាលវិភាគដោយជោគជ័យ'
         ]);
 
     }
