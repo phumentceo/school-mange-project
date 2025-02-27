@@ -97,7 +97,7 @@ class TeacherScheduleController extends Controller
         if ($existingSchedule) {
             return response()->json([
                 'status' => 400,
-                'message' => "ថ្ងៃ " . $request->day . "សម្រាប់ម៉ោងនេះមានមុខវិជ្ជារួចជាស្រេចហើយ"
+                'message' => "ថ្ងៃ " . $request->day . " សម្រាប់ម៉ោងនេះមានមុខវិជ្ជារួចជាស្រេចហើយ"
             ]);
         }
         
