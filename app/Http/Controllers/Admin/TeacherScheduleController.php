@@ -82,7 +82,8 @@ class TeacherScheduleController extends Controller
     
         if($validator->fails()){
             return response()->json([
-               'status' => 422,
+                'status' => 422,
+                'message' => 'សូមប្រាកដថាអ្នកបានជ្រើសគ្រប់ហើយ',
                 'errors' => $validator->errors()
             ]);
         }
@@ -101,14 +102,7 @@ class TeacherScheduleController extends Controller
             ]);
         }
         
-        TeacherSchedule::create([
-            'day' => $request->day,
-            'study_class_id' => $request->study_class_id,
-            'teacher_id' => $request->teacher_id,
-            'subject_id' => $request->subject_id,
-            'student_level_id' => $request->student_level_id,
-            'study_time_id' => $request->study_time_id,
-        ]);
+        
         
        
         $teacherHours = TeacheHours::where('teacher_id', $request->teacher_id)->first();
@@ -128,6 +122,33 @@ class TeacherScheduleController extends Controller
                 'spent_hours' => 1,
             ]);
         }
+
+
+        // ✅ ពិនិត្យសរុបម៉ោងនៃមុខវិជ្ជានេះសម្រាប់ថ្នាក់នេះ
+        $subject = Subject::find($request->subject_id);
+        
+
+        // សរុបម៉ោងដែលបានបង្កើតសម្រាប់មុខវិជ្ជានេះក្នុងថ្នាក់ជាក់លាក់
+        $totalAssignedHours = TeacherSchedule::where('subject_id', $request->subject_id)
+        ->where('study_class_id', $request->study_class_id)
+        ->count();
+
+        if ($totalAssignedHours >= $subject->hours_per_week) {
+            return response()->json([
+                'status' => 400,
+                'message' => 'មុខវិជ្ជា ' . $subject->subject_name . ' បានកំណត់ម៉ោងបង្រៀនលើស ' . $subject->hours_per_week . ' ម៉ោងក្នុងមួយសប្តាហ៍រួចហើយ។'
+            ]);
+        }
+
+
+        TeacherSchedule::create([
+            'day' => $request->day,
+            'study_class_id' => $request->study_class_id,
+            'teacher_id' => $request->teacher_id,
+            'subject_id' => $request->subject_id,
+            'student_level_id' => $request->student_level_id,
+            'study_time_id' => $request->study_time_id,
+        ]);
 
 
         return response()->json([
