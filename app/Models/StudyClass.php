@@ -19,6 +19,8 @@ class StudyClass extends Model
         'note'
     ];
 
+    
+
 
     public function teachers()
     {

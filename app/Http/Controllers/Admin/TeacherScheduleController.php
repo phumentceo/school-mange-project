@@ -8,6 +8,7 @@ use App\Models\StudyClass;
 use App\Models\Subject;
 use App\Models\TeacheHours;
 use App\Models\Teacher;
+use App\Models\TeacherClass;
 use App\Models\TeacherSchedule;
 use App\Models\TeacherSubject;
 use Illuminate\Http\Request;
@@ -148,6 +149,12 @@ class TeacherScheduleController extends Controller
             'subject_id' => $request->subject_id,
             'student_level_id' => $request->student_level_id,
             'study_time_id' => $request->study_time_id,
+        ]);
+
+        //Insert teacher and class to pivot table (middle table)
+        TeacherClass::create([
+            'teacher_id' => $request->teacher_id,
+            'study_classes_id' => $request->study_class_id,
         ]);
 
 

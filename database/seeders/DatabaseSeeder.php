@@ -152,6 +152,7 @@ class DatabaseSeeder extends Seeder
 
 
 
+        
         #-------------------create teacher start -----------------
         $faker = Faker::create();
 

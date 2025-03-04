@@ -38,7 +38,7 @@
                                 @endif
                             </td>
                             <td class=" d-flex align-items-center">
-                                <a class=" btn btn-success btn-sm" href="{{ route('admin.class.edit', $class->id) }}"><i
+                                <a class=" btn btn-success btn-sm" href="{{ route('admin.class.view', $class->id) }}"><i
                                         class="bi bi-eye"></i></a>
                                 <a class=" btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this?')"
                                     href="{{ route('admin.class.destroy', $class->id) }}" class=" text-danger"><i

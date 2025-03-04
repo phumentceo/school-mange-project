@@ -11,9 +11,7 @@ use Illuminate\Http\Request;
 
 class StudyClassController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $classes = StudyClass::with('teacher')->get();
@@ -22,9 +20,7 @@ class StudyClassController extends Controller
         return view('principal.classes.list',compact('classes','studyTimes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
 
@@ -34,43 +30,37 @@ class StudyClassController extends Controller
         return view('principal.classes.create',compact('teachers','levels'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
-        //
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function view(string $id)
     {
-        //
+        
+        $teachers = StudyClass::where('id',$id)->with('teacher')->get();
+
+
+        return $teachers;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
-        //
+       
     }
 }
