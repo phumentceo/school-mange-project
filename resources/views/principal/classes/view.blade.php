@@ -6,7 +6,7 @@
 
         <div class="card">
           <div class="card-body p-4">
-            <h4 class="mb-4">អំពីថ្នាក់រៀន 11A</h4>
+            <h4 class="mb-4">អំពីថ្នាក់រៀន {{ $data['name'] }}</h4>
             <!-- Default Accordion -->
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
@@ -18,10 +18,15 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                       <ul>
-                        <li>លោកគ្រូ ៖ ឡុន បញ្ញា</li>
-                        <li>លោកគ្រូ ៖ សាន សេរី</li>
-                        <li>លោកអ្នកគ្រូ ៖ អ៊ុន ឆវី</li>
-                        <li><strong class=" text-danger">គ្រូបន្ទុកថ្នាក់ លោកគ្រូ ៖ ចាន់ កុសល</strong></li>
+                        @if ($data->teachers->isNotEmpty())
+                            <li>លោកគ្រូ ៖ ឡុន បញ្ញា</li>
+                            <li>លោកគ្រូ ៖ សាន សេរី</li>
+                            <li>លោកអ្នកគ្រូ ៖ អ៊ុន ឆវី</li>
+                        @endif
+                        @if ($data->teacher != "")
+                           <li><strong class=" text-danger">គ្រូបន្ទុកថ្នាក់ លោកគ្រូ ៖ ចាន់ កុសល</strong></li>
+                        @endif
+                        
                       </ul>
                   </div>
                 </div>

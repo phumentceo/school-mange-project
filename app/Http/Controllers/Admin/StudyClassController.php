@@ -40,10 +40,13 @@ class StudyClassController extends Controller
     public function view(string $id)
     {
         
-        $teachers = StudyClass::where('id',$id)->with('teacher')->get();
+        //teacher = teacher homeroom , teachers = teacher_class (Pivat table) 
+        $data = StudyClass::where('id',$id)->with(['teacher','teachers'])->first();
 
 
-        return $teachers;
+        // return $data;
+
+        return view('principal.classes.view',compact('data'));
     }
 
    
