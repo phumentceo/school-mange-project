@@ -10,6 +10,7 @@ class TeacherSubject extends Model
     protected $table = 'teacher_subjects';
     protected $fillable = [
         'teacher_id',
+        'student_level_id',
         'subject_id',
     ];
 
@@ -20,5 +21,11 @@ class TeacherSubject extends Model
     public function teacher(){
         return $this->belongsTo(Teacher::class,'teacher_id');
     }
+
+    public function levels(){
+        return $this->belongsTo(StudentLevel::class,'student_level_id');
+    }
+
+
     
 }

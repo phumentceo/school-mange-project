@@ -9,7 +9,7 @@
         @method('PUT')
         @csrf
     
-        <div class="col-md-12">
+        <div class="col-md-6">
             <label for="subject_name" class="form-label">ឈ្មោះមុខវិជ្ជា</label>
             <input type="text" class="form-control shadow-none" id="subject_name" name="subject_name" value="{{ $subject->subject_name }}">
             @error('subject_name')
@@ -25,6 +25,21 @@
                 @endforeach
             </select>
             @error('grade')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="col-md-6">
+            <label for="hours_per_week" class="form-label">ម៉ោងដែរមុខវិជ្ជាតម្រូវការក្នុងមួយសប្តាហ៍</label>
+            <select name="hours_per_week" class=" form-control shadow-none" id="">
+                <option value="6">6h/សប្តាហ៍</option>
+                <option value="5">5h/សប្តាហ៍</option>
+                <option value="4">4h/សប្តាហ៍</option>
+                <option value="3">3h/សប្តាហ៍</option>
+                <option value="2">2h/សប្តាហ៍</option>
+                <option value="1">1h/សប្តាហ៍</option>
+            </select>
+            @error('hours_per_week')
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>

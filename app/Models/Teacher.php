@@ -28,11 +28,17 @@ class Teacher extends Model
 
     public function addresses()
     {
-        return $this->morphMany(Address::class, 'addressable');  
+        return $this->morphMany(Address::class, 'addressable');
     }
 
     public function subjects()
     {
         return $this->belongsToMany(Subject::class,'teacher_subjects');
     }
+
+    public function levels()
+    {
+        return $this->belongsToMany(StudentLevel::class, 'teacher_subjects', 'teacher_id', 'student_level_id');
+    }
+    
 }

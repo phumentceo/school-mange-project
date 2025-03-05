@@ -15,17 +15,17 @@
                     <tr style="background-color: black;">
                         <th><b>ឈ្មោះ</b></th>
                         <th>ភេទ</th>
-                        <th>ស្ថានភាពគ្រួសារ</th>
                         <th>អ៊ីមែល</th>
                         <th>លេខទូរស័ព្ទ</th>
                         <th>ថ្ងៃចូលធ្វើការ</th>
+                        <th>ថ្នាក់ដែលបង្រៀន</th> <!-- New Column for Grade Levels -->
                         <th>សកម្មភាព</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($teachers as $teacher)
                         <tr>
-                            <td>{{ $teacher->full_name}}</td>
+                            <td>{{ $teacher->full_name }}</td>
                             <td>
                                 @if($teacher->gender == 1)
                                     ប្រុស
@@ -35,27 +35,26 @@
                                     មិនកំណត់
                                 @endif
                             </td>
-                            <td>
-                                @if($teacher->marital_status == 1)
-                                    រៀបការហើយ
-                                @elseif($teacher->marital_status == 2)
-                                    នៅលីវ
-                                @else
-                                    មិនកំណត់
-                                @endif
-                            </td>
                             <td>{{ $teacher->email }}</td>
                             <td>{{ $teacher->phone }}</td>
                             <td>{{ $teacher->hire_date }}</td>
                             <td>
-                                <a class=" btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
-                                <a href="{{ route('admin.teacher.destroy',$teacher->id) }}" onclick="return confirm('Do u want to delete this?')" class=" btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
-                                <a href="{{ route('admin.teacher.edit',$teacher->id) }}" class=" btn btn-info btn-sm"><i class="bi bi-pen"></i></a>
+                                @if($teacher->subjects->isNotEmpty())
+                                   ថា្នក់ទី៖ {{ $teacher->subjects->pluck('level.name')->unique()->join(', ') }}
+                                @else
+                                    មិនទាន់មាន
+                                @endif
+                            </td>
+                            <td>
+                                <a class="btn btn-success btn-sm"><i class="bi bi-eye"></i></a>
+                                <a href="{{ route('admin.teacher.destroy', $teacher->id) }}" onclick="return confirm('Do u want to delete this?')" class="btn btn-danger btn-sm"><i class="bi bi-trash2-fill"></i></a>
+                                <a href="{{ route('admin.teacher.edit', $teacher->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pen"></i></a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
     </div>
 @endsection

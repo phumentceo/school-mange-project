@@ -4,6 +4,7 @@
       <div class="card-body">
           <div class="row p-5">
                 <!-- Teachers Card -->
+                <h4 class=" text-center mb-5">ប្រព័ន្ធគ្រប់គ្រប់ស្វ័យប្រវត្តិ</h4>
                 <div class="col-xxl-4 col-md-6">
                     <div class="card info-card sales-card">
                     <div class="card-body">

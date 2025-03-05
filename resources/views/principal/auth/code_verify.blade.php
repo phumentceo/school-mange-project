@@ -18,7 +18,11 @@
 
             <div class="card mb-3">
               <div class="card-body">
+<<<<<<< HEAD
+                <form id="verify-form" action="{{ route('admin.verify.process') }}" class="row g-3 needs-validation" method="POST">
+=======
                 <form id="verify-form" action="{{ route('admin.code.veryfi.process') }}" class="row g-3 needs-validation" method="POST">
+>>>>>>> master
                   @csrf
                   <div class="col-12 p-3">
                     @if (Session::has('success'))
@@ -26,6 +30,13 @@
                     @endif
                     <input type="hidden" value="{{ $data->token }}" name="token" id="token">
                     <p class="text-center">សូមបញ្ចូលកូដទាំង 6 ខ្ទង់របស់អ្នក</p>
+<<<<<<< HEAD
+                    <div class="form-group">
+                      <div class="row mt-4"  id="code-inputs">
+                         <input type="text" name="code" class=" form-control shadow-none">
+                          @error('code')
+                            <span style="font-size:10px;" class="text-danger">{{ $message }}</span>
+=======
                     <div class="form-group mt-3">
                       <div class="row" id="code-inputs">
                           <input name="code" type="text" class=" form-control @error('code')
@@ -33,17 +44,22 @@
                           @enderror">
                           @error('code')
                              <p style="font-size: 12px;">{{ $message }}</p>
+>>>>>>> master
                           @enderror
                       </div>
-                      @error('email')
-                        <span style="font-size:10px;" class="text-danger">{{ $message }}</span>
-                      @enderror
-                    </div>
                   </div>
 
+<<<<<<< HEAD
+                  <div class="col-12 mt-4">
+                    <button class="btn btn-primary w-100" type="submit">បញ្ចូន</button>
+                  </div>
+                     
+                    </div>
+=======
                   <div class="col-12">
                     <button class="btn btn-primary w-100" type="submit">បញ្ចូន</button>
                   </div>
+>>>>>>> master
                   
                 </form>
 

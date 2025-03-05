@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentLevel;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TeacherSubject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -15,13 +18,20 @@ class TeacherController extends Controller
 
     #the function we used for show teachers list
     public function index(){
+        
+        // Get all teachers with their subjects
+        $teachers = Teacher::with('subjects')->get();
 
-        $teachers = Teacher::all();
+        // Collect all grade IDs from subjects
+        $levelIds = $teachers->pluck('subjects.*.grade')->flatten()->unique();
 
-        return view('principal.teachers.list',compact('teachers'));
+        
+        // Retrieve the corresponding student levels
+        $levels = StudentLevel::whereIn('id', $levelIds)->get();
 
-    }
-
+        
+        return view('principal.teachers.list', compact('teachers', 'levels'));
+   }
 
     #the function we used for show creating new teacher
     public function create(){
@@ -38,13 +48,12 @@ class TeacherController extends Controller
 
     #the function we used for store teacher to db
     public function store(Request $request){
-        
         $request->validate([
             'full_name' => 'required|string|max:255|regex:/^[\p{Khmer}\s]+$/u',
             'latin_name' => 'required|string|max:255|regex:/^[A-Z\s]+$/',
             'gender' => 'required|in:1,2',
             'marital_status' => 'required|in:1,2',
-            'dob' => 'required',
+            'dob' => 'required|date',
             'national_id' => 'nullable|string|unique:teachers,national_id',
             'subject_id' => 'required|array',
             'subject_id.*' => 'exists:subjects,id',
@@ -54,7 +63,7 @@ class TeacherController extends Controller
             'email' => 'required|email|unique:teachers,email',
             'phone' => 'required|string|max:20',
             'password' => 'nullable|string|min:6',
-            'hire_date' => 'required',
+            'hire_date' => 'required|date',
             'created_by' => 'nullable|integer',
             'note' => 'nullable|string',
             'village' => 'required|string|max:255',
@@ -95,63 +104,78 @@ class TeacherController extends Controller
             'province.string' => 'ខេត្តត្រូវតែជាអក្សរ',
             'current_address.string' => 'អាសយដ្ឋានបច្ចុប្បន្នត្រូវតែជាអក្សរ',
         ]);
-
-
-        // Create the teacher
-        $teacher = Teacher::create($request->only([
-            "full_name",
-            "latin_name",
-            "gender",
-            "marital_status",
-            "dob",
-            "national_id",
-            "specialization",
-            "degree",
-            "university",
-            "email",
-            "phone",
-            "password",
-            "hire_date",
-            "created_by",
-            "note"
-        ]));
-
-        // Create the address
-        $teacher->addresses()->create($request->only([
-            'village',
-            'commune',
-            'district',
-            'province',
-            'current_address'
-        ]));
-
-        $subjectIds = $request->subject_id;
-
-        foreach($subjectIds as $subject){
-            TeacherSubject::create([
-                'teacher_id' => $teacher->id,
-                'subject_id' => $subject,
-            ]);
-        }
-
-
-        return redirect()->route('admin.teacher.index')->with('success','គ្រូបង្រៀនត្រូវបានបង្កើតដោយជោគជ័យ');
-
     
-       
+        DB::transaction(function () use ($request) {
+            $teacher = Teacher::create([
+                "full_name" => $request->full_name,
+                "latin_name" => $request->latin_name,
+                "gender" => $request->gender,
+                "marital_status" => $request->marital_status,
+                "dob" => $request->dob,
+                "national_id" => $request->national_id,
+                "specialization" => $request->specialization,
+                "degree" => $request->degree,
+                "university" => $request->university,
+                "email" => $request->email,
+                "phone" => $request->phone,
+                "password" => $request->filled('password') ? Hash::make($request->password) : null,
+                "hire_date" => $request->hire_date,
+                "created_by" => $request->created_by,
+                "note" => $request->note,
+            ]);
+    
+            $teacher->addresses()->create([
+                'village' => $request->village,
+                'commune' => $request->commune,
+                'district' => $request->district,
+                'province' => $request->province,
+                'current_address' => $request->current_address,
+            ]);
+    
+            $teacherSubjects = [];
+    
+            foreach ($request->subject_id as $subjectId) {
+                $subject = Subject::find($subjectId);
+                $studentLevels = $subject->level->pluck('id');
+    
+                foreach ($studentLevels as $studentLevelId) {
+                    $teacherSubjects[] = [
+                        'teacher_id' => $teacher->id,
+                        'subject_id' => $subjectId,
+                        'student_level_id' => $studentLevelId,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ];
+                }
+            }
+    
+            TeacherSubject::insert($teacherSubjects);
+        });
+    
+    
+        return redirect()->route('admin.teacher.index')->with('success','គ្រូបង្រៀនត្រូវបានបង្កើតដោយជោគជ័យ');
     }
-
 
     #the function we used for show updating teacher
     public function edit($id){
 
+       
+
         $teacher = Teacher::findOrFail($id); 
 
-        $subjects = Subject::all(); 
+
+        
+
+        $subjects = Subject::with('level')->get();
+
 
         $address = $teacher->addresses()->first();
+
+       
         
         $subjectIds = $teacher->subjects->pluck('id')->toArray(); 
+
+        
 
         return view("principal.teachers.edit", compact('teacher', 'subjects', 'address', 'subjectIds'));
 
@@ -219,41 +243,66 @@ class TeacherController extends Controller
             'current_address.string' => 'អាសយដ្ឋានបច្ចុប្បន្នត្រូវតែជាអក្សរ',
         ]);
 
-        // Update teacher
-        $teacher->update($request->only([
-            "full_name",
-            "latin_name",
-            "gender",
-            "marital_status",
-            "dob",
-            "national_id",
-            "specialization",
-            "degree",
-            "university",
-            "email",
-            "phone",
-            "hire_date",
-            "created_by",
-            "note"
-        ]));
+        DB::transaction(function () use ($request, $teacher) {
+            // Update teacher information
+            $teacher->update($request->only([
+                "full_name",
+                "latin_name",
+                "gender",
+                "marital_status",
+                "dob",
+                "national_id",
+                "specialization",
+                "degree",
+                "university",
+                "email",
+                "phone",
+                "hire_date",
+                "created_by",
+                "note"
+            ]));
+
+            // Update address
+            $teacher->addresses()->updateOrCreate(
+                ['addressable_id' => $teacher->id, 'addressable_type' => Teacher::class],
+                $request->only([
+                    'village',
+                    'commune',
+                    'district',
+                    'province',
+                    'current_address'
+                ])
+            );
+
+
+            TeacherSubject::where('teacher_id', $teacher->id)->delete();
+
+            // Prepare new TeacherSubject records
+            
+            // Update subjects
+            foreach ($request->subject_id as $subjectId) {
+                $subject = Subject::find($subjectId);
+                $studentLevels = $subject->level()->pluck('id');
+            
+                foreach ($studentLevels as $studentLevelId) {
+                    TeacherSubject::updateOrCreate(
+                        [
+                            'teacher_id' => $teacher->id,
+                        ],
+                        [
+                            
+                            'subject_id' => $subjectId,
+                            'student_level_id' => $studentLevelId
+                        ]
+                    );
+                }
+            }
+
+
+        });
 
         
-
-        // Update address
-        $teacher->addresses()->updateOrCreate(
-            ['addressable_id' => $teacher->id, 'addressable_type' => Teacher::class],
-            $request->only([
-                'village',
-                'commune',
-                'district',
-                'province',
-                'current_address'
-            ])
-        );
-
-        // Update subjects
-        $teacher->subjects()->sync($request->subject_id);
-
+        
         return redirect()->route('admin.teacher.index')->with('success', 'ព័ត៌មានគ្រូបង្រៀនត្រូវបានកែប្រែដោយជោគជ័យ');
     }
 

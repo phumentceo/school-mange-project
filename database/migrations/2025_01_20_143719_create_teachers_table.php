@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create(table: 'teachers', callback: function (Blueprint $table): void {
             $table->id();
-            $table->string(column: 'full_name');
+            $table->string("full_name");
             $table->string(column: 'latin_name');
             $table->enum(column: 'gender', allowed: [1, 2])->default(value: 1)->comment(comment: '1.Male | 2.Female');
             $table->enum(column: 'marital_status', allowed: [1, 2])->default(value: 1)->comment(comment: '1.Married | 2.Single');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string(column: 'password')->nullable();
             $table->foreignId(column: 'created_by')->references(column: 'id')->on(table: 'admins')->onDelete(action: 'cascade');
             $table->string('hire_date')->nullable();
-            $table->text(column: 'note')->nullable(); 
+            $table->text(column: 'note')->nullable(); // តំណាក់ការសរសេរ
             $table->timestamp(column: 'email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

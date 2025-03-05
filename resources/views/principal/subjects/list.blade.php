@@ -17,7 +17,7 @@
                         <th>ប្រភេទមុខវិជ្ជា</th>
                         <th>ពិន្ទុសម្រាប់មុខវិទ្យា</th>
                         <th>កំរិតថ្នាក់</th>
-                        <th>ចំនួនសៀវភៅ</th>
+                        <th>ម៉ោង</th>
                         <th>សកម្មភាព</th>
                     </tr>
                 </thead>
@@ -35,12 +35,12 @@
                                 @endif
                             </td>
                             <td>{{ $subject->credit }}</td>
-                            <td>ទី ៖ {{ $subject->level->name }}</td>
-                            <td>{{ $subject->book_number }}</td>
+                            <td>ទី{{ $subject->level->name }}</td>
+                            <td><span>{{ $subject->hours_per_week }} h/ <sub>សប្តាហ៍</sub></span></td>
                             <td>
-                                <a href="{{ route('admin.subject.edit',$subject->id) }}"><i class="bi bi-eye"></i></a>
-                                <a onclick="return confirm('Do you want to delete this?')" href="{{ route('admin.subject.destroy',$subject->id) }}" class=" text-danger"><i class="bi bi-trash2-fill"></i></a>
-                                <a href="{{ route('admin.subject.edit',$subject->id) }}"><i class="bi bi-pen"></i></a>
+                                <a class=" btn btn-success btn-sm" href="{{ route('admin.subject.edit',$subject->id) }}"><i class="bi bi-eye"></i></a>
+                                <a class=" btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this?')" href="{{ route('admin.subject.destroy',$subject->id) }}" class=" text-danger"><i class="bi bi-trash2-fill"></i></a>
+                                <a class=" btn btn-primary btn-sm" href="{{ route('admin.subject.edit',$subject->id) }}"><i class="bi bi-pen"></i></a>
                             </td>
                         </tr>
                     @endforeach
